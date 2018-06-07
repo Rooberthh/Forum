@@ -57,6 +57,15 @@ if (token) {
 
 window.events = new Vue();
 
+window.Vue.prototype.authorize = function (handler){
+	//Additional admin priv
+
+	let user = window.App.user;
+
+	if(! user) return false;
+	return handler(user);
+};
+
 window.flash = function (message){
 	window.events.$emit('flash', message);
 }; // flash('my flash message')

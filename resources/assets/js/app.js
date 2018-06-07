@@ -15,7 +15,6 @@ require('./bootstrap');
  */
 
 Vue.component('flash-message', require('./components/Flash-message.vue'));
-
 Vue.component('thread-view', require('./pages/Thread.vue'));
 
 const app = new Vue({
