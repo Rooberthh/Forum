@@ -14,7 +14,9 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('flash-message', require('./components/flash-message.vue'));
+Vue.component('flash-message', require('./components/Flash-message.vue'));
+
+Vue.component('thread-view', require('./pages/Thread.vue'));
 
 const app = new Vue({
     el: '#app'

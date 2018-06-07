@@ -94,6 +94,7 @@ class ThreadsController extends Controller
      */
     public function destroy($channel, Thread $thread)
     {
+        console.log('hello');
         $this->authorize('update', $thread);
 
         $thread->delete();
