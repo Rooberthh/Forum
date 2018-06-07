@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Reply;
 use App\Thread;
 
 class RepliesController extends Controller
@@ -29,6 +29,16 @@ class RepliesController extends Controller
             'body' => request('body'),
             'user_id' => auth()->id()
         ]);
+
+        return back()->
+            with('flash', 'Your reply have been posted');
+    }
+
+    public function destroy(Reply $reply)
+    {
+        $this->authorize('update', $reply);
+        
+        $reply->delete();
 
         return back();
     }
