@@ -27,9 +27,6 @@
                 </div>
 
             <replies @added="repliesCount++" @removed="repliesCount--"></replies>
- 
-        
-
           </div>
 
           <div class="col-md-4">
@@ -39,6 +36,10 @@
                             This thread was published {{ $thread->created_at->diffForHumans() }} by
                             <a class="" href="#"> {{$thread->creator->name}}</a>, and currently 
                             has <span v-text="repliesCount"></span> {{ str_plural('reply', $thread->replies_count) }}.
+                        </p>
+
+                        <p>
+                            <subscribe-button :active="{{ $thread->isSubscribedTo }}"></subscribe-button>
                         </p>
                     </div>
                 </div>
