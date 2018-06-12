@@ -5,8 +5,6 @@
 <script>
 export default {
 
-  name: 'SubscribeButton',
-
   props: ['active'],
 
   computed: {

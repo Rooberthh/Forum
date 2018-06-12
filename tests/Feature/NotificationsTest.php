@@ -10,10 +10,17 @@ class NotificationsTest extends TestCase
 {
 	use RefreshDatabase;
 
+    public function setup()
+    {
+        parent::setUp();
+
+        $this->signIn();
+
+    }
+
     /** @test **/
     public function a_notification_is_prepeared_when_a_subscribed_thread_recieves_a_new_reply_that_is_not_by_the_current_user()
     {
-    	$this->signIn();
 
     	$thread = create('App\Thread')->subscribe();
 
@@ -37,7 +44,6 @@ class NotificationsTest extends TestCase
     /** @test **/
     function a_user_fetch_their_undread_notifications()
     {
-    	$this->signIn();
 
     	$thread = create('App\Thread')->subscribe();
 
@@ -56,7 +62,6 @@ class NotificationsTest extends TestCase
     /** @test **/
     function a_user_can_mark_a_notification_as_read()
     {
-    	$this->signIn();
 
     	$thread = create('App\Thread')->subscribe();
 
