@@ -8,7 +8,7 @@
               </a>
               <span v-text="ago"></span>
             </h5>
- 
+
             <div v-if="signedIn">
               <favorite :reply="data"></favorite>
             </div>
@@ -71,7 +71,10 @@ export default {
   		{
   			axios.patch('/replies/' + this.data.id, {
   				body: this.body
-  			});
+  			})
+            .catch(error => {
+                flash(error.response.data, 'danger');
+            });
 
   			this.editing = false;
 

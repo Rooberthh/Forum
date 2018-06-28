@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Channel;
 use App\Filters\ThreadFilters;
+use App\Rules\SpamFree;
 use App\Thread;
 use Illuminate\Http\Request;
 
@@ -54,10 +55,11 @@ class ThreadsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required',
-            'body' => 'required',
+            'title' => ['required', new SpamFree],
+            'body' => ['required', new SpamFree],
             'channel_id' => 'required|exists:channels,id'
         ]);
+
 
         $thread = Thread::create([
             'user_id' => auth()->id(),
@@ -73,12 +75,17 @@ class ThreadsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  integer     $channel
+     * @param  integer $channel
      * @param  \App\Thread $thread
      * @return \Illuminate\Http\Response
      */
     public function show($channel, Thread $thread)
     {
+        if(auth()->check())
+        {
+            auth()->user()->read($thread);
+        }
+
         return view('threads.show', compact('thread'));
     }
 

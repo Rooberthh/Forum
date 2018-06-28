@@ -66,6 +66,6 @@ window.Vue.prototype.authorize = function (handler){
 	return handler(user);
 };
 
-window.flash = function (message){
-	window.events.$emit('flash', message);
+window.flash = function (message, level = 'sucess'){
+	window.events.$emit('flash', {message, level});
 }; // flash('my flash message')

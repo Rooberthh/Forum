@@ -37,13 +37,12 @@ class ParticipateInThreadsTest extends TestCase
 
         $thread = create('App\Thread');
         $reply = make('App\Reply', ['body' => null]);
-
         $this->post($thread->path() . '/replies', $reply->toArray())
-             ->assertSessionHasErrors('body');
+             ->assertStatus(422);
     }
 
     /** @test */
-    function unauthorized_users_cannot_delete_replies() 
+    function unauthorized_users_cannot_delete_replies()
     {
         $this->withExceptionHandling();
         $reply = create('App\Reply');
@@ -65,7 +64,7 @@ class ParticipateInThreadsTest extends TestCase
         $this->delete("/replies/{$reply->id}")->assertStatus(302);
 
         $this->assertDatabaseMissing('replies', ['id' => $reply->id]);
-    } 
+    }
 
     /** @test */
     function authorized_users_can_update_replies()
@@ -75,10 +74,10 @@ class ParticipateInThreadsTest extends TestCase
 
         $this->patch("/replies/{$reply->id}", ['body' => 'You have been changed']);
         $this->assertDatabaseHas('replies', ['id' => $reply->id, 'body' => 'You have been changed']);
-    } 
+    }
 
     /** @test */
-    function unauthorized_users_cannot_update_replies() 
+    function unauthorized_users_cannot_update_replies()
     {
         $this->withExceptionHandling();
         $reply = create('App\Reply');
@@ -88,7 +87,41 @@ class ParticipateInThreadsTest extends TestCase
 
         $this->signIn()
             ->patch("/replies/{$reply->id}")
-            ->assertStatus(403);
+            ->assertStatus(422);
+
+    }
+
+    /** @test */
+    function replies_that_contain_spam_may_not_be_created()
+    {
+        $this->signIn();
+
+        $thread = create('App\Thread');
+        $reply = make('App\Reply', [
+            'body' => 'Yahoo Customer Support'
+        ]);
+
+        $this->post($thread->path() . '/replies', $reply->toArray())
+            ->assertStatus(422);
+
+    }
+
+    /** @test **/
+    function users_may_only_reply_a_maximum_of_once_per_minute()
+    {
+        $this->signIn();
+
+        $thread = create('App\Thread');
+
+        $reply = make('App\Reply', [
+            'body' => 'My simple reply'
+        ]);
+
+        $this->post($thread->path() . '/replies', $reply->toArray())
+            ->assertStatus(201);
+
+        $this->post($thread->path() . '/replies', $reply->toArray())
+            ->assertStatus(422);
 
     }
 

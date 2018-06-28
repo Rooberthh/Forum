@@ -2,8 +2,8 @@
 	<div>
 		<div v-if="signedIn">
             <div class="form-group">
-              <textarea name="body" id="body" class="form-control" 
-              placeholder="Have something to say?" 
+              <textarea name="body" id="body" class="form-control"
+              placeholder="Have something to say?"
               row="5" v-model="body" required></textarea>
             </div>
             <button type="submit" class="btn btn-primary"
@@ -11,9 +11,9 @@
             >Reply</button>
         </div>
 		<p class="text-center" v-else>
-			Please <a href="/login">sign in</a> 
+			Please <a href="/login">sign in</a>
 			to be able to reply to threads</p>
-		
+
     </div>
 </template>
 
@@ -37,6 +37,9 @@ export default {
 	methods: {
 		 addReply() {
             axios.post(this.endpoint, { body: this.body })
+                .catch(error => {
+                    flash(error.response.data, 'danger');
+                })
                 .then(({data}) => {
                     this.body = '';
 

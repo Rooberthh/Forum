@@ -2,51 +2,27 @@
 
 namespace App\Inspections;
 
-use Illuminate\Database\Eloquent\Model;
-
 class Spam
 {
+    protected $inspections = [
+        InvalidKeywords::class,
+        KeyHeldDown::class
+    ];
+
     /**
      * @param $body
+     * @return bool
      * @throws \Exception
      */
     public function detect($body)
     {
         // Detect invalid keywords
 
-        $this->detectInvalidKeywords($body);
-        $this->detectKeyHeldDown($body);
+        foreach($this->inspections as $inspection)
+        {
+            app($inspection)->detect($body);
+        }
 
         return false;
-    }
-
-    /**
-     * @param $body
-     * @throws \Exception
-     */
-    protected function detectInvalidKeywords($body)
-    {
-        $invalidKeywords = [
-            'Yahoo Customer Support'
-        ];
-
-        foreach( $invalidKeywords as $keyword)
-        {
-            if(stripos($body, $keyword) !== false)
-            {
-                throw new \Exception('Your reply contains spam.');
-            }
-        }
-    }
-
-    /**
-     * @param $body
-     * @throws \Exception
-     */
-    protected function detectKeyHeldDown($body)
-    {
-        if(preg_match( '/(.)\\1{4,}/' , $body)){
-            throw new \Exception('Your reply contains spam.');
-        }
     }
 }
