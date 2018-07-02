@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Inspections\Spam;
+use App\Events\ThreadReceivedNewReply;
+use App\Http\Requests\CreatePostRequest;
+use App\Notifications\YouWereMentioned;
 use App\Reply;
 use App\Rules\SpamFree;
 use App\Thread;
-use Illuminate\Support\Facades\Gate;
+use App\User;
 
 class RepliesController extends Controller
 {
@@ -27,30 +29,15 @@ class RepliesController extends Controller
      *
      * @param  integer $channelId
      * @param  Thread $thread
+     * @param CreatePostRequest $form
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store($channelId, Thread $thread)
+    public function store($channelId, Thread $thread, CreatePostRequest $form)
     {
-        if(Gate::denies('create', new Reply))
-        {
-            return response(
-                'You are posting to frequently.'
-                , 422);
-        }
-
-        try
-        {
-            request()->validate([
-                'body' => ['required', new SpamFree]
-            ]);
-
-            $reply = $thread->addReply([
-                'body' => request('body'),
-                'user_id' => auth()->id()
-            ]);
-        } catch (\Exception $e) {
-            return response('Sorry, your reply could not be saved at this time.', 422);
-        }
+        $reply = $thread->addReply([
+            'body' => request('body'),
+            'user_id' => auth()->id()
+        ]);
 
         return $reply->load('owner');
     }
@@ -70,19 +57,13 @@ class RepliesController extends Controller
 
     public function update(Reply $reply)
     {
-        try
-        {
-            request()->validate([
-                'body' => ['required', new SpamFree]
-            ]);
-
-            $reply->update(['body' => request('body')]);
-        } catch (\Exception $e) {
-            return response('Sorry your reply could not be updated at this time.', 422);
-        }
-
         $this->authorize('update', $reply);
 
+        request()->validate([
+            'body' => ['required', new SpamFree]
+        ]);
+
+        $reply->update(['body' => request('body')]);
     }
 
 }
