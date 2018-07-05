@@ -49,7 +49,7 @@
 
 <style type="text/css">
     .flash-message {
-        position: fixed;
+        position: fixed !important;
         bottom: 25px;
         right: 25px;
     }

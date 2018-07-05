@@ -4,10 +4,7 @@
 	<div class="container">
 		<div class="col-md-8 offset-2">
 			<div class="page-header">
-				<h1>
-					{{ $profileUser->name }}
-					<small>since {{ $profileUser->created_at->diffForHumans() }}</small>
-				</h1>
+				<avatar-form :user="{{ $profileUser }}"></avatar-form>
 			</div>
 
 			@forelse($activities as $date => $activity)
