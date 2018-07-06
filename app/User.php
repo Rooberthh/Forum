@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'avatar_path'
+        'name', 'email', 'password', 'avatar_path', 'confirmation_token', 'confirmed'
     ];
 
     /**
@@ -24,9 +24,12 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token', 'email',
+        'password', 'remember_token', 'email', 'confirmation_token'
     ];
 
+    protected $casts = [
+        'confirmed' => 'boolean'
+    ];
     /**
      * Get the route key name for Laravel.
      *
