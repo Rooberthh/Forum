@@ -27,7 +27,9 @@
             <article>
                 <p>{{ $thread->body }}</p>
             </article>
-            <hr>
+        </div>
+        <div class="card-footer">
+            {{ $thread->visits }} Visits
         </div>
     </div>
 @empty
