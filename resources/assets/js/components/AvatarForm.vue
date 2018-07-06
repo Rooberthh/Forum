@@ -38,7 +38,7 @@
         methods: {
             onLoad(avatar)
             {
-                this.avatar = avatar.src
+                this.avatar = avatar.src;
                 this.presist(avatar.file);
             },
 

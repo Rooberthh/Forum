@@ -6,7 +6,7 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class foo extends TestCase
+class SubscribeToThreadsTest extends TestCase
 {
 	use RefreshDatabase;
 

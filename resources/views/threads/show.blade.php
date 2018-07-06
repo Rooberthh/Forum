@@ -11,17 +11,29 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
-                        <a href="{{ route('profile', $thread->creator) }}">
-                        <img src="{{ $thread->creator->avatar_path }}"
-                          alt="{{ $thread->creator->name }}"
-                          width="25"
-                          height="25"
-                          class="mr-1"/>
-                        </a>
-                        <span class="flex">
-                         <a href="{{ route('profile', $thread->creator) }}">{{ $thread->creator->name }}</a> posted:
-                            {{ $thread->title }}
-                         </span>
+                        <div class="level">
+                            <a href="{{ route('profile', $thread->creator) }}">
+                            <img src="{{ $thread->creator->avatar_path }}"
+                              alt="{{ $thread->creator->name }}"
+                              width="25"
+                              height="25"
+                              class="mr-1"/>
+                            </a>
+
+                            <span class="flex">
+                             <a href="{{ route('profile', $thread->creator) }}">{{ $thread->creator->name }}</a> posted:
+                                {{ $thread->title }}
+                             </span>
+
+                            @can ('update', $thread)
+                                <form action="{{ $thread->path() }}" method="POST">
+                                    {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}
+
+                                    <button type="submit" class="btn btn-link">Delete Thread</button>
+                                </form>
+                            @endcan
+                        </div>
                     </div>
                     <div class="card-body">
                         <p>{{$thread->body}}</p>
