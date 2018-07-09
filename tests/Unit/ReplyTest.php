@@ -54,4 +54,15 @@ class ReplyTest extends TestCase
         );
 
     }
+
+    /** @test */
+    function it_can_be_marked_as_best()
+    {
+        $reply = create('App\Reply');
+
+        $this->assertFalse($reply->isBest());
+
+        $reply->thread->update(['best_reply_id' => $reply->id ]);
+        $this->assertTrue($reply->fresh()->isBest());
+    }
 }

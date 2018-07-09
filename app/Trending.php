@@ -36,4 +36,9 @@ class Trending
         return Redis::del($this->cacheKey());
     }
 
+    public function remove($thread)
+    {
+        Redis::zrem($this->cacheKey(), 0);
+    }
+
 }

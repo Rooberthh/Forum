@@ -109,9 +109,11 @@ class ThreadsController extends Controller
      * @param Thread $thread
      * @return mixed
      */
-    public function destroy($channel, Thread $thread)
+    public function destroy($channel, Thread $thread, Trending $trending)
     {
         $this->authorize('update', $thread);
+
+        $trending->remove($thread);
 
         $thread->delete();
 

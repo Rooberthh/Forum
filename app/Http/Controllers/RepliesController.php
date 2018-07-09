@@ -1,13 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Events\ThreadReceivedNewReply;
 use App\Http\Requests\CreatePostRequest;
-use App\Notifications\YouWereMentioned;
 use App\Reply;
 use App\Rules\SpamFree;
 use App\Thread;
-use App\User;
 
 class RepliesController extends Controller
 {
@@ -64,6 +61,7 @@ class RepliesController extends Controller
         ]);
 
         $reply->update(['body' => request('body')]);
+
     }
 
 }

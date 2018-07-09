@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div v-for="(reply, index) in items">
-			<Reply :data="reply" @deleted="remove(index)" :key="reply.id"></Reply>
+			<Reply :reply="reply" @deleted="remove(index)" :key="reply.id"></Reply>
 		</div>
 
 		<paginator :dataSet="dataSet" @changed="fetch"></paginator>
@@ -14,7 +14,7 @@
 	import Reply from './Reply.vue';
 	import NewReply from './NewReply.vue';
 	import collection from '../mixins/collection';
-	export default {	
+	export default {
 	  	components: {
 	  		Reply,
 	  		NewReply
@@ -41,7 +41,7 @@
 	  				let query = location.search.match(/page=(\d+)/);
 
 	  				page = query ? query[1] : 1;
-	  			} 
+	  			}
 	  			return location.pathname + '/replies?page=' + page;
 	  		},
 
