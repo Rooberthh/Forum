@@ -30771,7 +30771,6 @@ window.events = new Vue();
 window.Vue.prototype.authorize = function () {
 
   var authorizations = __webpack_require__(166);
-  //Additional admin priv
   if (!window.App.signedIn) return false;
 
   for (var _len = arguments.length, params = Array(_len), _key = 0; _key < _len; _key++) {
@@ -63967,6 +63966,9 @@ module.exports = {
         var prop = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'user_id';
 
         return model[prop] === user.id;
+    },
+    isAdmin: function isAdmin() {
+        return ['Roberth'].includes(user.name);
     }
 };
 
@@ -64982,7 +64984,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -65001,17 +65003,41 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	props: ['initialRepliesCount'],
+    props: ['thread'],
 
-	components: {
-		Replies: __WEBPACK_IMPORTED_MODULE_0__components_Replies_vue___default.a,
-		SubscribeButton: __WEBPACK_IMPORTED_MODULE_1__components_SubscribeButton_vue___default.a
-	},
-	data: function data() {
-		return {
-			repliesCount: this.initialRepliesCount
-		};
-	}
+    components: {
+        Replies: __WEBPACK_IMPORTED_MODULE_0__components_Replies_vue___default.a,
+        SubscribeButton: __WEBPACK_IMPORTED_MODULE_1__components_SubscribeButton_vue___default.a
+    },
+    data: function data() {
+        return {
+            repliesCount: this.thread.replies_count,
+            locked: this.thread.locked
+        };
+    },
+
+    methods: {
+        toggleLock: function toggleLock() {
+            if (this.locked) {
+                this.destroy();
+            } else {
+                this.create();
+            }
+        },
+        destroy: function destroy() {
+            axios.delete(this.endpoint);
+            this.locked = false;
+        },
+        create: function create() {
+            axios.post(this.endpoint);
+            this.locked = true;
+        }
+    },
+    computed: {
+        endpoint: function endpoint() {
+            return '/locked-threads/' + this.thread.slug;
+        }
+    }
 });
 
 /***/ }),
@@ -65072,6 +65098,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__NewReply_vue__ = __webpack_require__(206);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__NewReply_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__NewReply_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_collection__ = __webpack_require__(213);
+//
+//
+//
 //
 //
 //
@@ -67892,10 +67921,16 @@ var render = function() {
         on: { changed: _vm.fetch }
       }),
       _vm._v(" "),
-      _c("new-reply", {
-        attrs: { endpoint: _vm.endpoint },
-        on: { created: _vm.add }
-      })
+      _vm.$parent.locked
+        ? _c("p", [
+            _vm._v(
+              "\n            This thread has been locked. No more replies are allowed.\n        "
+            )
+          ])
+        : _c("new-reply", {
+            attrs: { endpoint: _vm.endpoint },
+            on: { created: _vm.add }
+          })
     ],
     2
   )

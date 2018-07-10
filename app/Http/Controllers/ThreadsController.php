@@ -102,6 +102,11 @@ class ThreadsController extends Controller
         return view('threads.show', compact('thread'));
     }
 
+    public function update($channel, Thread $thread)
+    {
+
+    }
+
     /**
      * Delete the given thread.
      *

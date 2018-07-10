@@ -100,4 +100,9 @@ class User extends Authenticatable
         $this->save();
     }
 
+    public function isAdmin()
+    {
+        return in_array($this->name, ['Roberth']);
+    }
+
 }

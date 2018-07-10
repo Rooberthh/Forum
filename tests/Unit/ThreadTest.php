@@ -127,5 +127,4 @@ class ThreadTest extends TestCase
 
         $this->assertFalse($thread->hasUpdatesFor(auth()->user()));
     }
-
 }

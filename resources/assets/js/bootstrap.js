@@ -61,7 +61,6 @@ window.events = new Vue();
 window.Vue.prototype.authorize = function (...params){
 
     let authorizations = require('./authorization');
-	//Additional admin priv
     if(! window.App.signedIn) return false;
 
     if(typeof  params[0] === 'string')
