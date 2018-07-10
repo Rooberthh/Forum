@@ -64984,7 +64984,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -65012,8 +65012,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             repliesCount: this.thread.replies_count,
-            locked: this.thread.locked
+            locked: this.thread.locked,
+            title: this.thread.title,
+            body: this.thread.body,
+            form: {},
+            editing: false
         };
+    },
+    created: function created() {
+        this.resetForm();
     },
 
     methods: {
@@ -65025,17 +65032,38 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         },
         destroy: function destroy() {
-            axios.delete(this.endpoint);
+            axios.delete(this.lockedEndpoint);
             this.locked = false;
         },
         create: function create() {
-            axios.post(this.endpoint);
+            axios.post(this.lockedEndpoint);
             this.locked = true;
+        },
+        update: function update() {
+            var _this = this;
+
+            axios.patch(this.editEndpoint, this.form).then(function () {
+                _this.editing = false;
+                _this.title = _this.form.title;
+                _this.body = _this.form.body;
+                flash('Your thread have been updated.');
+            });
+        },
+        resetForm: function resetForm() {
+            this.form = {
+                title: this.thread.title,
+                body: this.thread.body
+            };
+
+            this.editing = false;
         }
     },
     computed: {
-        endpoint: function endpoint() {
+        lockedEndpoint: function lockedEndpoint() {
             return '/locked-threads/' + this.thread.slug;
+        },
+        editEndpoint: function editEndpoint() {
+            return '/threads/' + this.thread.channel.slug + '/' + this.thread.slug;
         }
     }
 });

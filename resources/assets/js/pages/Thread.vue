@@ -11,9 +11,16 @@
 		data () {
 		    return {
                 repliesCount: this.thread.replies_count,
-                locked: this.thread.locked
+                locked: this.thread.locked,
+                title: this.thread.title,
+                body: this.thread.body,
+                form: {},
+                editing: false
 		    };
 		},
+        created(){
+		    this.resetForm();
+        },
         methods: {
 		    toggleLock()
             {
@@ -26,19 +33,43 @@
             },
             destroy()
             {
-                axios.delete(this.endpoint);
+                axios.delete(this.lockedEndpoint);
                 this.locked = false;
             },
             create()
             {
-                axios.post(this.endpoint);
+                axios.post(this.lockedEndpoint);
                 this.locked = true;
+            },
+
+            update()
+            {
+                axios.patch(this.editEndpoint, this.form).then(() =>{
+                    this.editing = false;
+                    this.title = this.form.title;
+                    this.body = this.form.body;
+                    flash('Your thread have been updated.');
+                });
+            },
+            resetForm()
+            {
+                this.form = {
+                    title: this.thread.title,
+                    body: this.thread.body
+                };
+
+                this.editing = false;
             }
         },
         computed: {
-            endpoint()
+            lockedEndpoint()
             {
                 return '/locked-threads/'+ this.thread.slug;
+            },
+
+            editEndpoint()
+            {
+                return '/threads/'+ this.thread.channel.slug + '/' + this.thread.slug;
             }
         }
 	};
