@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<thread-view inline-template>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -31,7 +30,6 @@
                     <div class="card-header">
                         Trending Threads
                     </div>
-
                     <div class="card-body">
                         <ul class="list-group">
                             @foreach($trending as $thread)
@@ -48,5 +46,4 @@
         </div>
     </div>
 </div>
-</thread-view>
 @endsection

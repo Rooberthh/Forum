@@ -19,7 +19,7 @@
         <div v-if="editing">
         <form @submit="update" v-on:submit.prevent="onSubmit">
           <div class="form-group">
-            <textarea title="Reply body text" class="form-control" v-model="body" required></textarea>
+            <wysiwyg name="body" v-model="body"></wysiwyg>
           </div>
 
           <button class="btn btn-primary btn-sm">Update</button>
