@@ -1,6 +1,7 @@
 window.Vue = require('vue');
 window._ = require('lodash');
 window.Popper = require('popper.js').default;
+import InstantSearch from 'vue-instantsearch'
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -57,6 +58,7 @@ if (token) {
 
 window.events = new Vue();
 
+Vue.use(InstantSearch);
 
 window.Vue.prototype.authorize = function (...params){
 
