@@ -6,7 +6,7 @@
         <div class="col-md-8">
             @include('threads._list')
 
-            {{$threads->render()}}
+            {{ $threads->render() }}
         </div>
 
         <div class="col-md-4">
@@ -34,7 +34,7 @@
                         <ul class="list-group">
                             @foreach($trending as $thread)
                                 <li class="list-group-item">
-                                    <a href="{{ url($thread->path) }}}">
+                                    <a href="{{ url($thread->path) }}">
                                         {{ $thread->title }}
                                     </a>
                                 </li>

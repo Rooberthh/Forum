@@ -47,6 +47,9 @@ Route::get('/profiles/{user}', 'ProfilesController@show')->name('profile');
 Route::get('/profiles/{user}/notifications', 'UserNotificationsController@index');
 Route::delete('/profiles/{user}/notifications/{notification}', 'UserNotificationsController@destroy');
 
+Route::get('/profiles/{user}/settings/account', 'SettingsController@index')->name('settings.account');
+Route::patch('/profiles/{user}/settings/account', 'SettingsController@update')->name('account.update');
+
 Route::get('/register/confirm', 'Auth\RegisterConfirmationController@index')->name('register.confirm');
 
 Route::get('/api/users', 'Api\UsersController@index');

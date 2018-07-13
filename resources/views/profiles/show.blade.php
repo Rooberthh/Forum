@@ -2,23 +2,33 @@
 
 @section('content');
 	<div class="container">
-		<div class="col-md-8 offset-2">
-			<div class="page-header">
-				<avatar-form :user="{{ $profileUser }}"></avatar-form>
-			</div>
+        <div class="row">
+            <div class="col-md-3">
+                <aside class="menu">
+                    <p class="menu-label">Profile</p>
+                    <ul class="menu-list">
+                        <li><a href="{{route('settings.account', $profileUser->name)}}">Account</a></li>
+                        <li><a href="/settings/stats">My Stats</a></li>
+                    </ul>
+                </aside>
+            </div>
 
-			@forelse($activities as $date => $activity)
-				<h3 class="page-header"> {{ $date }} </h3>
-					@foreach($activity as $record)
-						@if(view()->exists("profiles.activities.{$record->type}"))
-				    		@include("profiles.activities.{$record->type}", ['activity' => $record])
-				    	@endif
-			    	@endforeach
-		    	@empty
-		    	<p>No Activities For {{$profileUser->name}} yet</p>
-			@endforelse
+            <div class="col-md-9">
+                <div class="page-header">
+                    <avatar-form :user="{{ $profileUser }}"></avatar-form>
+                </div>
 
-			{{-- {{ $threads->links() }} --}}
-		</div>
+                @forelse($activities as $date => $activity)
+                    <h3 class="page-header"> {{ $date }} </h3>
+                        @foreach($activity as $record)
+                            @if(view()->exists("profiles.activities.{$record->type}"))
+                                @include("profiles.activities.{$record->type}", ['activity' => $record])
+                            @endif
+                        @endforeach
+                    @empty
+                    <p>No Activities For {{$profileUser->name}} yet</p>
+                @endforelse
+            </div>
+        </div>
 	</div>
 @endsection

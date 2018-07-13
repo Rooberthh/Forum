@@ -20,6 +20,6 @@ class Administrator
             return $next($request);
         }
 
-        abort(403, 'You do not have premission to preform this action');
+        abort(403, 'You do not have permission to preform this action');
     }
 }

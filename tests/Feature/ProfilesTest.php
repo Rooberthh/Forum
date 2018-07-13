@@ -26,8 +26,48 @@ class ProfilesTest extends TestCase
         $thread = create('App\Thread', ['user_id' => auth()->id()]);
 
         $this->get("/profiles/" . auth()->user()->name)
-            ->assertSee($thread->title)
-            ->assertSee($thread->body);
-
+            ->assertSee($thread->title);
     }
+
+    /** @test */
+    function profile_owners_can_access_their_settings()
+    {
+        $this->withExceptionHandling();
+
+        $user = create('App\User');
+        $this->signIn($user);
+
+        $this->get(route('settings.account', $user->name))
+            ->assertStatus(200);
+    }
+
+    /** @test */
+    function unauthorized_users_cant_access_other_peoples_profile_settings()
+    {
+        $this->withExceptionHandling();
+
+        $user = create('App\User');
+        $this->signIn();
+
+        $this->get(route('settings.account', $user->name))
+            ->assertStatus(403);
+    }
+
+    /** @test */
+    function users_can_update_their_settings()
+    {
+
+        $user = create('App\User');
+        $this->signIn($user);
+
+        $this->patch(route('account.update', $user->name), [
+            'name' => 'Roberthhhh',
+            'email' => 'Some@email.com',
+            'password' => 'password',
+            'password_confirmation' => 'password'
+        ]);
+
+        $this->assertDatabaseHas('users', ['name' => 'Roberthhhh']);
+    }
+
 }

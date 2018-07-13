@@ -6,7 +6,4 @@
 	        </span>
 	    </div>
 	</div>
-	<div class="card-body">
-		{{ $body }}
-	</div>
 </div>
