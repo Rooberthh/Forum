@@ -1,5 +1,9 @@
 <template>
-    <input type="file" name="avatar" accept="image/*" @change="onChange">
+    <div>
+        <p class="font-weight-bold">Choose an Avatar</p>
+        <input type="file" name="avatar" accept="image/*" @change="onChange">
+    </div>
+
 </template>
 
 <script >

@@ -88061,6 +88061,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     methods: {
@@ -88089,10 +88093,14 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("input", {
-    attrs: { type: "file", name: "avatar", accept: "image/*" },
-    on: { change: _vm.onChange }
-  })
+  return _c("div", [
+    _c("p", { staticClass: "font-weight-bold" }, [_vm._v("Choose an Avatar")]),
+    _vm._v(" "),
+    _c("input", {
+      attrs: { type: "file", name: "avatar", accept: "image/*" },
+      on: { change: _vm.onChange }
+    })
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

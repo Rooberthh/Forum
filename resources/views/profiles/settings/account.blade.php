@@ -6,10 +6,15 @@
         <div class="col-md-3">
             <aside class="menu">
                 <p class="menu-label">Profile</p>
-                <ul class="menu-list">
-                    <li><a href="{{route('settings.account', $user->name)}}">Account</a></li>
-                    <li><a href="/settings/stats">My Stats</a></li>
-                </ul>
+                <div class="list-group">
+                    <a href="{{ route('profile', $user->name) }}"
+                       class="list-group-item list-group-item-action settings-list-item">Profile
+                    </a>
+                    <a href="{{ route('settings.account', $user->name) }}"
+                       class="list-group-item list-group-item-action settings-list-item active">Account
+                    </a>
+                    <a href="" class="list-group-item list-group-item-action settings-list-item">My Stats</a>
+                </div>
             </aside>
         </div>
 
