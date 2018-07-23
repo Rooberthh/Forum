@@ -7,6 +7,7 @@ use App\Filters\ThreadFilters;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Searchable;
+use App\Reputation;
 use Stevebauman\Purify\Purify;
 
 class Thread extends Model
@@ -41,10 +42,13 @@ class Thread extends Model
 
         static::deleting(function ($thread) {
             $thread->replies->each->delete();
+            Reputation::deduct($thread->creator, Reputation::THREAD_WAS_PUBLISHED);
         });
 
         static::created(function ($thread){
             $thread->update(['slug' => $thread->title]);
+
+            Reputation::award($thread->creator, Reputation::THREAD_WAS_PUBLISHED);
         });
     }
 
@@ -178,6 +182,8 @@ class Thread extends Model
         $this->update([
             'best_reply_id' => $reply->id
         ]);
+
+        Reputation::award($reply->owner, Reputation::REPLY_WAS_MARKED_AS_BEST);
     }
 
     public function toSearchableArray()
@@ -188,6 +194,17 @@ class Thread extends Model
     public function getBodyAttribute($body)
     {
         return \Purify::clean($body);
+    }
+
+    public function bestReply()
+    {
+        return $this->hasOne(Reply::class, 'thread_id');
+    }
+
+    public function removeBestReply(Reply $reply)
+    {
+        Reputation::deduct($reply->owner, Reputation::REPLY_WAS_MARKED_AS_BEST);
+        $this->update(['best_reply_id' => null]);
     }
 
 

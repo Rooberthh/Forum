@@ -87958,6 +87958,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
@@ -87980,6 +87983,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return this.authorize(function (user) {
                 return user.id === _this.user.id;
             });
+        },
+        reputation: function reputation() {
+            return this.user.reputation + 'xp';
         }
     },
 
@@ -88118,7 +88124,10 @@ var render = function() {
         }
       }),
       _vm._v(" "),
-      _c("h1", { domProps: { textContent: _vm._s(_vm.user.name) } })
+      _c("h1", [
+        _vm._v("\n            " + _vm._s(_vm.user.name) + "\n            "),
+        _c("small", { domProps: { textContent: _vm._s(_vm.reputation) } })
+      ])
     ]),
     _vm._v(" "),
     _vm.canUpdate

@@ -25,6 +25,26 @@ class Reply extends Model
 
     protected $appends = ['favoritesCount', 'isFavorited', 'isBest'];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($reply){
+            Reputation::award($reply->owner, Reputation::REPLY_WAS_POSTED);
+        });
+
+        static::deleted(function ($reply){
+
+            Reputation::deduct($reply->owner, Reputation::REPLY_WAS_POSTED);
+
+            if ($reply->isBest())
+            {
+                $reply->thread->removeBestReply($reply);
+            }
+        });
+    }
+
+
     /**
      * A reply has an owner.
      *
