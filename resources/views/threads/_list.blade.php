@@ -1,6 +1,6 @@
 @forelse($threads as $thread)
     <div class="list-group-item d-flex flex-row">
-        <div class="profile-image">
+        <div>
             <img src="http://via.placeholder.com/75x75" alt="" class="profile-image">
         </div>
         <div class="flex-grow-1 post-data">

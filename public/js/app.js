@@ -88692,7 +88692,7 @@ exports = module.exports = __webpack_require__(16)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -88707,8 +88707,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Favorite_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Favorite_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_moment__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_moment__);
-//
-//
 //
 //
 //
@@ -89271,9 +89269,9 @@ var render = function() {
       attrs: { id: "reply-" + _vm.id }
     },
     [
-      _c("div", { staticClass: "card-header" }, [
+      _c("div", { staticClass: "card-body" }, [
         _c("div", { staticClass: "level" }, [
-          _c("h5", { staticClass: "flex" }, [
+          _c("small", { staticClass: "flex" }, [
             _c("a", {
               attrs: { href: "/profiles/" + _vm.reply.owner.name },
               domProps: { textContent: _vm._s(_vm.reply.owner.name) }
@@ -89285,10 +89283,8 @@ var render = function() {
           _vm.signedIn
             ? _c("div", [_c("favorite", { attrs: { reply: _vm.reply } })], 1)
             : _vm._e()
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-body" }, [
+        ]),
+        _vm._v(" "),
         _vm.editing
           ? _c("div", [
               _c(

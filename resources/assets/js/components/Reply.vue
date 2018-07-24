@@ -1,33 +1,31 @@
 <template>
   <div :id="'reply-'+id" class="card mt-3 mb-4" :class="isBest ? 'border-success' : ''">
-      <div class="card-header">
-        <div class="level">
-          <h5 class="flex">
-              <a :href="'/profiles/'+ reply.owner.name"
-                  v-text="reply.owner.name">
-              </a>
-              <span v-text="ago"></span>
-            </h5>
-
-            <div v-if="signedIn">
-              <favorite :reply="reply"></favorite>
-            </div>
-
-          </div>
-      </div>
       <div class="card-body">
-        <div v-if="editing">
-        <form @submit="update" v-on:submit.prevent="onSubmit">
-          <div class="form-group">
-            <wysiwyg name="body" v-model="body"></wysiwyg>
+          <div class="level">
+              <small class="flex">
+                  <a :href="'/profiles/'+ reply.owner.name"
+                     v-text="reply.owner.name">
+                  </a>
+
+                  <span v-text="ago"></span>
+              </small>
+
+              <div v-if="signedIn">
+                  <favorite :reply="reply"></favorite>
+              </div>
           </div>
 
-          <button class="btn btn-primary btn-sm">Update</button>
-          <button class="btn btn-info btn-sm" @click="editing = false" type="button">Cancel</button>
-        </form>
-        </div>
+          <div v-if="editing">
+              <form @submit="update" v-on:submit.prevent="onSubmit">
+              <div class="form-group">
+                <wysiwyg name="body" v-model="body"></wysiwyg>
+              </div>
 
-        <div v-else v-html="body"></div>
+              <button class="btn btn-primary btn-sm">Update</button>
+              <button class="btn btn-info btn-sm" @click="editing = false" type="button">Cancel</button>
+              </form>
+          </div>
+          <div v-else v-html="body"></div>
       </div>
 
         <div class="card-footer level" v-if="authorize('owns', reply) || authorize('owns', reply.thread)">

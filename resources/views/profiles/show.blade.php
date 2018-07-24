@@ -4,23 +4,14 @@
 	<div class="container">
         <div class="row">
             <div class="col-md-3">
-                <aside class="menu">
-                    <p class="menu-label">Profile</p>
-                    <div class="list-group">
-                        <a href="{{ route('profile', $profileUser->name) }}"
-                           class="list-group-item list-group-item-action settings-list-item active">Profile
-                        </a>
-                        <a href="{{ route('settings.account', $profileUser->name) }}"
-                           class="list-group-item list-group-item-action settings-list-item">Account
-                        </a>
-                        <a href="{{ route('settings.stats', $profileUser->name) }}" class="list-group-item list-group-item-action settings-list-item">My Stats</a>
-                    </div>
-                </aside>
+                @if(auth()->id() == $user->id)
+                    @include('profiles.settings._settings');
+                @endif
             </div>
 
             <div class="col-md-9">
                 <div class="page-header">
-                    <avatar-form :user="{{ $profileUser }}"></avatar-form>
+                    <avatar-form :user="{{ $user }}"></avatar-form>
                 </div>
 
                 @forelse($activities as $date => $activity)
@@ -33,7 +24,7 @@
                         @endforeach
                     </div>
                     @empty
-                    <p>No Activities For {{$profileUser->name}} yet</p>
+                    <p>No Activities For {{$user->name}} yet</p>
                 @endforelse
             </div>
         </div>

@@ -4,6 +4,10 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            @if(isset($searched))
+                <img src="{{ asset('images/algolia.png') }}" alt="algolia">
+            @endif
+
             @include('threads._list')
 
             {{ $threads->render() }}

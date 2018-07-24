@@ -10439,7 +10439,22 @@ a.text-dark:focus {
   font-size: 120%;
 }
 
+.post-title-show {
+  font-weight: bold;
+}
+
 .post-data {
   margin-left: 10px;
+}
+
+.profile-image {
+  height: 72px;
+  width: 72px;
+  border-radius: 8px;
+}
+
+.profile-area {
+  border-right: 1px solid lightgrey;
+  max-width: 50%;
 }
 
