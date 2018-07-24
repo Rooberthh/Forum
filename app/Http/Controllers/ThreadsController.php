@@ -59,7 +59,7 @@ class ThreadsController extends Controller
     public function store()
     {
         request()->validate([
-            'title' => ['required', new SpamFree],
+            'title' => ['required', new SpamFree, 'max:50'],
             'body' => ['required', new SpamFree],
             'channel_id' => 'required|exists:channels,id'
         ]);

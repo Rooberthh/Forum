@@ -13,7 +13,7 @@
                         <a href="{{ route('settings.account', $profileUser->name) }}"
                            class="list-group-item list-group-item-action settings-list-item">Account
                         </a>
-                        <a href="" class="list-group-item list-group-item-action settings-list-item">My Stats</a>
+                        <a href="{{ route('settings.stats', $profileUser->name) }}" class="list-group-item list-group-item-action settings-list-item">My Stats</a>
                     </div>
                 </aside>
             </div>
@@ -25,11 +25,13 @@
 
                 @forelse($activities as $date => $activity)
                     <h3 class="page-header"> {{ $date }} </h3>
+                    <div class="list-group mt-2">
                         @foreach($activity as $record)
                             @if(view()->exists("profiles.activities.{$record->type}"))
                                 @include("profiles.activities.{$record->type}", ['activity' => $record])
                             @endif
                         @endforeach
+                    </div>
                     @empty
                     <p>No Activities For {{$profileUser->name}} yet</p>
                 @endforelse

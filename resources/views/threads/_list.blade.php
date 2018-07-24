@@ -1,35 +1,34 @@
 @forelse($threads as $thread)
-    <div class="card">
-        <div class="card-header">
-            <div class="level">
-                <div class="flex">
-                    <h4>
-                        <a href="{{ $thread->path() }}">
-                            @if(auth()->check() && $thread->hasUpdatesFor( auth()->user() ))
-                                <strong> {{ $thread->title }} </strong>
-                            @else
-                                {{ $thread->title }}
-                            @endif
-                        </a>
-                    </h4>
-
-                    <h5>
-                        Posted by: <a href="{{ route('profile', $thread->creator) }}">{{ $thread->creator->name }}</a>
-                    </h5>
-                </div>
-
-                <a href="{{$thread->path()}}">
-                    {{$thread->replies_count}} {{ str_plural('reply', $thread->replies_count) }}
-                </a>
-            </div>
+    <div class="list-group-item d-flex flex-row">
+        <div class="profile-image">
+            <img src="http://via.placeholder.com/75x75" alt="" class="profile-image">
         </div>
-        <div class="card-body">
+        <div class="flex-grow-1 post-data">
             <div>
-                <p>{!! $thread->body !!}</p>
+                <a href="{{ $thread->path() }}" class="post-title">
+                        @if(auth()->check() && $thread->hasUpdatesFor( auth()->user() ))
+                        <strong> {{ $thread->title }} </strong>
+                    @else
+                        {{ $thread->title }}
+                    @endif
+                    </a>
+            </div>
+
+            <div>
+                <small>Posted by: <a href="{{ route('profile', $thread->creator) }}">{{ $thread->creator->name }}</a> </small>
+
+                <small>{{ $thread->created_at->diffForHumans() }}</small>
+            </div>
+
+            <div>
+                <span><i class="fas fa-comment-alt"></i> {{ $thread->replies_count }} </span>
+                <span><i class="far fa-eye"></i> {{ $thread->visits }}</span>
             </div>
         </div>
-        <div class="card-footer">
-            {{ $thread->visits }} Visits
+        <div class="d-flex flex-column justify-content-center">
+            @if($thread->locked)
+                <span><i class="fas fa-lock lock-active"></i> Locked</span>
+            @endif
         </div>
     </div>
 @empty

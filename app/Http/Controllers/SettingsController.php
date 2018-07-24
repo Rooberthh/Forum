@@ -31,4 +31,9 @@ class SettingsController extends Controller
 
         return redirect('/threads')->with('flash', 'Your account have been updated!');
     }
+
+    public function show(User $user)
+    {
+        return view('profiles.settings.stats', compact('user'));
+    }
 }

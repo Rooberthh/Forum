@@ -2,7 +2,7 @@
     <div>
         <input id="trix" type="hidden" :name="name" :value="value">
 
-        <trix-editor ref="trix" input="trix" :placeholder="placeholder"></trix-editor>
+        <trix-editor style="background-color: #fff" ref="trix" input="trix" :placeholder="placeholder"></trix-editor>
     </div>
 </template>
 

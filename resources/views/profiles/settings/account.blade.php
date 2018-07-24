@@ -13,7 +13,7 @@
                     <a href="{{ route('settings.account', $user->name) }}"
                        class="list-group-item list-group-item-action settings-list-item active">Account
                     </a>
-                    <a href="" class="list-group-item list-group-item-action settings-list-item">My Stats</a>
+                    <a href="{{ route('settings.stats', $user->name) }}" class="list-group-item list-group-item-action settings-list-item">My Stats</a>
                 </div>
             </aside>
         </div>

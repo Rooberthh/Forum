@@ -23,7 +23,7 @@ export default {
 		return {
 			page: 1,
 			prevUrl: false,
-			nextUrl: true	
+			nextUrl: true
 		}
 	},
 

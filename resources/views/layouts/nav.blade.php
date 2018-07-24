@@ -44,6 +44,13 @@
                     <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                     <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
                 @else
+                    <form method="GET" action="/threads/search" class="mr-3">
+                        <div class="input-group">
+                            <input type="text" placeholder="Search..." name="q" class="form-control">
+                            <button class="btn btn-outline-secondary" type="submit"><i class="fas fa-search"></i></button>
+                        </div>
+                    </form>
+
                     <user-notifications></user-notifications>
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

@@ -1,5 +1,5 @@
 {{-- If editing--}}
-<div class="card" v-if="editing">
+<div class="card mb-4" v-if="editing">
     <div class="card-header">
         <input class="form-control" type="text" title="title" name="title" id="title" v-model="form.title">
     </div>
@@ -29,15 +29,15 @@
 
 {{-- If not editing--}}
 
-<div class="card" v-else>
+<div class="card mb-4" v-else>
     <div class="card-header">
         <div class="level">
             <a href="{{ route('profile', $thread->creator) }}">
                 <img src="{{ $thread->creator->avatar_path }}"
-                     alt="{{ $thread->creator->name }}"
+                     alt="profile-image"
                      width="25"
                      height="25"
-                     class="mr-1"/>
+                     class="mr-1 profile-image"/>
             </a>
             <span class="flex">
                 <a href="{{ route('profile', $thread->creator) }}">{{ $thread->creator->name }} ({{ $thread->creator->reputation }} XP)</a> posted:
