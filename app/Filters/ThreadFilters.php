@@ -38,10 +38,15 @@ class ThreadFilters extends Filters
         return $this->builder->orderBy('replies_count', 'desc');
     }
 
+    /**
+     * Filter the query according to unanswered threads.
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     protected function unanswered()
     {
         $this->builder->getQuery()->orders = [];
 
         return $this->builder->has('replies', 0);
     }
+
 }

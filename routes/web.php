@@ -56,3 +56,14 @@ Route::get('/register/confirm', 'Auth\RegisterConfirmationController@index')->na
 Route::get('/api/users', 'Api\UsersController@index');
 Route::post('/api/users/{id}/avatar', 'Api\UserAvatarController@store');
 
+Route::group([
+    'prefix' => 'admin',
+    'middleware' => 'must-be-admin',
+    'namespace' => 'Admin'
+], function () {
+    Route::get('', 'DashboardController@index')->name('admin.dashboard.index');
+    Route::get('channels', 'ChannelsController@index')->name('admin.channels.index');
+    Route::post('channels/create', 'ChannelsController@store')->name('admin.channels.store');
+    Route::patch('channels/{channel}/update', 'ChannelsController@update')->name('admin.channels.update');
+});
+

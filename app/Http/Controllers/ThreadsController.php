@@ -72,7 +72,7 @@ class ThreadsController extends Controller
         ]);
 
         if(request()->wantsJson()){
-            return response($thread, 201);
+            return response($thread, 200);
         }
 
         return redirect($thread->path())

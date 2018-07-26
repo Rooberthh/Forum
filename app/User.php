@@ -30,6 +30,11 @@ class User extends Authenticatable
     protected $casts = [
         'confirmed' => 'boolean'
     ];
+
+    protected $appends = [
+        'isAdmin'
+    ];
+
     /**
      * Get the route key name for Laravel.
      *
@@ -102,7 +107,14 @@ class User extends Authenticatable
 
     public function isAdmin()
     {
-        return in_array($this->name, ['Roberth']);
+        return in_array(
+            $this->email, config('forum.administrators')
+        );
+    }
+
+    public function getIsAdminAttribute()
+    {
+        return $this->isAdmin();
     }
 
 }
