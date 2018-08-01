@@ -29,6 +29,37 @@ class AdministratorTest extends TestCase
                 ->assertStatus(403);
         }
 
+        /** @test */
+        function an_administrator_can_delete_a_channel()
+        {
+            $this->withExceptionHandling();
+            $channel = create('App\Channel');
+
+            $this->signInAdmin();
+
+            $this->delete(route('admin.channels.destroy', $channel))
+                ->assertRedirect(route('admin.channels.index'));
+
+            $this->assertDatabaseMissing('channels', ['id' => $channel->id]);
+            $this->assertDatabaseMissing('threads', ['channel_id' => $channel->id]);
+        }
+
+        /** @test */
+        function an_administrator_can_edit_a_channel()
+        {
+            $channel = create('App\Channel');
+
+            $this->signInAdmin();
+
+            $this->patch(route('admin.channels.update', $channel), [
+                'name' => 'new channel',
+                'description' => 'description',
+                'color' => '#fff'
+            ]);
+
+            $this->assertEquals('new channel', $channel->fresh()->name);
+        }
+
     }
 
 ?>

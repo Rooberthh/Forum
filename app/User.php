@@ -93,7 +93,7 @@ class User extends Authenticatable
         {
             return '/storage/' . $avatar;
         } else {
-            return '/storage/' . '/avatars/default.png' ;
+            return '/storage/' . 'avatars/default.png' ;
         }
     }
 

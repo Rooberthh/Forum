@@ -43,6 +43,10 @@
     <div id="app">
         @include('layouts.nav')
 
+        @section('sidebar')
+            @include('sidebar')
+        @show
+
         <main class="py-4">
             @yield('content')
         </main>

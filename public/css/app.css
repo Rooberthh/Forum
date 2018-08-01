@@ -10417,6 +10417,11 @@ a.text-dark:focus {
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
+.nav-item {
+  text-decoration: none;
+  list-style: none;
+}
+
 .menu-label {
   font-weight: bold;
   font-size: 0.9rem;

@@ -65,7 +65,7 @@ class ThreadTest extends TestCase
 
         $this->thread->subscribe()->addReply([
             'body' => 'Foobar',
-            'user_id' => 999
+            'user_id' => create(\App\User::class)->id
         ]);
 
         Notification::assertSentTo(auth()->user(), ThreadWasUpdated::class);

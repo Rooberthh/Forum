@@ -38,7 +38,7 @@
             </ul>
 
             <!-- Right Side Of Navbar -->
-            <ul class="navbar-nav ml-auto">
+            <a class="navbar-nav ml-auto">
                 <!-- Authentication Links -->
                 @guest
                     <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
@@ -52,6 +52,10 @@
                     </form>
 
                     <user-notifications></user-notifications>
+
+                    @if(Auth()->check() && Auth()->user()->isAdmin())
+                        <li class="nav-item"><a class="nav-link" href="{{ route('admin.dashboard.index') }}"><i class="fas fa-cog"></i></a></li>
+                    @endif
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }} <span class="caret"></span>

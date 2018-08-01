@@ -6,13 +6,21 @@ use Illuminate\Database\Eloquent\Model;
 
 class Channel extends Model
 {
-//    protected $fillable = [
-//        'name',
-//        'description',
-//        'color',
-//    ];
+    protected $fillable = [
+        'name',
+        'description',
+        'color',
+    ];
 
-    protected $guarded = [];
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($channel) {
+            $channel->threads->each->delete();
+        });
+    }
+
     /**
      * Get the route key name for Laravel.
      *
@@ -33,6 +41,11 @@ class Channel extends Model
         return $this->hasMany(Thread::class);
     }
 
+    /**
+     * Set Name Attribute and Slug
+     *
+     * @param $name
+     */
     public function setNameAttribute($name)
     {
         $this->attributes['name'] = $name;

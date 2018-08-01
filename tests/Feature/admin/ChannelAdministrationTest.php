@@ -3,6 +3,7 @@
 namespace Tests\Feature\Admin;
 
 use App\Channel;
+use App\Thread;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -10,6 +11,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class ChannelAdministrationTest extends TestCase
 {
     use RefreshDatabase;
+
 
     /** @test */
     function an_admin_can_access_the_channel_administration_section()
@@ -20,7 +22,7 @@ class ChannelAdministrationTest extends TestCase
     }
 
     /** @test */
-    function an_admin_can_create_new_channels()
+    function an_administrator_can_create_a_new_channel()
     {
         $this->withExceptionHandling();
 
@@ -49,6 +51,24 @@ class ChannelAdministrationTest extends TestCase
         ]);
 
         $this->assertEquals('updated name', $channel->fresh()->name);
+    }
+
+    /** @test */
+    function an_administrator_can_delete_an_existing_channel()
+    {
+        $this->signInAdmin();
+
+        $channel = create('App\Channel');
+
+        create('App\Thread', [
+            'channel_id' => 1,
+        ], 2);
+
+        $this->delete(route('admin.channels.destroy', $channel));
+
+        $this->assertDatabaseMissing('channels', ['id' => $channel->id]);
+
+        $this->assertEquals(0, Thread::count());
     }
 
     protected function createChannel($overrides = [])

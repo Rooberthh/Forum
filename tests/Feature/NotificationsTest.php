@@ -19,7 +19,7 @@ class NotificationsTest extends TestCase
     }
 
     /** @test **/
-    public function a_notification_is_prepeared_when_a_subscribed_thread_recieves_a_new_reply_that_is_not_by_the_current_user()
+    public function a_notification_is_prepared_when_a_subscribed_thread_recieves_a_new_reply_that_is_not_by_the_current_user()
     {
 
     	$thread = create('App\Thread')->subscribe();
@@ -42,7 +42,7 @@ class NotificationsTest extends TestCase
     }
 
     /** @test **/
-    function a_user_fetch_their_undread_notifications()
+    function a_user_fetch_their_unread_notifications()
     {
 
     	$thread = create('App\Thread')->subscribe();
