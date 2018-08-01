@@ -29,7 +29,7 @@
                                 <a href="{{ route('admin.channels.edit', $channel) }}" class="btn btn-outline-info">Edit</a>
                             </td>
                             <td class="text-sm p-4 border-b">
-                                <form action="{{ route('admin.channels.destroy', $channel) }}">
+                                <form action="{{ route('admin.channels.destroy', $channel) }}" method="POST">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
                                     <button type="submit" class="btn btn-outline-danger">Delete</button>

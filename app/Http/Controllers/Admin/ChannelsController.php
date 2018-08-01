@@ -78,6 +78,8 @@ class ChannelsController extends Controller
     {
         $channel->delete();
 
+        cache()->forget('channels');
+
         if(request()->wantsJson())
         {
             return response([], 200);
