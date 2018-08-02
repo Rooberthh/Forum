@@ -27,7 +27,10 @@
         </div>
         <div class="d-flex flex-column justify-content-center">
             @if($thread->locked)
-                <span><i class="fas fa-lock lock-active"></i> Locked</span>
+                <span><i class="fas fa-lock lock-active"></i></span>
+            @endif
+            @if($thread->pinned)
+                <span><i class="fas fa-thumbtack"></i></span>
             @endif
         </div>
     </div>

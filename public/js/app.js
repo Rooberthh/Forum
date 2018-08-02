@@ -88405,7 +88405,7 @@ exports = module.exports = __webpack_require__(16)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -88435,6 +88435,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             repliesCount: this.thread.replies_count,
             locked: this.thread.locked,
             title: this.thread.title,
+            pinned: this.thread.pinned,
             body: this.thread.body,
             form: {},
             editing: false
@@ -88477,6 +88478,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             };
 
             this.editing = false;
+        },
+        togglePin: function togglePin() {
+            var uri = '/pinned-threads/' + this.thread.slug;
+
+            axios[this.pinned ? "delete" : "post"](uri);
+
+            this.pinned = !this.pinned;
         }
     },
     computed: {

@@ -13,6 +13,7 @@
                 repliesCount: this.thread.replies_count,
                 locked: this.thread.locked,
                 title: this.thread.title,
+                pinned: this.thread.pinned,
                 body: this.thread.body,
                 form: {},
                 editing: false
@@ -59,6 +60,15 @@
                 };
 
                 this.editing = false;
+            },
+
+            togglePin()
+            {
+		        let uri = `/pinned-threads/${this.thread.slug}`;
+
+		        axios[this.pinned ? "delete" : "post"](uri);
+
+                this.pinned = ! this.pinned;
             }
         },
         computed: {

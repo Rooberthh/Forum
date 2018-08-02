@@ -28,6 +28,10 @@ class Thread extends Model
      */
     protected $with = ['creator', 'channel'];
     protected $appends = ['isSubscribedTo'];
+    protected $casts = [
+        'locked' => 'boolean',
+        'pinned' => 'boolean'
+    ];
 
     /**
      * Boot the model.

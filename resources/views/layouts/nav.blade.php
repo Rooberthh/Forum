@@ -54,7 +54,7 @@
                     <user-notifications></user-notifications>
 
                     @if(Auth()->check() && Auth()->user()->isAdmin())
-                        <li class="nav-item"><a class="nav-link" href="{{ route('admin.dashboard.index') }}"><i class="fas fa-cog"></i></a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('admin.dashboard.index') }}"><i class="fas fa-cog text-dark"></i></a></li>
                     @endif
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -77,7 +77,7 @@
                         </div>
                     </li>
                 @endguest
-            </ul>
+            </a>
         </div>
     </div>
 </nav>
