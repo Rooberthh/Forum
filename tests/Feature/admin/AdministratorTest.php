@@ -47,6 +47,7 @@ class AdministratorTest extends TestCase
         /** @test */
         function an_administrator_can_edit_a_channel()
         {
+            $this->withExceptionHandling();
             $channel = create('App\Channel');
 
             $this->signInAdmin();
@@ -54,7 +55,8 @@ class AdministratorTest extends TestCase
             $this->patch(route('admin.channels.update', $channel), [
                 'name' => 'new channel',
                 'description' => 'description',
-                'color' => '#fff'
+                'color' => '#fff',
+                'archived' => true
             ]);
 
             $this->assertEquals('new channel', $channel->fresh()->name);

@@ -67,7 +67,6 @@
 		        let uri = `/pinned-threads/${this.thread.slug}`;
 
 		        axios[this.pinned ? "delete" : "post"](uri);
-
                 this.pinned = ! this.pinned;
             }
         },

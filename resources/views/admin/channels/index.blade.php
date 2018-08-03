@@ -3,7 +3,7 @@
 @section('administration-content')
     <div class="container">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <table style="border-collapse: collapse">
                     <thead class="bg-grey-lightest text-grey-darkest uppercase tracking-wide text-xs">
                     <tr>
@@ -17,7 +17,7 @@
 
                     <tbody>
                     @forelse($channels as $channel)
-                        <tr class="border-b {{ $channel->archived ? 'bg-red-lighter' : '' }}">
+                        <tr class="border-b {{ $channel->archived ? 'bg-danger' : '' }}">
                             <td class="pl-4 pt-4 pb-4 border-b">
                                 <span class="rounded-full inline-block h-3 w-3 mr-2" style="background: {{ $channel->color }}"></span>
                             </td>

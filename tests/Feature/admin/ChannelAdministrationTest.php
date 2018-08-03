@@ -47,10 +47,28 @@ class ChannelAdministrationTest extends TestCase
         $this->patch(route('admin.channels.update', $channel), [
             'name' => 'updated name',
             'description' => 'updated description',
-            'color' => '#000000'
+            'color' => '#000000',
+            'archived' => true
         ]);
 
         $this->assertEquals('updated name', $channel->fresh()->name);
+    }
+
+    /** @test */
+    function an_admin_can_mark_an_existing_channel_as_archived()
+    {
+        $this->signInAdmin();
+
+        $channel = create('App\Channel');
+
+        $this->patch(route('admin.channels.update', $channel), [
+            'name' => 'updated name',
+            'description' => 'updated description',
+            'color' => '#000000',
+            'archived' => true
+        ]);
+
+        $this->assertTrue($channel->fresh()->archived);
     }
 
     /** @test */

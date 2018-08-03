@@ -60,7 +60,9 @@ $factory->define(App\Channel::class, function ($faker) {
 
     return [
         'name' => $name,
-        'slug' => $name
+        'slug' => $name,
+        'description' => $faker->sentence,
+        'archived' => false
     ];
 });
 

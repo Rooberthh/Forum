@@ -8,6 +8,7 @@ use App\Rules\SpamFree;
 use App\Thread;
 use App\Trending;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ThreadsController extends Controller
 {
@@ -61,7 +62,12 @@ class ThreadsController extends Controller
         request()->validate([
             'title' => ['required', new SpamFree, 'max:50'],
             'body' => ['required', new SpamFree],
-            'channel_id' => 'required|exists:channels,id'
+            'channel_id' => [
+                'required',
+                Rule::exists('channels', 'id')->where(function($query){
+                    $query->where('archived', false);
+                    }),
+                ]
         ]);
 
         $thread = Thread::create([

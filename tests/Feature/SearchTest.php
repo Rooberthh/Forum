@@ -23,7 +23,7 @@ class SearchTest extends TestCase
 
         do
         {
-            sleep(1.5);
+            sleep(2.5);
             $results = $this->getJson("/threads/search?q={$searchTerm}")->json();
         } while (empty($results));
 

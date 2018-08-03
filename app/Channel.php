@@ -10,11 +10,21 @@ class Channel extends Model
         'name',
         'description',
         'color',
+        'archived'
+    ];
+
+    protected $casts = [
+        'archived' => 'boolean'
     ];
 
     protected static function boot()
     {
         parent::boot();
+
+        static::addGlobalScope('active', function ($builder) {
+            $builder->where('archived', false)
+                ->orderBy('name', 'asc');
+        });
 
         static::deleting(function ($channel) {
             $channel->threads->each->delete();
@@ -42,6 +52,14 @@ class Channel extends Model
     }
 
     /**
+     * Archive the channel.
+     */
+    public function archive()
+    {
+        $this->update(['archived' => true]);
+    }
+
+    /**
      * Set Name Attribute and Slug
      *
      * @param $name
@@ -51,4 +69,13 @@ class Channel extends Model
         $this->attributes['name'] = $name;
         $this->attributes['slug'] = str_slug($name);
     }
+
+    /**
+     * Get a new query builder that includes archives.
+     */
+    public static function withArchived()
+    {
+        return (new static)->newQueryWithoutScope('active');
+    }
+
 }

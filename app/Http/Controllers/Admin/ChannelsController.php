@@ -5,12 +5,13 @@ namespace App\Http\Controllers\admin;
 use App\Channel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Validation\Rule;
 
 class ChannelsController extends Controller
 {
     public function index()
     {
-        $channels = Channel::with('threads')->get();
+        $channels = Channel::withArchived()->with('threads')->get();
 
         return view('admin.channels.index', compact('channels'));
     }
@@ -42,15 +43,17 @@ class ChannelsController extends Controller
     public function update(Channel $channel)
     {
         Request()->validate([
-            'name' => 'unique:channels',
+            'name' => ['required', Rule::unique('channels')->ignore($channel->id)],
             'description' => 'required',
-            'color' => 'required'
+            'color' => 'required',
+            'archived' => 'required|boolean'
         ]);
 
         $channel->update([
             'name' => request('name'),
             'description' => request('description'),
-            'color' => request('color')
+            'color' => request('color'),
+            'archived' => request('archived')
         ]);
 
         cache()->forget('channels');
