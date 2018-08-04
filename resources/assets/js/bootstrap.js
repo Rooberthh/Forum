@@ -2,6 +2,7 @@ window.Vue = require('vue');
 window._ = require('lodash');
 window.Popper = require('popper.js').default;
 import InstantSearch from 'vue-instantsearch'
+import VModal from 'vue-js-modal'
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -59,6 +60,7 @@ if (token) {
 window.events = new Vue();
 
 Vue.use(InstantSearch);
+Vue.use(VModal);
 
 window.Vue.prototype.authorize = function (...params){
 

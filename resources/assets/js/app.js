@@ -22,6 +22,9 @@ Vue.component('wysiwyg', require('./components/Wysiwyg.vue'));
 
 Vue.component('thread-view', require('./pages/Thread.vue'));
 
+Vue.component('login', require('./components/Login.vue'));
+Vue.component('register', require('./components/Register.vue'));
+
 
 
 const app = new Vue({

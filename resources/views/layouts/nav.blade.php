@@ -41,8 +41,8 @@
             <a class="navbar-nav ml-auto">
                 <!-- Authentication Links -->
                 @guest
-                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                    <button class="btn btn-outline-primary mx-3" @click="$modal.show('login')">Login</button>
+                    <button class="btn btn-outline-danger mx-3" @click="$modal.show('register')">Register</button>
                 @else
                     <form method="GET" action="/threads/search" class="mr-3">
                         <div class="input-group">

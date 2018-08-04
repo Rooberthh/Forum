@@ -52,6 +52,8 @@
         </main>
 
         <flash-message message="{{ session('flash') }}"></flash-message>
+
+        @include('modals.all')
     </div>
 </body>
 </html>
