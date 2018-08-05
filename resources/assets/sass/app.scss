@@ -69,3 +69,17 @@
     font-size: 110%;
     letter-spacing: 1pt;
 }
+
+/******* Links *********/
+
+.action-link {
+    text-decoration: underline;
+    font-size: 110%;
+    color: #333;
+}
+
+.action-link:hover {
+    text-decoration: underline;
+    font-size: 110%;
+    color: #111;
+}

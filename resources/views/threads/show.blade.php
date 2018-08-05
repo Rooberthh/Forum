@@ -12,9 +12,6 @@
             <replies @added="repliesCount++" @removed="repliesCount--"></replies>
         </div>
 
-        {{--<subscribe-button :active="{{ json_encode($thread->isSubscribedTo) }}" v-if="signedIn"></subscribe-button>--}}
-        {{--<button class="btn btn-outline-warning" v-if="authorize('isAdmin')" @click="toggleLock" v-text="locked ? 'Unlock' : 'Lock'"></button>--}}
-        {{--<button class="btn btn-outline-info" v-if="authorize('isAdmin')" @click="togglePin" v-text="pinned ? 'Unpin' : 'Pin'"></button>--}}
     </div>
 </thread-view>
 @endsection

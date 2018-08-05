@@ -1,5 +1,5 @@
 <template>
-	<button :class="classes" @click="subscribe">Subscribe</button>
+	<button :class="classes" @click="subscribe" v-text=" this.active ? 'Unsubscribe' : 'Subscribe'"></button>
 </template>
 
 <script>
@@ -9,11 +9,11 @@ export default {
 
   computed: {
   	classes(){
-  		return ['btn', this.active ? 'btn-info' : 'btn-outline-info'];
+  		return ['btn', this.active ? 'btn-link' : 'btn-link', 'subscribe-button'];
   	}
   },
 
-  methods: 
+  methods:
   {
   	subscribe()
   	{
@@ -26,3 +26,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+    .subscribe-button {
+        padding-left: 0;
+    }
+</style>

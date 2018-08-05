@@ -89894,7 +89894,7 @@ exports = module.exports = __webpack_require__(16)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n.btn-link-default[data-v-13fbc213]{\n    text-decoration: none;\n    color: grey;\n    background: transparent;\n    outline: none transparent;\n}\n", ""]);
 
 // exports
 
@@ -89944,7 +89944,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   computed: {
     classes: function classes() {
-      return ['btn', this.isFavorited ? 'btn-danger' : 'btn-default'];
+      return ['btn', this.isFavorited ? 'text-danger' : 'btn-link', 'btn-link-default'];
     },
     endpoint: function endpoint() {
       return '/replies/' + this.reply.id + '/favorites';
@@ -92380,17 +92380,21 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(568)
+}
 var normalizeComponent = __webpack_require__(3)
 /* script */
 var __vue_script__ = __webpack_require__(551)
 /* template */
-var __vue_template__ = __webpack_require__(552)
+var __vue_template__ = __webpack_require__(570)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = null
+var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = null
+var __vue_scopeId__ = "data-v-71f058f5"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -92435,48 +92439,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-  props: ['active'],
+    props: ['active'],
 
-  computed: {
-    classes: function classes() {
-      return ['btn', this.active ? 'btn-info' : 'btn-outline-info'];
+    computed: {
+        classes: function classes() {
+            return ['btn', this.active ? 'btn-link' : 'btn-link', 'subscribe-button'];
+        }
+    },
+
+    methods: {
+        subscribe: function subscribe() {
+            var requestType = this.active ? 'delete' : 'post';
+
+            axios[requestType](location.pathname + '/subscriptions');
+
+            this.active = !this.active;
+        }
     }
-  },
-
-  methods: {
-    subscribe: function subscribe() {
-      var requestType = this.active ? 'delete' : 'post';
-
-      axios[requestType](location.pathname + '/subscriptions');
-
-      this.active = !this.active;
-    }
-  }
 });
 
 /***/ }),
-/* 552 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("button", { class: _vm.classes, on: { click: _vm.subscribe } }, [
-    _vm._v("Subscribe")
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-71f058f5", module.exports)
-  }
-}
-
-/***/ }),
+/* 552 */,
 /* 553 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -92884,6 +92867,74 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-4e852e0d", module.exports)
+  }
+}
+
+/***/ }),
+/* 566 */,
+/* 567 */,
+/* 568 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(569);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(17)("2ec60fa0", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-71f058f5\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./SubscribeButton.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-71f058f5\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./SubscribeButton.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 569 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(16)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.subscribe-button[data-v-71f058f5] {\n    padding-left: 0;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 570 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("button", {
+    class: _vm.classes,
+    domProps: {
+      textContent: _vm._s(this.active ? "Unsubscribe" : "Subscribe")
+    },
+    on: { click: _vm.subscribe }
+  })
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-71f058f5", module.exports)
   }
 }
 

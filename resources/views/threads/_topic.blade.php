@@ -31,13 +31,19 @@
 
 <div class="card mb-4" v-else>
     <div class="card-body">
-        <small>
-            <span>Posted by: </span>
-            <a href="{{ route('profile', $thread->creator) }}">{{ $thread->creator->name }} ({{ $thread->creator->reputation }} XP)</a>
-            <span>{{ $thread->created_at->diffForHumans() }}</span>
-        </small>
+        <div class="level">
+            <small class="flex">
+                <span>Posted by: </span>
+                <a href="{{ route('profile', $thread->creator) }}">{{ $thread->creator->name }} ({{ $thread->creator->reputation }} XP)</a>
+                <span>{{ $thread->created_at->diffForHumans() }}</span>
+            </small>
+            <a class="mx-1 action-link"  href="#" v-if="authorize('isAdmin')" @click="toggleLock" v-text="locked ? 'Unlock' : 'Lock'"></a>
+            <a class="mx-1 action-link" href="#" v-if="authorize('isAdmin')" @click="togglePin" v-text="pinned ? 'Unpin' : 'Pin'"></a>
+        </div>
+
         <h4 class="post-title-show" v-text="title"></h4>
         <div v-html="body"></div>
+        <subscribe-button :active="{{ json_encode($thread->isSubscribedTo) }}" v-if="signedIn"></subscribe-button>
     </div>
 
     <div class="card-footer" v-if="authorize('owns', thread)">

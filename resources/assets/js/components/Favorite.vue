@@ -7,7 +7,7 @@
 
 <script>
 export default {
-	props: [ 
+	props: [
 	'reply'
 	],
   data () {
@@ -41,7 +41,7 @@ export default {
   },
   computed: {
   	classes() {
-  		return ['btn', this.isFavorited ? 'btn-danger' : 'btn-default'];
+  		return ['btn', this.isFavorited ? 'text-danger' : 'btn-link', 'btn-link-default'];
   	},
 
     endpoint(){
@@ -52,4 +52,10 @@ export default {
 </script>
 
 <style lang="css" scoped>
+    .btn-link-default{
+        text-decoration: none;
+        color: grey;
+        background: transparent;
+        outline: none transparent;
+     }
 </style>
