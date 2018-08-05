@@ -14,6 +14,10 @@
                 <li class="mb-3">
                     <a class="sidebar-link" href="{{ route('admin.channels.index') }}">Channels</a>
                 </li>
+
+                <li class="mb-3">
+                    <a class="sidebar-link" href="{{ route('admin.users.index') }}">Users</a>
+                </li>
             </ul>
         </div>
     </div>

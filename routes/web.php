@@ -72,5 +72,8 @@ Route::group([
     Route::get('channels/{channel}/edit', 'ChannelsController@edit')->name('admin.channels.edit');
     Route::patch('channels/{channel}', 'ChannelsController@update')->name('admin.channels.update');
     Route::delete('channels/{channel}', 'ChannelsController@destroy')->name('admin.channels.destroy');
+
+    Route::get('users', 'UsersController@index')->name('admin.users.index');
+    Route::patch('users/edit', 'UsersController@update')->name('admin.users.update');
 });
 
