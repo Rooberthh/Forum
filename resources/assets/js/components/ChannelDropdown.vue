@@ -27,7 +27,6 @@
 
 <script>
     export default {
-        name: "ChannelDropdown.vue",
         data() {
             return {
                 channels: [],

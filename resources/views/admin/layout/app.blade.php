@@ -3,7 +3,9 @@
 @section('sidebar')
     <div class="card mt-4">
         <div class="card-body">
-            <a href="{{ route('admin.channels.create') }}" class="btn btn-primary">New Channel</a>
+            @if(preg_match('/\bchannels\b/', url()->current()))
+                <button class="btn btn-primary btn-block" @click="$modal.show('new-channel')">New Channel</button>
+            @endif
             <ul class="list-reset p-1 mt-4">
                 <li class="mb-3">
                     <a class="sidebar-link" href="{{ route('admin.dashboard.index') }}">Dashboard</a>
