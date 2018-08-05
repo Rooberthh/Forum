@@ -5,19 +5,19 @@
         <div class="row">
             <div class="col-md-12">
                 <table style="border-collapse: collapse">
-                    <thead class="bg-grey-lightest text-grey-darkest uppercase tracking-wide text-xs">
+                    <thead>
                     <tr>
-                        <th class="p-4 border-b" colspan="2">Name</th>
-                        <th class="p-4 border-b">Slug</th>
-                        <th class="p-4 border-b">Description</th>
-                        <th class="p-4 border-b">Threads</th>
-                        <th class="p-4 border-b" colspan="2">Actions</th>
+                        <th class="p-4 border-bottom" colspan="2">Name</th>
+                        <th class="p-4 border-bottom">Slug</th>
+                        <th class="p-4 border-bottom">Description</th>
+                        <th class="p-4 border-bottom">Threads</th>
+                        <th class="p-4 border-bottom" colspan="2">Actions</th>
                     </tr>
                     </thead>
 
                     <tbody>
                     @forelse($channels as $channel)
-                        <tr class="border-b {{ $channel->archived ? 'bg-danger' : '' }}">
+                        <tr class="border-bottom {{ $channel->archived ? 'bg-danger' : '' }}">
                             <td class="pl-4 pt-4 pb-4 border-b">
                                 <span class="rounded-full inline-block h-3 w-3 mr-2" style="background: {{ $channel->color }}"></span>
                             </td>
