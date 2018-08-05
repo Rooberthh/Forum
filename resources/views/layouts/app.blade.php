@@ -42,18 +42,21 @@
 <body>
     <div id="app">
         @include('layouts.nav')
-
-        @section('sidebar')
-            @include('sidebar')
-        @show
-
-        <main class="py-4">
-            @yield('content')
-        </main>
+        <div class="container-fluid d-flex">
+            <main class="py-4 flex-grow-1">
+                @yield('content')
+            </main>
+            <div>
+                @section('sidebar')
+                    @include('sidebar')
+                @show
+            </div>
+        </div>
 
         <flash-message message="{{ session('flash') }}"></flash-message>
-
-        @include('modals.all')
+        <div v-cloak>
+            @include('modals.all')
+        </div>
     </div>
 </body>
 </html>

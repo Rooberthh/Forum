@@ -10411,6 +10411,28 @@ a.text-dark:focus {
   }
 }
 
+.sidebar {
+  width: 315px;
+}
+
+.sidebar-heading {
+  font-weight: bold;
+}
+
+.list-reset {
+  list-style-type: none;
+}
+
+.sidebar-link {
+  font-size: 110%;
+}
+
+.has-ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
 .navbar-laravel {
   background-color: #fff;
   -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
@@ -10461,5 +10483,13 @@ a.text-dark:focus {
 .profile-area {
   border-right: 1px solid lightgrey;
   max-width: 50%;
+}
+
+/******* Buttons *********/
+
+.main-action-button {
+  text-transform: uppercase;
+  font-size: 110%;
+  letter-spacing: 1pt;
 }
 

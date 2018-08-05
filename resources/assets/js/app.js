@@ -25,6 +25,8 @@ Vue.component('thread-view', require('./pages/Thread.vue'));
 Vue.component('login', require('./components/Login.vue'));
 Vue.component('register', require('./components/Register.vue'));
 
+Vue.component("channel-dropdown", require("./components/ChannelDropdown.vue"));
+
 
 
 const app = new Vue({

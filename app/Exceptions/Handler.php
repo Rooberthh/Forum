@@ -47,11 +47,6 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        if ($exception instanceof ValidationException) {
-            if($request->expectsJson()){
-                return response('Sorry, validation failed.', 422);
-            }
-        }
 
         if($exception instanceof ThrottleException)
         {

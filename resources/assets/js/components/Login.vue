@@ -15,6 +15,7 @@
                 axios.post("/login", this.form)
                 .then(() => location.reload())
                 .catch(error => {
+                    console.log(error.response);
                     this.feedback =
                         "The given credentials are incorrect. Please try again.";
                     this.loading = false;
