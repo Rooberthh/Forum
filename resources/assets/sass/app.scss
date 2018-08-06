@@ -83,3 +83,30 @@
     font-size: 110%;
     color: #111;
 }
+
+/******** Search Result *******/
+.search{
+    &-title {
+        font-size: 150%;
+        color: #222;
+
+        &:hover {
+            color: #222;
+        }
+    }
+
+    &-category {
+        font-size: 11px;
+        padding: 5px 8px;
+        -webkit-border-radius: 290486px;
+        -moz-border-radius: 290486px;
+        border-radius: 290486px;
+        color: white;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+
+    &-result:first-child {
+        margin-top: 0 !important;
+    }
+}

@@ -10507,3 +10507,27 @@ a.text-dark:focus {
   color: #111;
 }
 
+/******** Search Result *******/
+
+.search-title {
+  font-size: 150%;
+  color: #222;
+}
+
+.search-title:hover {
+  color: #222;
+}
+
+.search-category {
+  font-size: 11px;
+  padding: 5px 8px;
+  border-radius: 290486px;
+  color: white;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.search-result:first-child {
+  margin-top: 0 !important;
+}
+

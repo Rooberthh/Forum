@@ -1,6 +1,6 @@
 @if(auth()->check())
 <modal name="new-thread" height="auto">
-    <form action="POST" action="/threads" class="p-4">
+    <form method="POST" action="/threads" class="p-4">
         {{ csrf_field() }}
 
         <div class="flex mb-4">
