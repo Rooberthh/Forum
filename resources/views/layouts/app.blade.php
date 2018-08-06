@@ -17,13 +17,22 @@
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-
+    @if(auth()->user())
      <script charset="utf-8">
         window.App = {!! json_encode([
             'user' => Auth::user(),
-            'signedIn' => Auth::check()
+            'signedIn' => Auth::check(),
+            'permissions' => Auth::user()->getAllPermissions()
         ]) !!};
     </script>
+    @else
+    <script charset="utf-8">
+        window.App = {!! json_encode([
+            'user' => Auth::user(),
+            'signedIn' => Auth::check(),
+        ]) !!};
+    </script>
+    @endif
 
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/0.11.4/trix.css">

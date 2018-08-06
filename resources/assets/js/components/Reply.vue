@@ -16,7 +16,7 @@
           </div>
 
           <div v-if="editing">
-              <form @submit="update" v-on:submit.prevent="onSubmit">
+              <form @submit.prevent="update">
               <div class="form-group">
                 <wysiwyg name="body" v-model="body"></wysiwyg>
               </div>
@@ -28,8 +28,8 @@
           <div v-else v-html="body"></div>
       </div>
 
-        <div class="card-footer level" v-if="authorize('owns', reply) || authorize('owns', reply.thread)">
-            <div v-if="authorize('owns', reply)">
+        <div class="card-footer level" v-if="authorize('owns', reply) || authorize('owns', reply.thread) || user.can['edit articles']">
+            <div v-if="authorize('owns', reply) || user.can['edit articles']">
                 <button class="btn btn-info btn-xs mr-2 btn-sm" @click="editing = true">Edit</button>
                 <button class="btn btn-danger btn-sm" @click="destroy">Delete</button>
             </div>

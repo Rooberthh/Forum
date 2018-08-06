@@ -4,10 +4,11 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, HasRoles, ExposePermissions;
 
     /**
      * The attributes that are mass assignable.
@@ -32,7 +33,9 @@ class User extends Authenticatable
     ];
 
     protected $appends = [
-        'isAdmin'
+        'isAdmin',
+        'all_permissions',
+        'can'
     ];
 
     /**

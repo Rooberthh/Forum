@@ -62,6 +62,7 @@ window.events = new Vue();
 Vue.use(InstantSearch);
 Vue.use(VModal);
 
+
 window.Vue.prototype.authorize = function (...params){
 
     let authorizations = require('./authorization');
@@ -76,7 +77,15 @@ window.Vue.prototype.authorize = function (...params){
 };
 
 Vue.prototype.signedIn = window.App.signedIn;
+Vue.prototype.user = window.App.user;
+
+Vue.prototype.permissions = window.App.permissions;
 
 window.flash = function (message, level = 'success'){
 	window.events.$emit('flash', {message, level});
 }; // flash('my flash message')
+
+
+Vue.directive('can', function (el, binding) {
+    return window.App.permissions.indexOf(binding) !== -1;
+});

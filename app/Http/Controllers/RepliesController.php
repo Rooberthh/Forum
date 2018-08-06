@@ -59,14 +59,14 @@ class RepliesController extends Controller
 
     public function update(Reply $reply)
     {
-        $this->authorize('update', $reply);
+        if(auth()->user()->can('edit articles') ||$this->authorize('update', $reply))
+        {
+            request()->validate([
+                'body' => ['required', new SpamFree]
+            ]);
 
-        request()->validate([
-            'body' => ['required', new SpamFree]
-        ]);
-
-        $reply->update(['body' => request('body')]);
-
+            $reply->update(['body' => request('body')]);
+        }
     }
 
 }

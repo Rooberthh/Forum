@@ -39807,12 +39807,20 @@ window.Vue.prototype.authorize = function () {
 };
 
 Vue.prototype.signedIn = window.App.signedIn;
+Vue.prototype.user = window.App.user;
+
+Vue.prototype.permissions = window.App.permissions;
 
 window.flash = function (message) {
   var level = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'success';
 
   window.events.$emit('flash', { message: message, level: level });
 }; // flash('my flash message')
+
+
+Vue.directive('can', function (el, binding) {
+  return window.App.permissions.indexOf(binding) !== -1;
+});
 
 /***/ }),
 /* 292 */
@@ -90290,13 +90298,10 @@ var render = function() {
                 "form",
                 {
                   on: {
-                    submit: [
-                      _vm.update,
-                      function($event) {
-                        $event.preventDefault()
-                        return _vm.onSubmit($event)
-                      }
-                    ]
+                    submit: function($event) {
+                      $event.preventDefault()
+                      return _vm.update($event)
+                    }
                   }
                 },
                 [
@@ -90342,9 +90347,10 @@ var render = function() {
       ]),
       _vm._v(" "),
       _vm.authorize("owns", _vm.reply) ||
-      _vm.authorize("owns", _vm.reply.thread)
+      _vm.authorize("owns", _vm.reply.thread) ||
+      _vm.user.can["edit articles"]
         ? _c("div", { staticClass: "card-footer level" }, [
-            _vm.authorize("owns", _vm.reply)
+            _vm.authorize("owns", _vm.reply) || _vm.user.can["edit articles"]
               ? _c("div", [
                   _c(
                     "button",
