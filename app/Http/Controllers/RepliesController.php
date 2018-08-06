@@ -46,20 +46,22 @@ class RepliesController extends Controller
 
     public function destroy(Reply $reply)
     {
-        $this->authorize('update', $reply);
+        if(auth()->user()->can('delete-reply') || $this->authorize('update', $reply))
+        {
+            $reply->delete();
 
-        $reply->delete();
+            if(request()->expectsJson()){
+                return response(['status' => 'Reply deleted']);
+            }
 
-         if(request()->expectsJson()){
-            return response(['status' => 'Reply deleted']);
+            return back();
         }
 
-        return back();
     }
 
     public function update(Reply $reply)
     {
-        if(auth()->user()->can('edit articles') ||$this->authorize('update', $reply))
+        if(auth()->user()->can('edit-reply') ||$this->authorize('update', $reply))
         {
             request()->validate([
                 'body' => ['required', new SpamFree]

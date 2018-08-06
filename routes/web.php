@@ -28,11 +28,13 @@ Route::delete('threads/{channel}/{thread}', 'ThreadsController@destroy');
 Route::post('/threads', 'ThreadsController@store')->middleware('must-be-confirmed');
 Route::get('threads/{channel}', 'ThreadsController@index');
 
-Route::post('locked-threads/{thread}', 'LockedThreadsController@store')->name('locked-threads.store')->middleware('must-be-admin');
-Route::delete('locked-threads/{thread}', 'LockedThreadsController@delete')->name('locked-threads.destroy')->middleware('must-be-admin');
+Route::group(['middleware' => ['permission:lock-thread|unlock-thread|pin-thread|unpin-thread']], function () {
+    Route::post('locked-threads/{thread}', 'LockedThreadsController@store')->name('locked-threads.store');
+    Route::delete('locked-threads/{thread}', 'LockedThreadsController@delete')->name('locked-threads.destroy');
 
-Route::post('/pinned-threads/{thread}', 'PinnedThreadsController@store')->name('pinned-threads.store')->middleware('must-be-admin');
-Route::delete('/pinned-threads/{thread}', 'PinnedThreadsController@destroy')->name('pinned-threads.destroy')->middleware('must-be-admin');
+    Route::post('/pinned-threads/{thread}', 'PinnedThreadsController@store')->name('pinned-threads.store');
+    Route::delete('/pinned-threads/{thread}', 'PinnedThreadsController@destroy')->name('pinned-threads.destroy');
+});
 
 Route::get('/threads/{channel}/{thread}/replies', 'RepliesController@index');
 Route::post('/threads/{channel}/{thread}/replies', 'RepliesController@store');
@@ -62,16 +64,23 @@ Route::get('/api/channels', 'Api\ChannelsController@index');
 
 Route::group([
     'prefix' => 'admin',
-    'middleware' => 'must-be-admin',
+    'middleware' => ['role:moderator|super-admin'],
     'namespace' => 'Admin'
 ], function () {
-    Route::get('', 'DashboardController@index')->name('admin.dashboard.index');
     Route::post('channels', 'ChannelsController@store')->name('admin.channels.store');
-    Route::get('channels', 'ChannelsController@index')->name('admin.channels.index');
     Route::get('channels/create', 'ChannelsController@create')->name('admin.channels.create');
     Route::get('channels/{channel}/edit', 'ChannelsController@edit')->name('admin.channels.edit');
     Route::patch('channels/{channel}', 'ChannelsController@update')->name('admin.channels.update');
     Route::delete('channels/{channel}', 'ChannelsController@destroy')->name('admin.channels.destroy');
+});
+
+Route::group([
+    'prefix' => 'admin',
+    'middleware' => 'role:admin|moderator|super-admin',
+    'namespace' => 'Admin'
+], function () {
+    Route::get('', 'DashboardController@index')->name('admin.dashboard.index');
+    Route::get('channels', 'ChannelsController@index')->name('admin.channels.index');
 
     Route::get('users', 'UsersController@index')->name('admin.users.index');
     Route::patch('users/edit', 'UsersController@update')->name('admin.users.update');

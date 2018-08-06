@@ -78,8 +78,8 @@ window.Vue.prototype.authorize = function (...params){
 
 Vue.prototype.signedIn = window.App.signedIn;
 Vue.prototype.user = window.App.user;
-
 Vue.prototype.permissions = window.App.permissions;
+Vue.prototype.roles = window.App.roles;
 
 window.flash = function (message, level = 'success'){
 	window.events.$emit('flash', {message, level});

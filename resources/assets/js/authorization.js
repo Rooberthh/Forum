@@ -1,4 +1,5 @@
 let user = window.App.user;
+let roles = window.App.roles;
 
 module.exports = {
     owns(model, prop = 'user_id'){
@@ -7,5 +8,10 @@ module.exports = {
 
     isAdmin(){
         return user.isAdmin;
-    }
+    },
+
+    isRole(role){
+        return roles.indexOf(role) !== -1;
+    },
+
 };

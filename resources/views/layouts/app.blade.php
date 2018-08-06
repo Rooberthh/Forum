@@ -22,7 +22,8 @@
         window.App = {!! json_encode([
             'user' => Auth::user(),
             'signedIn' => Auth::check(),
-            'permissions' => Auth::user()->getAllPermissions()
+            'permissions' => Auth::user()->getAllPermissions(),
+            'roles' => Auth::user()->roles->pluck('name')
         ]) !!};
     </script>
     @else

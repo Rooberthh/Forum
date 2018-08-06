@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class AdminSeeder extends Seeder
+class SuperAdminSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,11 +11,13 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        create('App\User', [
+        $user = create('App\User', [
             'name' => 'Roberth',
             'email' => 'roberth.evaldsson@hotmail.com',
             'password' => bcrypt('9q7q5q3q1q'),
             'confirmed' => true
         ]);
+
+        $user->assignRole('moderator');
     }
 }

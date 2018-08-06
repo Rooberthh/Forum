@@ -39808,8 +39808,8 @@ window.Vue.prototype.authorize = function () {
 
 Vue.prototype.signedIn = window.App.signedIn;
 Vue.prototype.user = window.App.user;
-
 Vue.prototype.permissions = window.App.permissions;
+Vue.prototype.roles = window.App.roles;
 
 window.flash = function (message) {
   var level = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'success';
@@ -88208,6 +88208,7 @@ module.exports = function spread(callback) {
 /***/ (function(module, exports) {
 
 var user = window.App.user;
+var roles = window.App.roles;
 
 module.exports = {
     owns: function owns(model) {
@@ -88217,6 +88218,9 @@ module.exports = {
     },
     isAdmin: function isAdmin() {
         return user.isAdmin;
+    },
+    isRole: function isRole(role) {
+        return roles.indexOf(role) !== -1;
     }
 };
 
@@ -89699,7 +89703,7 @@ exports = module.exports = __webpack_require__(11)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -89714,7 +89718,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Favorite_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Favorite_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_moment__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_moment__);
-//
 //
 //
 //
@@ -90343,14 +90346,32 @@ var render = function() {
                 ]
               )
             ])
-          : _c("div", { domProps: { innerHTML: _vm._s(_vm.body) } })
+          : _c("div", { domProps: { innerHTML: _vm._s(_vm.body) } }),
+        _vm._v(" "),
+        _vm.authorize("owns", _vm.reply.thread) ||
+        _vm.user.can["mark-best-reply"]
+          ? _c(
+              "button",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: !_vm.isBest,
+                    expression: "! isBest"
+                  }
+                ],
+                staticClass: "btn btn-info btn-sm ml-a",
+                on: { click: _vm.markBestReply }
+              },
+              [_vm._v("\n            Best Reply\n        ")]
+            )
+          : _vm._e()
       ]),
       _vm._v(" "),
-      _vm.authorize("owns", _vm.reply) ||
-      _vm.authorize("owns", _vm.reply.thread) ||
-      _vm.user.can["edit articles"]
+      _vm.authorize("owns", _vm.reply) || _vm.authorize("isRole", "super admin")
         ? _c("div", { staticClass: "card-footer level" }, [
-            _vm.authorize("owns", _vm.reply) || _vm.user.can["edit articles"]
+            _vm.authorize("owns", _vm.reply) || _vm.user.can["edit replies"]
               ? _c("div", [
                   _c(
                     "button",
@@ -90374,25 +90395,6 @@ var render = function() {
                     [_vm._v("Delete")]
                   )
                 ])
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.authorize("owns", _vm.reply.thread)
-              ? _c(
-                  "button",
-                  {
-                    directives: [
-                      {
-                        name: "show",
-                        rawName: "v-show",
-                        value: !_vm.isBest,
-                        expression: "! isBest"
-                      }
-                    ],
-                    staticClass: "btn btn-info btn-sm ml-a",
-                    on: { click: _vm.markBestReply }
-                  },
-                  [_vm._v("\n              Best Reply\n          ")]
-                )
               : _vm._e()
           ])
         : _vm._e()

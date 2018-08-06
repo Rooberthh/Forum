@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Roberth
- * Date: 8/6/2018
- * Time: 10:45 AM
- */
 
 namespace App;
 
@@ -32,13 +26,18 @@ trait ExposePermissions
     public function getCanAttribute()
     {
         $permissions = [];
-        foreach (Permission::all() as $permission) {
-            if (Auth::user()->can($permission->name)) {
-                $permissions[$permission->name] = true;
-            } else {
-                $permissions[$permission->name] = false;
+        if(Auth::check()){
+            foreach (Permission::all() as $permission) {
+                if (Auth::user()->can($permission->name)) {
+                    $permissions[$permission->name] = true;
+                } else {
+                    $permissions[$permission->name] = false;
+                }
             }
+            return $permissions;
         }
+
         return $permissions;
     }
+
 }

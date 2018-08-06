@@ -16,19 +16,33 @@ class RolesAndPermissionsSeeder extends Seeder
         // Reset cached roles and permissions
         app()['cache']->forget('spatie.permission.cache');
 
+        $permissions = [
+            'edit-thread',
+            'delete-thread',
+            'lock-thread',
+            'unlock-thread',
+            'pin-thread',
+            'unpin-thread',
+            'edit-reply',
+            'delete-reply',
+            'edit-user',
+            'delete-user',
+            'edit-role',
+            'mark-best-reply'
+        ];
+
         // create permissions
-        Permission::create(['name' => 'edit articles']);
-        Permission::create(['name' => 'delete articles']);
-        Permission::create(['name' => 'publish articles']);
-        Permission::create(['name' => 'unpublish articles']);
+        foreach ($permissions as $permission) {
+            Permission::create(['name' => $permission]);
+        }
 
         // create roles and assign created permissions
 
-        $role = Role::create(['name' => 'writer']);
-        $role->givePermissionTo('edit articles');
+        Role::create(['name' => 'admin']);
 
         $role = Role::create(['name' => 'moderator']);
-        $role->givePermissionTo(['publish articles', 'unpublish articles']);
+        $role->givePermissionTo(['edit-thread', 'delete-thread', 'edit-reply', 'delete-reply',
+                                'mark-best-reply', 'lock-thread', 'unlock-thread']);
 
         $role = Role::create(['name' => 'super-admin']);
         $role->givePermissionTo(Permission::all());
