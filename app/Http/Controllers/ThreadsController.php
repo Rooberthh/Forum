@@ -30,18 +30,6 @@ class ThreadsController extends Controller
      */
     public function index(Channel $channel, ThreadFilters $filters, Trending $trending)
     {
-        if(auth()->user()) {
-            if(!auth()->user()->hasPermissionTo('admin') && $channel->name == 'admin')
-            {
-                abort(404);
-            }
-
-            if(!auth()->user()->hasPermissionTo('moderate') && $channel->name == 'moderator')
-            {
-                abort(404);
-            }
-        }
-
         $threads = $this->getThreads($channel, $filters);
 
         if (request()->wantsJson()) {
@@ -149,17 +137,19 @@ class ThreadsController extends Controller
      */
     public function destroy($channel, Thread $thread, Trending $trending)
     {
-        $this->authorize('update', $thread);
+        if(auth()->user()->can('edit-thread') || $this->authorize('update', $thread)) {
+            $trending->remove($thread);
 
-        $trending->remove($thread);
+            $thread->delete();
 
-        $thread->delete();
+            if (request()->wantsJson()) {
+                return response([], 204);
+            }
 
-        if (request()->wantsJson()) {
-            return response([], 204);
+            return redirect('/threads');
         }
 
-        return redirect('/threads');
+        return response('Unauthorized', 401);
     }
 
     /**

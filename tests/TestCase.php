@@ -37,6 +37,17 @@ abstract class TestCase extends BaseTestCase
         return $this;
     }
 
+    protected function signInDeveloper($admin = null)
+    {
+        $admin = $admin ?: create('App\User');
+
+        $admin->assignRole('moderator');
+
+        $this->actingAs($admin);
+
+        return $this;
+    }
+
     protected function signInAdmin($admin = null)
     {
         $admin = $admin ?: create('App\User');

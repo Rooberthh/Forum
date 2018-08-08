@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\roles\moderator;
+namespace Tests\Feature\roles\developer;
 
 use App\Channel;
 use App\Thread;
@@ -8,7 +8,7 @@ use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class SuperAdminTest extends TestCase
+class Developer extends TestCase
 {
     use RefreshDatabase;
 
@@ -22,11 +22,11 @@ class SuperAdminTest extends TestCase
     }
 
     /** @test */
-    function an_superAdmin_can_access_their_dashboard()
+    function an_developer_can_access_their_dashboard()
     {
         $this->signInDeveloper();
 
-        $this->get(route('superAdmin.dashboard.index'))
+        $this->get(route('developer.dashboard.index'))
             ->assertStatus(200);
     }
 

@@ -26,7 +26,7 @@
                 @if(auth()->user())
                     <user-notifications></user-notifications>
 
-                    @if(Auth()->check() && Auth()->user()->hasRole('admin') || auth()->user()->hasRole('moderator') || auth()->user()->hasRole('super-admin'))
+                    @if(Auth()->check() && Auth()->user()->hasRole('admin') || auth()->user()->hasRole('moderator') || auth()->user()->hasRole('developer'))
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 Dashboard <span class="caret"></span>
@@ -34,6 +34,7 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a href="{{ route('admin.dashboard.index') }}" class="dropdown-item">Admin</a>
                                 <a href="{{ route('moderator.dashboard.index') }}" class="dropdown-item">Moderator</a>
+                                <a href="{{ route('developer.dashboard.index') }}" class="dropdown-item">Developer</a>
                             </div>
                         </li>
 

@@ -22,6 +22,24 @@ class ModeratorTest extends TestCase
     }
 
     /** @test */
+    function an_moderator_can_access_their_dashboard()
+    {
+        $this->signInModerator();
+
+        $this->get(route('moderator.dashboard.index'))
+            ->assertStatus(200);
+    }
+
+    /** @test */
+    function an_unauthenticated_user_cant_access_the_moderator_dashboard()
+    {
+        $this->signIn();
+
+        $this->get(route('moderator.dashboard.index'))
+            ->assertStatus(403);
+    }
+
+    /** @test */
     function an_moderator_can_edit_an_existing_thread()
     {
         $thread = create('App\Thread');
@@ -34,6 +52,17 @@ class ModeratorTest extends TestCase
         ]);
 
         $this->assertEquals('is changed', $thread->fresh()->title);
+    }
+    /** @test */
+    function an_moderator_can_delete_an_existing_thread()
+    {
+        $thread = create('App\Thread');
+
+        $this->signInModerator();
+
+        $this->delete($thread->path());
+
+        $this->assertDatabaseMissing('threads', ['id' => $thread->id]);
     }
 
     /** @test */
