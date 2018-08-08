@@ -88219,7 +88219,7 @@ module.exports = {
     isAdmin: function isAdmin() {
         return user.isAdmin;
     },
-    isRole: function isRole(role) {
+    hasRole: function hasRole(role) {
         return roles.indexOf(role) !== -1;
     }
 };
@@ -90361,7 +90361,7 @@ var render = function() {
                     expression: "! isBest"
                   }
                 ],
-                staticClass: "btn btn-info btn-sm ml-a",
+                staticClass: "btn btn-link pl-0",
                 on: { click: _vm.markBestReply }
               },
               [_vm._v("\n            Best Reply\n        ")]
@@ -90369,9 +90369,9 @@ var render = function() {
           : _vm._e()
       ]),
       _vm._v(" "),
-      _vm.authorize("owns", _vm.reply) || _vm.authorize("isRole", "super admin")
+      _vm.authorize("owns", _vm.reply) || _vm.user.can["moderate"]
         ? _c("div", { staticClass: "card-footer level" }, [
-            _vm.authorize("owns", _vm.reply) || _vm.user.can["edit replies"]
+            _vm.authorize("owns", _vm.reply) || _vm.user.can["moderate"]
               ? _c("div", [
                   _c(
                     "button",

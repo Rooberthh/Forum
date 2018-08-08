@@ -26,14 +26,14 @@
               </form>
           </div>
           <div v-else v-html="body"></div>
-          <button class="btn btn-info btn-sm ml-a" @click="markBestReply"
+          <button class="btn btn-link pl-0" @click="markBestReply"
                   v-show="! isBest"  v-if="authorize('owns', reply.thread) || user.can['mark-best-reply']">
               Best Reply
           </button>
       </div>
 
-        <div class="card-footer level" v-if="authorize('owns', reply) || authorize('isRole', 'super admin')">
-            <div v-if="authorize('owns', reply) || user.can['edit replies']">
+        <div class="card-footer level" v-if="authorize('owns', reply) || user.can['moderate']">
+            <div v-if="authorize('owns', reply) || user.can['moderate']">
                 <button class="btn btn-info btn-xs mr-2 btn-sm" @click="editing = true">Edit</button>
                 <button class="btn btn-danger btn-sm" @click="destroy">Delete</button>
             </div>

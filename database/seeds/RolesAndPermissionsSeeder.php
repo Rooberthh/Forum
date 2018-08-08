@@ -28,7 +28,9 @@ class RolesAndPermissionsSeeder extends Seeder
             'edit-user',
             'delete-user',
             'edit-role',
-            'mark-best-reply'
+            'mark-best-reply',
+            'admin',
+            'moderate'
         ];
 
         // create permissions
@@ -42,7 +44,7 @@ class RolesAndPermissionsSeeder extends Seeder
 
         $role = Role::create(['name' => 'moderator']);
         $role->givePermissionTo(['edit-thread', 'delete-thread', 'edit-reply', 'delete-reply',
-                                'mark-best-reply', 'lock-thread', 'unlock-thread']);
+                                'mark-best-reply', 'lock-thread', 'unlock-thread', 'admin', 'moderate']);
 
         $role = Role::create(['name' => 'super-admin']);
         $role->givePermissionTo(Permission::all());

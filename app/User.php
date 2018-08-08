@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'avatar_path', 'confirmation_token', 'confirmed'
+        'name', 'email', 'password', 'avatar_path', 'confirmation_token', 'confirmed', 'locked'
     ];
 
     /**
@@ -29,7 +29,8 @@ class User extends Authenticatable
     ];
 
     protected $casts = [
-        'confirmed' => 'boolean'
+        'confirmed' => 'boolean',
+        'locked' => 'boolean'
     ];
 
     protected $appends = [

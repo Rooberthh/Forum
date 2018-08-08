@@ -1,6 +1,7 @@
-@extends('admin.layout.app')
+@extends('moderator.layout.app')
 
-@section('administration-content')
+@section('moderator-content')
+
     <div class="container">
         <div class="row">
             <div class="col-md-10 offset-2">
@@ -11,6 +12,7 @@
                         <th class="p-4 border-bottom">Slug</th>
                         <th class="p-4 border-bottom">Description</th>
                         <th class="p-4 border-bottom">Threads</th>
+                        <th class="p-4 border-bottom" colspan="2">Actions</th>
                     </tr>
                     </thead>
 
@@ -24,6 +26,16 @@
                             <td class="text-sm p-4 border-b">{{ $channel->slug }}</td>
                             <td class="text-sm p-4 border-b">{{ $channel->description }}</td>
                             <td class="text-sm p-4 border-b">{{ $channel->threads->count() }}</td>
+                            <td>
+                                <a class="btn btn-info btn-sm" href="{{ route('moderator.channels.edit', $channel) }}">Edit</a>
+                            </td>
+                            <td>
+                                <form action="{{ route('moderator.channels.destroy', $channel) }}" method="POST">
+                                    {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}
+                                    <button class=" ml-2 btn btn-outline-danger btn-sm" type="submit">Delete</button>
+                                </form>
+                            </td>
                         </tr>
                     @empty
                         <tr>

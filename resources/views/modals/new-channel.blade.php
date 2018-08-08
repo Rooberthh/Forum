@@ -1,7 +1,7 @@
 @if(auth()->check())
 <modal name="new-channel" height="auto">
     <div class="p-5">
-        <form action="{{ route('admin.channels.store', $channel) }}" method="POST">
+        <form action="{{ route('moderator.channels.store', $channel) }}" method="POST">
             {{ csrf_field() }}
 
             <div class="form-group">

@@ -15,7 +15,6 @@ class DatabaseSeeder extends Seeder
             RolesAndPermissionsSeeder::class,
             SuperAdminSeeder::class,
             ReplySeeder::class,
-            ChannelSeeder::class
         ]);
     }
 }

@@ -10,7 +10,7 @@ module.exports = {
         return user.isAdmin;
     },
 
-    isRole(role){
+    hasRole(role){
         return roles.indexOf(role) !== -1;
     },
 

@@ -5,15 +5,15 @@
         <div class="card-body">
             <ul class="list-reset p-1 mt-4">
                 <li class="mb-3">
-                    <a class="sidebar-link" href="{{ route('admin.dashboard.index') }}">Dashboard</a>
+                    <a class="sidebar-link" href="{{ route('moderator.dashboard.index') }}">Dashboard</a>
                 </li>
 
                 <li class="mb-3">
-                    <a class="sidebar-link" href="{{ route('admin.channels.index') }}">Channels</a>
+                    <a class="sidebar-link" href="{{ route('moderator.channels.index') }}">Channels</a>
                 </li>
 
                 <li class="mb-3">
-                    <a class="sidebar-link" href="{{ route('admin.users.index') }}">Users</a>
+                    <a class="sidebar-link" href="{{ route('moderator.users.index') }}">Users</a>
                 </li>
             </ul>
         </div>
@@ -22,6 +22,8 @@
 
 @section('content')
     <div class="py-6">
-        @yield('administration-content')
+        <div class="container">
+            @yield('moderator-content')
+        </div>
     </div>
 @endsection
