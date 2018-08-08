@@ -41,9 +41,7 @@ class ModeratorTest extends TestCase
     {
         $reply = create('App\Thread');
 
-        $user = create('App\User');
-        $this->signIn($user);
-        $user->assignRole('moderator');
+        $this->signInModerator();
 
         $this->patch($reply->path(), [
             'title' => 'is changed',
@@ -58,9 +56,7 @@ class ModeratorTest extends TestCase
     {
         $thread = create('App\Thread');
 
-        $user = create('App\User');
-        $this->signIn($user);
-        $user->assignRole('moderator');
+        $this->signInModerator();
 
         $this->post(route('locked-threads.store', $thread));
 
@@ -72,9 +68,7 @@ class ModeratorTest extends TestCase
     {
         $thread = create('App\Thread');
 
-        $user = create('App\User');
-        $this->signIn($user);
-        $user->assignRole('moderator');
+        $this->signInModerator();
 
         $this->delete(route('locked-threads.destroy', $thread));
 
@@ -86,9 +80,7 @@ class ModeratorTest extends TestCase
     {
         $thread = create('App\Thread');
 
-        $user = create('App\User');
-        $this->signIn($user);
-        $user->assignRole('moderator');
+        $this->signInModerator();
 
         $this->post(route('pinned-threads.store', $thread));
 
@@ -98,9 +90,7 @@ class ModeratorTest extends TestCase
     /** @test */
     function an_moderator_can_create_a_new_channel()
     {
-        $user = create('App\User');
-        $this->signIn($user);
-        $user->assignRole('moderator');
+        $this->signInModerator();
 
         $channel = make(Channel::class, [
             'name' => 'php',
@@ -118,9 +108,7 @@ class ModeratorTest extends TestCase
     /** @test */
     function an_moderator_can_edit_an_existing_channel()
     {
-        $user = create('App\User');
-        $this->signIn($user);
-        $user->assignRole('moderator');
+        $this->signInModerator();
 
         $channel = create('App\Channel');
 
@@ -137,9 +125,7 @@ class ModeratorTest extends TestCase
     /** @test */
     function an_moderator_can_mark_an_existing_channel_as_archived()
     {
-        $user = create('App\User');
-        $this->signIn($user);
-        $user->assignRole('moderator');
+        $this->signInModerator();
 
         $channel = create('App\Channel');
 
@@ -156,9 +142,7 @@ class ModeratorTest extends TestCase
     /** @test */
     function an_moderator_can_delete_an_existing_channel()
     {
-        $user = create('App\User');
-        $this->signIn($user);
-        $user->assignRole('moderator');
+        $this->signInModerator();
 
         $channel = create('App\Channel');
 
