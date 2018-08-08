@@ -18,6 +18,6 @@ class SuperAdminSeeder extends Seeder
             'confirmed' => true
         ]);
 
-        $user->assignRole('moderator');
+        $user->assignRole('developer');
     }
 }
