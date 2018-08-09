@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class SettingsController extends Controller
 {
@@ -14,22 +15,27 @@ class SettingsController extends Controller
         return view('profiles.settings.account', compact('user'));
     }
 
-    public function update(User $user)
+    public function update($id)
     {
+        $user = User::findOrFail($id);
+
         request()->validate([
-            'name' => 'required|max:255|unique:users',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
+            'name' => [Rule::unique('users')->ignore($user->id), 'required'],
+            'email' => ['email' , Rule::unique('users')->ignore($user->id), 'required'],
+            'password' => ['nullable','min:6', 'confirmed', Rule::unique('users')->ignore($user->id)],
         ]);
 
+        if(Request()->get('password') == ''){
+            $user->update(request()->except('password'));
+        } else {
+            $user->update([
+                'name' => request('name'),
+                'email' => request('email'),
+                'password' => bcrypt(request('password'))
+            ]);
+        }
 
-        $user->update([
-            'name' => request('name'),
-            'email' => request('email'),
-            'password' => bcrypt(request('password'))
-        ]);
-
-        return redirect('/threads')->with('flash', 'Your account have been updated!');
+        return response([], 204);
     }
 
     public function show(User $user)

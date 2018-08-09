@@ -28,8 +28,8 @@ Vue.component('register', require('./components/Register.vue'));
 
 Vue.component("channel-dropdown", require("./components/ChannelDropdown.vue"));
 
-// Lists
-Vue.component("users-list", require("./components/lists/UsersList.vue"));
+// profile
+Vue.component("update-profile", require("./pages/UpdateProfile.vue"));
 
 
 
