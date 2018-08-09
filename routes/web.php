@@ -28,6 +28,7 @@ Route::delete('threads/{channel}/{thread}', 'ThreadsController@destroy')->name('
 Route::post('/threads', 'ThreadsController@store')->middleware('must-be-confirmed');
 Route::get('threads/{channel}', 'ThreadsController@index');
 
+
 Route::group(['middleware' => ['role:moderator|developer']], function () {
     Route::post('locked-threads/{thread}', 'LockedThreadsController@store')->name('locked-threads.store');
     Route::delete('locked-threads/{thread}', 'LockedThreadsController@delete')->name('locked-threads.destroy');
@@ -35,10 +36,8 @@ Route::group(['middleware' => ['role:moderator|developer']], function () {
     Route::post('/pinned-threads/{thread}', 'PinnedThreadsController@store')->name('pinned-threads.store');
     Route::delete('/pinned-threads/{thread}', 'PinnedThreadsController@destroy')->name('pinned-threads.destroy');
 
-    Route::post('/replies/{reply}/best', 'BestRepliesController@store')->name('best-replies.store');
-
-    Route::post('locked-users/{user}', 'LockedUsersController@store')->name('locked-users.store');
-    Route::delete('locked-users/{user}', 'LockedUsersController@destroy')->name('locked-users.destroy');
+    Route::post('/locked-users/{id}', 'LockedUsersController@store')->name('locked-users.store');
+    Route::delete('/locked-users/{user}', 'LockedUsersController@destroy')->name('locked-users.destroy');
 });
 
 Route::get('/threads/{channel}/{thread}/replies', 'RepliesController@index');
@@ -50,6 +49,7 @@ Route::delete('/threads/{channel}/{thread}/subscriptions', 'ThreadSubscriptionsC
 
 Route::post('/replies/{reply}/favorites', 'FavoritesController@store');
 Route::delete('/replies/{reply}/favorites', 'FavoritesController@destroy');
+Route::post('/replies/{reply}/best', 'BestRepliesController@store')->name('best-replies.store');
 
 Route::get('/profiles/{user}', 'ProfilesController@show')->name('profile');
 Route::get('/profiles/{user}/notifications', 'UserNotificationsController@index');
@@ -62,6 +62,7 @@ Route::get('/profiles/{user}/settings/stats', 'SettingsController@show')->name('
 Route::get('/register/confirm', 'Auth\RegisterConfirmationController@index')->name('register.confirm');
 
 Route::get('/api/users', 'Api\UsersController@index');
+Route::get('/api/users/search', 'Api\SearchUsersController@index');
 Route::post('/api/users/{id}/avatar', 'Api\UserAvatarController@store');
 Route::get('/api/channels', 'Api\ChannelsController@index');
 

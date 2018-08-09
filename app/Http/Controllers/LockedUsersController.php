@@ -7,17 +7,18 @@ use Illuminate\Http\Request;
 
 class LockedUsersController extends Controller
 {
-    public function store(User $user)
+    public function store($id)
     {
+        $user = User::findOrFail($id);
         $user->update(['locked' => true]);
 
-        return back()->with('flash', 'User have been locked');
     }
 
-    public function destroy(User $user)
+    public function destroy($id)
     {
+        $user = User::findOrFail($id);
         $user->update(['locked' => false]);
 
-        return back();
+        return back()->with('flash', 'User have been unlocked');
     }
 }
