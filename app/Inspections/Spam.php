@@ -16,7 +16,6 @@ class Spam
      */
     public function detect($body)
     {
-        // Detect invalid keywords
 
         foreach($this->inspections as $inspection)
         {

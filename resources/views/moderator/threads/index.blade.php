@@ -28,7 +28,7 @@
                             <td class="text-sm p-4 border-b">{{ $thread->creator->name }}</td>
                             <td class="text-sm p-4 border-b">{{ $thread->channel->name }}</td>
                             <td class="text-sm p-4 border-b">
-                                <form action="{{ route('threads.destroy', [
+                                <form action="{{ route('moderator.threads.destroy', [
                                     'channel' => $thread->channel,
                                     'thread' => $thread
                                 ]) }}" method="POST">

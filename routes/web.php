@@ -66,16 +66,19 @@ Route::get('/api/users/search', 'Api\SearchUsersController@index');
 Route::post('/api/users/{id}/avatar', 'Api\UserAvatarController@store');
 Route::get('/api/channels', 'Api\ChannelsController@index');
 
+
 Route::group([
     'prefix' => 'moderator',
     'middleware' => ['role:moderator|developer'],
     'namespace' => 'Moderator'
 ], function () {
+    Route::get('channels', 'ChannelsController@index')->name('moderator.channels.index');
     Route::post('channels', 'ChannelsController@store')->name('moderator.channels.store');
     Route::get('channels/create', 'ChannelsController@create')->name('moderator.channels.create');
-    Route::get('channels/{channel}/edit', 'ChannelsController@edit')->name('moderator.channels.edit');
-    Route::patch('channels/{channel}', 'ChannelsController@update')->name('moderator.channels.update');
     Route::delete('channels/{channel}', 'ChannelsController@destroy')->name('moderator.channels.destroy');
+    Route::patch('channels/{channel}', 'ChannelsController@update')->name('moderator.channels.update');
+    Route::get('channels/{channel}/edit', 'ChannelsController@edit')->name('moderator.channels.edit');
+    Route::delete('threads/{channel}/{thread}', 'ModeratorThreadsController@destroy')->name('moderator.threads.destroy');
 });
 
 Route::group([
@@ -85,18 +88,15 @@ Route::group([
 ], function () {
     Route::get('', 'DashboardController@index')->name('admin.dashboard.index');
     Route::get('channels', 'ChannelsController@index')->name('admin.channels.index');
-
     Route::get('users', 'UsersController@index')->name('admin.users.index');
-    Route::patch('users/edit', 'UsersController@update')->name('admin.users.update');
 });
 
 Route::group([
     'prefix' => 'moderator',
     'middleware' => 'role:moderator|developer',
-    'namespace' => 'Moderator'
+    'namespace' => 'moderator'
 ], function () {
     Route::get('', 'DashboardController@index')->name('moderator.dashboard.index');
-    Route::get('/channels', 'ChannelsController@index')->name('moderator.channels.index');
     Route::get('users', 'UsersController@index')->name('moderator.users.index');
     Route::get('threads', 'ModeratorThreadsController@index')->name('moderator.threads.index');
 });
