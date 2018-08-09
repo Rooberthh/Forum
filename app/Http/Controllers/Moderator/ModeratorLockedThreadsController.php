@@ -10,14 +10,14 @@ class ModeratorLockedThreadsController extends Controller
 {
     public function store(Thread $thread)
     {
-        $this->update(['locked' => true]);
+        $thread->update(['locked' => true]);
 
         return redirect(route('moderator.threads.index'));
     }
 
     public function destroy(Thread $thread)
     {
-        $this->update(['locked' => false]);
+        $thread->update(['locked' => false]);
 
         return redirect(route('moderator.threads.index'));
     }

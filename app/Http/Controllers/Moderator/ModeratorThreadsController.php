@@ -27,4 +27,20 @@ class ModeratorThreadsController extends Controller
 
         return redirect(route('moderator.threads.index'))->with('flash', 'Thread Deleted');
     }
+
+    public function edit(Thread $thread)
+    {
+        return view('moderator.threads.edit', compact('thread'));
+    }
+
+    public function update(Thread $thread)
+    {
+        $thread->update([
+            'title' => request('title'),
+            'body' => request('body'),
+            'channel_id' => request('channel_id')
+        ]);
+
+        return back()->with('flash', 'Channel have been updated');
+    }
 }
