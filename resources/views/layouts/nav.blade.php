@@ -32,9 +32,16 @@
                                 Dashboard <span class="caret"></span>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a href="{{ route('admin.dashboard.index') }}" class="dropdown-item">Admin</a>
-                                <a href="{{ route('moderator.dashboard.index') }}" class="dropdown-item">Moderator</a>
-                                <a href="{{ route('developer.dashboard.index') }}" class="dropdown-item">Developer</a>
+                                @if(auth()->user()->hasRole('developer'))
+                                    <a href="{{ route('admin.dashboard.index') }}" class="dropdown-item">Admin</a>
+                                    <a href="{{ route('moderator.dashboard.index') }}" class="dropdown-item">Moderator</a>
+                                    <a href="{{ route('developer.dashboard.index') }}" class="dropdown-item">Developer</a>
+                                @elseif(auth()->user()->hasRole('moderator'))
+                                    <a href="{{ route('admin.dashboard.index') }}" class="dropdown-item">Admin</a>
+                                    <a href="{{ route('moderator.dashboard.index') }}" class="dropdown-item">Moderator</a>
+                                @elseif(auth()->user()->hasRole('admin'))
+                                    <a href="{{ route('admin.dashboard.index') }}" class="dropdown-item">Admin</a>
+                                @endif
                             </div>
                         </li>
 

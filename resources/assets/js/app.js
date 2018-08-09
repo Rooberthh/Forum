@@ -6,6 +6,7 @@
  */
 
 require('./bootstrap');
+import { TableComponent, TableColumn } from 'vue-table-component';
 
 
 /**
@@ -13,6 +14,7 @@ require('./bootstrap');
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+
 
 Vue.component('flash-message', require('./components/Flash-message.vue'));
 Vue.component('paginator', require('./components/Paginator.vue'));
@@ -26,6 +28,8 @@ Vue.component('login', require('./components/Login.vue'));
 Vue.component('register', require('./components/Register.vue'));
 
 Vue.component("channel-dropdown", require("./components/ChannelDropdown.vue"));
+
+
 
 
 

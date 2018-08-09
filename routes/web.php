@@ -20,11 +20,11 @@ Route::view('scan', 'scan');
 Route::get('/home', 'HomeController@index');
 
 Route::get('/threads', 'ThreadsController@index')->name('threads');
-Route::get('threads/create', 'ThreadsController@create')->middleware('must-be-confirmed');
+Route::get('threads/create', 'ThreadsController@create')->middleware('must-be-confirmed')->name('threads.create');
 Route::get('threads/search', 'SearchController@show');
-Route::get('threads/{channel}/{thread}', 'ThreadsController@show');
-Route::patch('threads/{channel}/{thread}', 'ThreadsController@update');
-Route::delete('threads/{channel}/{thread}', 'ThreadsController@destroy');
+Route::get('threads/{channel}/{thread}', 'ThreadsController@show')->name('threads.show');
+Route::patch('threads/{channel}/{thread}', 'ThreadsController@update')->name('threads.update');
+Route::delete('threads/{channel}/{thread}', 'ThreadsController@destroy')->name('threads.destroy');
 Route::post('/threads', 'ThreadsController@store')->middleware('must-be-confirmed');
 Route::get('threads/{channel}', 'ThreadsController@index');
 
@@ -97,6 +97,7 @@ Route::group([
     Route::get('', 'DashboardController@index')->name('moderator.dashboard.index');
     Route::get('/channels', 'ChannelsController@index')->name('moderator.channels.index');
     Route::get('users', 'UsersController@index')->name('moderator.users.index');
+    Route::get('threads', 'ModeratorThreadsController@index')->name('moderator.threads.index');
 });
 
 Route::group([

@@ -23,7 +23,6 @@
                                     <span><i class="fas fa-lock lock-active"></i></span>
                                 @endif
                                 {{ $user->name }}
-                                {{ $user->locked }}
                             </td>
                             <td class="text-sm p-4 border-b">{{ $user->email }}</td>
                             <td class="text-sm p-4 border-b">{{ $user->reputation }}</td>
@@ -35,9 +34,9 @@
                                         <button class="btn btn-outline-warning" type="submit">Lock</button>
                                     </form>
                                 @else
-                                    <form action="{{ route('locked-users.store', $user) }}" method="POST">
+                                    <form action="{{ route('locked-users.destroy', $user) }}" method="POST">
                                         {{ csrf_field() }}
-                                        {{ method_field('delete') }}
+                                        {{ method_field('DELETE') }}
                                         <button class="btn btn-warning" type="submit">Unlock</button>
                                     </form>
                                 @endif
