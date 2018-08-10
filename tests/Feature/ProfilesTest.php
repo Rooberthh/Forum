@@ -60,7 +60,7 @@ class ProfilesTest extends TestCase
         $user = create('App\User');
         $this->signIn($user);
 
-        $this->patch(route('account.update', $user->name), [
+        $this->patch(route('account.update', $user->id), [
             'name' => 'Roberthhhh',
             'email' => 'Some@email.com',
             'password' => 'password',

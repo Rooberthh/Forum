@@ -34,7 +34,6 @@ class User extends Authenticatable
     ];
 
     protected $appends = [
-        'isAdmin',
         'all_permissions',
         'can'
     ];
@@ -107,17 +106,5 @@ class User extends Authenticatable
         $this->confirmation_token = null;
 
         $this->save();
-    }
-
-    public function isAdmin()
-    {
-        return in_array(
-            $this->email, config('forum.administrators')
-        );
-    }
-
-    public function getIsAdminAttribute()
-    {
-        return $this->isAdmin();
     }
 }

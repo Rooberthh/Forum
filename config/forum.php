@@ -4,5 +4,4 @@ return [
     'pagination' => [
       'perPage' => 25
     ],
-
 ];
