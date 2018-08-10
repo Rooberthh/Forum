@@ -46,6 +46,30 @@ class AddAvatarTest extends TestCase
         Storage::disk('public')->assertExists('avatars/' . $file->hashName());
 
         return back();
+    }
+
+    /** @test */
+    public function old_avatar_gets_deleted_when_a_user_updates_it()
+    {
+        $this->signIn();
+
+        Storage::fake('public');
+
+        $this->json('POST', '/api/users/' . auth()->id() . '/avatar', [
+            'avatar' => $oldFile = UploadedFile::fake()->image('avatar.jpg')
+        ]);
+
+        $this->assertEquals('/storage/avatars/' . $oldFile->hashName(), auth()->user()->avatar_path);
+        Storage::disk('public')->assertExists('avatars/' . $oldFile->hashName());
+
+
+        $this->json('POST', '/api/users/' . auth()->id() . '/avatar', [
+            'avatar' => $newFile = UploadedFile::fake()->image('newAvatar.jpg')
+        ]);
+
+        Storage::disk('public')->assertMissing('avatars/' . $oldFile->hashName());
+
+        Storage::disk('public')->assertExists('avatars/' . $newFile->hashName());
 
     }
 
