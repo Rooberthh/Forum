@@ -65,4 +65,32 @@ class ReplyTest extends TestCase
         $reply->thread->update(['best_reply_id' => $reply->id ]);
         $this->assertTrue($reply->fresh()->isBest());
     }
+
+    /** @test */
+    function it_generates_correct_path_for_paginated_thread ()
+    {
+        $thread = create('App\Thread');
+
+        $replies = create('App\Reply', [
+            'thread_id' => $thread->id
+        ], 3);
+
+        config(['forum.pagination.perPage' => 1]);
+
+        $this->assertEquals(
+            $thread->path() . '?page=1#reply-1',
+            $replies->first()->path()
+        );
+
+        $this->assertEquals(
+            $thread->path() . '?page=2#reply-2',
+            $replies[1]->path()
+        );
+
+        $this->assertEquals(
+            $thread->path() . '?page=3#reply-3',
+            $replies->last()->path()
+        );
+
+    }
 }
