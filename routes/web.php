@@ -61,10 +61,10 @@ Route::get('/profiles/{user}/settings/stats', 'SettingsController@show')->name('
 
 Route::get('/register/confirm', 'Auth\RegisterConfirmationController@index')->name('register.confirm');
 
-Route::get('/api/users', 'Api\UsersController@index');
+Route::get('/api/users', 'Api\UsersController@index')->name('api.users.index');
 Route::get('/api/users/search', 'Api\SearchUsersController@index');
 Route::post('/api/users/{id}/avatar', 'Api\UserAvatarController@store');
-Route::get('/api/channels', 'Api\ChannelsController@index');
+Route::get('/api/channels', 'Api\ChannelsController@index')->name('api.channels.index');
 
 
 Route::group([
@@ -79,7 +79,7 @@ Route::group([
     Route::patch('channels/{channel}', 'ChannelsController@update')->name('moderator.channels.update');
     Route::get('channels/{channel}/edit', 'ChannelsController@edit')->name('moderator.channels.edit');
     Route::get('threads/{thread}/edit', 'ModeratorThreadsController@edit')->name('moderator.threads.edit');
-    Route::patch('threads/{thread}', 'ModeratorThreadsController@update')->name('moderator.threads.update');
+    Route::patch('threads/{channel}/{thread}', 'ModeratorThreadsController@update')->name('moderator.threads.update');
     Route::delete('threads/{channel}/{thread}', 'ModeratorThreadsController@destroy')->name('moderator.threads.destroy');
 });
 

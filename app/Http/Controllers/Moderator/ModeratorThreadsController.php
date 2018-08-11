@@ -33,14 +33,15 @@ class ModeratorThreadsController extends Controller
         return view('moderator.threads.edit', compact('thread'));
     }
 
-    public function update(Thread $thread)
+    public function update($channel, Thread $thread)
     {
+
         $thread->update([
             'title' => request('title'),
             'body' => request('body'),
             'channel_id' => request('channel_id')
         ]);
 
-        return back()->with('flash', 'Channel have been updated');
+        return back()->with('flash', 'Thread have been updated');
     }
 }

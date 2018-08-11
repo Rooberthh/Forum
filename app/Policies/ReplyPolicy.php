@@ -13,7 +13,9 @@ class ReplyPolicy
     /**
      * Create a new policy instance.
      *
-     * @return void
+     * @param User $user
+     * @param Reply $reply
+     * @return bool
      */
 
     public function update(User $user, Reply $reply)

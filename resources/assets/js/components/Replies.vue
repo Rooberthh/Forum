@@ -6,10 +6,12 @@
 
 		<paginator :dataSet="dataSet" @changed="fetch"></paginator>
 
-        <p v-if="$parent.locked">
+        <p v-if="$parent.locked  && ! user.can['moderate']">
             This thread has been locked. No more replies are allowed.
         </p>
-		<new-reply :endpoint="endpoint" @created="add" v-else></new-reply>
+
+        <new-reply :endpoint="endpoint" @created="add" v-else></new-reply>
+
 	</div>
 </template>
 

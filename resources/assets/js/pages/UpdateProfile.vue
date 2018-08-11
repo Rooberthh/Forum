@@ -20,7 +20,10 @@
                     email: this.form.email,
                     password: this.form.password,
                     password_confirmation: this.form.password_confirmation
-                }).then(() => location.reload())
+                }).then(() => {
+                    location.reload();
+                    this.$modal.show('updated-user');
+                })
                 .catch(error => {
                     this.errors = error.response.data.errors;
                 });

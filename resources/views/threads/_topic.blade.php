@@ -37,8 +37,8 @@
                 <a href="{{ route('profile', $thread->creator) }}">{{ $thread->creator->name }} ({{ $thread->creator->reputation }} XP)</a>
                 <span>{{ $thread->created_at->diffForHumans() }}</span>
             </small>
-            <a class="mx-1 action-link"  href="#" v-if="authorize('isAdmin')" @click="toggleLock" v-text="locked ? 'Unlock' : 'Lock'"></a>
-            <a class="mx-1 action-link" href="#" v-if="authorize('isAdmin')" @click="togglePin" v-text="pinned ? 'Unpin' : 'Pin'"></a>
+            <a class="mx-1 action-link"  href="#" v-if="user.can['moderate']" @click="toggleLock" v-text="locked ? 'Unlock' : 'Lock'"></a>
+            <a class="mx-1 action-link" href="#" v-if="user.can['moderate']" @click="togglePin" v-text="pinned ? 'Unpin' : 'Pin'"></a>
         </div>
 
         <h4 class="post-title-show" v-text="title"></h4>

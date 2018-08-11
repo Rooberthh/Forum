@@ -8,7 +8,7 @@ use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class Developer extends TestCase
+class DeveloperTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -27,7 +27,7 @@ class Developer extends TestCase
         $this->signInDeveloper();
 
         $this->get(route('developer.dashboard.index'))
-            ->assertStatus(200);
+            ->assertStatus(201);
     }
 
 

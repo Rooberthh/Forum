@@ -22,7 +22,8 @@
     export default {
         name: "AvatarForm",
         props: [
-            'user'
+            'user',
+            'modal'
         ],
         components: {
             ImageUpload
@@ -54,7 +55,9 @@
                 let data = new FormData();
                 data.append('avatar', avatar);
                 axios.post(`/api/users/${this.user.name}/avatar`, data)
-                    .then( () => flash('Avatar uploaded'));
+                    .then( () => {
+                        this.$modal.show('updated-user');
+                    });
             },
         }
     }

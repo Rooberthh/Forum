@@ -31,7 +31,7 @@ class RepliesController extends Controller
      */
     public function store($channelId, Thread $thread, CreatePostRequest $form)
     {
-        if($thread->locked)
+        if($thread->locked && ! auth()->user()->hasPermissionTo('moderate'))
         {
             return response('Thread is locked',422);
         }

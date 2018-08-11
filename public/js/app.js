@@ -39715,6 +39715,9 @@ Vue.component("channel-dropdown", __webpack_require__(559));
 
 Vue.component("update-profile", __webpack_require__(564));
 
+//Dashboards
+Vue.component("dashboard-tile", __webpack_require__(575));
+
 var app = new Vue({
   el: '#app'
 });
@@ -88972,7 +88975,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "AvatarForm",
-    props: ['user'],
+    props: ['user', 'modal'],
     components: {
         ImageUpload: __WEBPACK_IMPORTED_MODULE_0__ImageUpload_vue___default.a
     },
@@ -89001,10 +89004,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.presist(avatar.file);
         },
         presist: function presist(avatar) {
+            var _this2 = this;
+
             var data = new FormData();
             data.append('avatar', avatar);
             axios.post('/api/users/' + this.user.name + '/avatar', data).then(function () {
-                return flash('Avatar uploaded');
+                _this2.$modal.show('updated-user');
             });
         }
     }
@@ -89552,6 +89557,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -89682,7 +89689,7 @@ exports = module.exports = __webpack_require__(9)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -89745,57 +89752,60 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['reply'],
-  components: {
-    Favorite: __WEBPACK_IMPORTED_MODULE_0__Favorite_vue___default.a
-  },
-  data: function data() {
-    return {
-      editing: false,
-      body: this.reply.body,
-      id: this.reply.id,
-      isBest: this.reply.isBest
-    };
-  },
-
-  computed: {
-    ago: function ago() {
-      return __WEBPACK_IMPORTED_MODULE_1_moment___default()(this.reply.created_at).fromNow() + '...';
-    }
-  },
-
-  created: function created() {
-    var _this = this;
-
-    window.events.$on('best-reply-selected', function (id) {
-      _this.isBest = id === _this.reply.id;
-    });
-  },
-
-  methods: {
-    update: function update() {
-      axios.patch('/replies/' + this.id, {
-        body: this.body
-      }).catch(function (error) {
-        flash(error.response.data, 'danger');
-      });
-
-      this.editing = false;
-
-      flash('Updated!');
+    props: ['reply'],
+    components: {
+        Favorite: __WEBPACK_IMPORTED_MODULE_0__Favorite_vue___default.a
     },
-    destroy: function destroy() {
-      axios.delete('/replies/' + this.id);
-      this.$emit('deleted', this.id);
+    data: function data() {
+        return {
+            editing: false,
+            body: this.reply.body,
+            id: this.reply.id,
+            isBest: this.reply.isBest
+        };
     },
-    markBestReply: function markBestReply() {
-      axios.post('/replies/' + this.id + '/best');
 
-      window.events.$emit('best-reply-selected', this.id);
+    computed: {
+        ago: function ago() {
+            return __WEBPACK_IMPORTED_MODULE_1_moment___default()(this.reply.created_at).fromNow() + '...';
+        },
+        name: function name() {
+            return this.reply.owner.name + ' (' + this.reply.owner.reputation + ' XP)';
+        }
+    },
 
-      flash('The reply have been marked as best', 'info');
+    created: function created() {
+        var _this = this;
+
+        window.events.$on('best-reply-selected', function (id) {
+            _this.isBest = id === _this.reply.id;
+        });
+    },
+
+    methods: {
+        update: function update() {
+            axios.patch('/replies/' + this.id, {
+                body: this.body
+            }).catch(function (error) {
+                flash(error.response.data, 'danger');
+            });
+
+            this.editing = false;
+
+            flash('Updated!');
+        },
+        destroy: function destroy() {
+            axios.delete('/replies/' + this.id);
+            this.$emit('deleted', this.id);
+        },
+        markBestReply: function markBestReply() {
+            axios.post('/replies/' + this.id + '/best');
+
+            window.events.$emit('best-reply-selected', this.id);
+
+            flash('The reply have been marked as best', 'info');
+        }
     }
-  }
 });
 
 /***/ }),
@@ -90263,7 +90273,7 @@ var render = function() {
           _c("small", { staticClass: "flex" }, [
             _c("a", {
               attrs: { href: "/profiles/" + _vm.reply.owner.name },
-              domProps: { textContent: _vm._s(_vm.reply.owner.name) }
+              domProps: { textContent: _vm._s(_vm.name) }
             }),
             _vm._v(" "),
             _c("span", { domProps: { textContent: _vm._s(_vm.ago) } })
@@ -90312,7 +90322,7 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass: "btn btn-info btn-sm",
+                      staticClass: "btn btn-danger btn-sm",
                       attrs: { type: "button" },
                       on: {
                         click: function($event) {
@@ -90336,8 +90346,8 @@ var render = function() {
                   {
                     name: "show",
                     rawName: "v-show",
-                    value: !_vm.isBest,
-                    expression: "! isBest"
+                    value: !_vm.isBest && !_vm.editing,
+                    expression: "! isBest && ! editing"
                   }
                 ],
                 staticClass: "btn btn-link pl-0",
@@ -92338,7 +92348,7 @@ var render = function() {
         on: { changed: _vm.fetch }
       }),
       _vm._v(" "),
-      _vm.$parent.locked
+      _vm.$parent.locked && !_vm.user.can["moderate"]
         ? _c("p", [
             _vm._v(
               "\n            This thread has been locked. No more replies are allowed.\n        "
@@ -92998,7 +93008,7 @@ exports = module.exports = __webpack_require__(9)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -93035,7 +93045,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 password: this.form.password,
                 password_confirmation: this.form.password_confirmation
             }).then(function () {
-                return location.reload();
+                location.reload();
+                _this.$modal.show('updated-user');
             }).catch(function (error) {
                 _this.errors = error.response.data.errors;
             });
@@ -93121,6 +93132,158 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-7e5db395", module.exports)
+  }
+}
+
+/***/ }),
+/* 575 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(576)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(578)
+/* template */
+var __vue_template__ = __webpack_require__(579)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-5c7c39a5"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\Tile.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5c7c39a5", Component.options)
+  } else {
+    hotAPI.reload("data-v-5c7c39a5", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 576 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(577);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(10)("77807ad8", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5c7c39a5\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Tile.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5c7c39a5\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Tile.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 577 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(9)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 578 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['url', 'btnText']
+});
+
+/***/ }),
+/* 579 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "card text-center" }, [
+    _c(
+      "div",
+      { staticClass: "p-5" },
+      [
+        _vm._t("icon"),
+        _vm._v(" "),
+        _vm._t("title"),
+        _vm._v(" "),
+        _vm._t("body"),
+        _vm._v(" "),
+        _c("a", {
+          staticClass: "btn btn-outline-danger font-weight-bold px-5 py-2",
+          attrs: { href: _vm.url },
+          domProps: { textContent: _vm._s(_vm.btnText) }
+        })
+      ],
+      2
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-5c7c39a5", module.exports)
   }
 }
 

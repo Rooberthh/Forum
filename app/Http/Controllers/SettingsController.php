@@ -12,6 +12,8 @@ class SettingsController extends Controller
     {
         $this->authorize('update', $user);
 
+        $user->makeVisible('email');
+
         return view('profiles.settings.account', compact('user'));
     }
 

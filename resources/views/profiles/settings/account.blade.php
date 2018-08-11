@@ -38,7 +38,7 @@
                         </div>
 
                         <div class="form-group">
-                            <button class="btn btn-outline-info font-weight-bold btn-lg" type="submit" @click="$modal.show('updated-user')">Update</button>
+                            <button class="btn btn-outline-info font-weight-bold btn-lg" type="submit">Update</button>
                         </div>
                     </form>
                 </update-profile>

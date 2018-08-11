@@ -53,6 +53,23 @@ class ModeratorTest extends TestCase
 
         $this->assertEquals('is changed', $thread->fresh()->title);
     }
+
+    /** @test */
+    function an_moderator_can_edit_an_existing_thread_from_the_dashboard()
+    {
+        $thread = create('App\Thread');
+
+        $this->signInModerator();
+
+        $this->patch(route('moderator.threads.update', [$thread->channel->id, $thread]), [
+            'title' => 'is changed',
+            'body' => 'is changed',
+            'channel_id' => $thread->channel_id
+        ]);
+
+        $this->assertEquals('is changed', $thread->fresh()->title);
+    }
+
     /** @test */
     function an_moderator_can_delete_an_existing_thread()
     {

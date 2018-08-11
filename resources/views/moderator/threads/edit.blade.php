@@ -4,8 +4,9 @@
     <div class="container">
         <div class="row">
             <div class="col-md-10 offset-2">
-                <form action="{{ route('moderator.threads.update', $thread) }}">
+                <form action="{{ route('moderator.threads.update', [$thread->channel->id, $thread]) }}">
                     {{ csrf_field() }}
+                    {{ method_field('patch') }}
                     <div class="flex mb-4">
                         <div class="form-group">
                             <label for="title" class="form-label">Title</label>

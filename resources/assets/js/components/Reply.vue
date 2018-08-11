@@ -4,7 +4,7 @@
           <div class="level">
               <small class="flex">
                   <a :href="'/profiles/'+ reply.owner.name"
-                     v-text="reply.owner.name">
+                     v-text="name">
                   </a>
 
                   <span v-text="ago"></span>
@@ -22,12 +22,12 @@
               </div>
 
               <button class="btn btn-primary btn-sm">Update</button>
-              <button class="btn btn-info btn-sm" @click="editing = false" type="button">Cancel</button>
+              <button class="btn btn-danger btn-sm" @click="editing = false" type="button">Cancel</button>
               </form>
           </div>
           <div v-else v-html="body"></div>
           <button class="btn btn-link pl-0" @click="markBestReply"
-                  v-show="! isBest"  v-if="authorize('owns', reply.thread) || user.can['mark-best-reply']">
+                  v-show="! isBest && ! editing"  v-if="authorize('owns', reply.thread) || user.can['mark-best-reply']">
               Best Reply
           </button>
       </div>
@@ -61,6 +61,10 @@ export default {
     computed: {
       ago(){
         return moment(this.reply.created_at).fromNow() + '...';
+      },
+
+      name() {
+          return this.reply.owner.name + ' (' + this.reply.owner.reputation + ' XP)';
       }
     },
 

@@ -8,8 +8,8 @@
             <p>Your profile have been updated</p>
         </div>
         <div class="d-flex justify-content-center mb-3">
-            <button class="btn btn-danger mx-2 btn-lg" @click="$modal.hide('updated-user')">Close</button>
-            <button class="btn btn-primary mx-2 btn-lg" @click="$modal.hide('updated-user')">Ok</button>
+            <button class="btn btn-danger mx-2 px-4" @click="$modal.hide('updated-user')">Close</button>
+            <button class="btn btn-primary mx-2 px-4" @click="$modal.hide('updated-user')">Ok</button>
         </div>
     </div>
 </modal>
