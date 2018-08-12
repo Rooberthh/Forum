@@ -5,6 +5,6 @@
 
 @section('content')
     <div class="py-6">
-        @yield('developer-content')
+        @yield('Developer')
     </div>
 @endsection

@@ -29,7 +29,7 @@ Route::post('/threads', 'ThreadsController@store')->middleware('must-be-confirme
 Route::get('threads/{channel}', 'ThreadsController@index');
 
 
-Route::group(['middleware' => ['role:moderator|developer']], function () {
+Route::group(['middleware' => ['role:moderator|Developer']], function () {
     Route::post('locked-threads/{thread}', 'LockedThreadsController@store')->name('locked-threads.store');
     Route::delete('locked-threads/{thread}', 'LockedThreadsController@delete')->name('locked-threads.destroy');
 
@@ -69,7 +69,7 @@ Route::get('/api/channels', 'Api\ChannelsController@index')->name('api.channels.
 
 Route::group([
     'prefix' => 'moderator',
-    'middleware' => ['role:moderator|developer'],
+    'middleware' => ['role:moderator|Developer'],
     'namespace' => 'Moderator'
 ], function () {
     Route::get('channels', 'ChannelsController@index')->name('moderator.channels.index');
@@ -85,7 +85,7 @@ Route::group([
 
 Route::group([
     'prefix' => 'admin',
-    'middleware' => 'role:admin|moderator|developer',
+    'middleware' => 'role:admin|moderator|Developer',
     'namespace' => 'Admin'
 ], function () {
     Route::get('', 'DashboardController@index')->name('admin.dashboard.index');
@@ -95,7 +95,7 @@ Route::group([
 
 Route::group([
     'prefix' => 'moderator',
-    'middleware' => 'role:moderator|developer',
+    'middleware' => 'role:moderator|Developer',
     'namespace' => 'moderator'
 ], function () {
     Route::get('', 'DashboardController@index')->name('moderator.dashboard.index');
@@ -106,10 +106,20 @@ Route::group([
 });
 
 Route::group([
-    'middleware' => 'role:developer',
+    'middleware' => 'role:Developer',
     'prefix' => 'developer',
-    'namespace' => 'developer'
+    'namespace' => 'Developer'
 ], function () {
     Route::get('', 'DashboardController@index')->name('developer.dashboard.index');
 });
 
+Route::group([
+    'middleware' => 'role:Developer',
+    'prefix' => 'api/developer',
+    'namespace' => 'api\developer'
+], function(){
+    Route::get('threads' ,'DashboardController@threads')->name('developer.dashboard.threads');
+    Route::get('replies' ,'DashboardController@replies')->name('developer.dashboard.replies');
+    Route::get('users' ,'DashboardController@users')->name('developer.dashboard.users');
+    Route::get('channels' ,'DashboardController@channels')->name('developer.dashboard.channels');
+});

@@ -26,7 +26,7 @@ class DeveloperTest extends TestCase
     {
         $this->signInDeveloper();
 
-        $this->get(route('developer.dashboard.index'))
+        $this->get(route('Developer.dashboard.index'))
             ->assertStatus(201);
     }
 

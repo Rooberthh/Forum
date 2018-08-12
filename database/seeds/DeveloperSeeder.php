@@ -18,6 +18,6 @@ class DeveloperSeeder extends Seeder
             'confirmed' => true
         ]);
 
-        $user->assignRole('developer');
+        $user->assignRole('Developer');
     }
 }

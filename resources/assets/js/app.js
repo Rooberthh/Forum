@@ -33,6 +33,7 @@ Vue.component("update-profile", require("./pages/UpdateProfile.vue"));
 
 //Dashboards
 Vue.component("dashboard-tile", require("./components/Tile.vue"));
+Vue.component("developer-tile", require("./components/DeveloperTile.vue"));
 
 
 

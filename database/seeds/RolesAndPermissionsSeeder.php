@@ -46,7 +46,7 @@ class RolesAndPermissionsSeeder extends Seeder
         $role->givePermissionTo(['edit-thread', 'delete-thread', 'edit-reply', 'delete-reply',
                                 'mark-best-reply', 'lock-thread', 'unlock-thread', 'admin', 'moderate']);
 
-        $role = Role::create(['name' => 'developer']);
+        $role = Role::create(['name' => 'Developer']);
         $role->givePermissionTo(Permission::all());
     }
 }

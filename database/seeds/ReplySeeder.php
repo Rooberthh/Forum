@@ -11,6 +11,6 @@ class ReplySeeder extends Seeder
      */
     public function run()
     {
-//        create('App\Reply', [], 10);
+        create('App\Reply', [], 10);
     }
 }
