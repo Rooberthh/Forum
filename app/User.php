@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'password', 'avatar_path', 'confirmation_token', 'confirmed', 'locked'
+        'name', 'password', 'avatar_path', 'confirmation_token', 'confirmed', 'locked', 'email'
     ];
 
     /**
@@ -107,4 +107,5 @@ class User extends Authenticatable
 
         $this->save();
     }
+
 }

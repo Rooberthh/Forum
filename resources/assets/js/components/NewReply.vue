@@ -28,19 +28,6 @@
                 completed: false
             };
         },
-        mounted() {
-            $('#body').atwho({
-                at: "@",
-                delay: 750,
-                callbacks: {
-                    remoteFilter: function(query, callback) {
-                        $.getJSON("/api/users", {name: query}, function(usernames) {
-                            callback(usernames)
-                        });
-                    }
-                }
-            });
-        },
         methods: {
              addReply() {
                 axios.post(this.endpoint, { body: this.body })

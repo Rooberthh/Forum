@@ -5,7 +5,7 @@
     </div>
     <div class="card-body">
         <div class="form-group">
-            <wysiwyg name="body" v-model="form.body" :value="form.body"></wysiwyg>
+                <wysiwyg name="body" v-model="form.body" :value="form.body"></wysiwyg>
         </div>
     </div>
 
@@ -15,14 +15,14 @@
             <button class="btn btn-sm btn-primary" @click="update" v-show="editing">Update</button>
             <button class="btn btn-sm btn-danger ml-2" @click="resetForm">Cancel</button>
 
-            @can ('update', $thread)
+            @if(auth()->user()->can('update', $thread) || auth()->user()->hasPermissionTo('moderate'))
                 <form action="{{ $thread->path() }}" method="POST" class="ml-auto">
                     {{ csrf_field() }}
                     {{ method_field('DELETE') }}
 
                     <button type="submit" class="btn btn-link">Delete Thread</button>
                 </form>
-            @endcan
+            @endif
         </div>
     </div>
 </div>
@@ -46,7 +46,7 @@
         <subscribe-button :active="{{ json_encode($thread->isSubscribedTo) }}" v-if="signedIn"></subscribe-button>
     </div>
 
-    <div class="card-footer" v-if="authorize('owns', thread)">
+    <div class="card-footer" v-if="authorize('owns', thread) || user.can['moderate']">
         <button class="btn btn-sm btn-info" @click="editing = true">Edit</button>
     </div>
 </div>

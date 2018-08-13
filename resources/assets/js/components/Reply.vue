@@ -85,12 +85,15 @@ export default {
 
   			this.editing = false;
 
-  			flash('Updated!');
+  			flash('Reply have been updated!');
   		},
   		destroy()
   		{
   			axios.delete('/replies/' + this.id);
-                this.$emit('deleted', this.id);
+
+            this.$emit('deleted', this.id);
+
+            flash('Reply have been deleted!');
   		},
   		markBestReply()
         {

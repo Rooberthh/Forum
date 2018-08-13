@@ -137,7 +137,7 @@ class ThreadsController extends Controller
      */
     public function destroy($channel, Thread $thread, Trending $trending)
     {
-        if(auth()->user()->can('edit-thread') || $this->authorize('update', $thread)) {
+        if(auth()->user()->can('moderate') || $this->authorize('update', $thread)) {
             $trending->remove($thread);
 
             $thread->delete();
@@ -146,7 +146,7 @@ class ThreadsController extends Controller
                 return response([], 204);
             }
 
-            return redirect('/threads');
+            return redirect('/threads')->with('flash', 'Thread have been deleted!');
         }
 
         return response('Unauthorized', 401);

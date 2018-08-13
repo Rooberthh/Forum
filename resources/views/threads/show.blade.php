@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
-@section('header')
-    <link href="{{ asset('css/vendor/jquery.atwho.css') }}" rel="stylesheet">
-@endsection
-
 @section('content')
 <thread-view :thread="{{ $thread }}" inline-template>
     <div class="row">
