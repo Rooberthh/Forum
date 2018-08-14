@@ -24,10 +24,12 @@ class DeveloperTest extends TestCase
     /** @test */
     function an_developer_can_access_their_dashboard()
     {
-        $this->signInDeveloper();
+        $user = create('App\User');
+        $user->assignRole('Developer');
+        $this->signIn($user);
 
-        $this->get(route('Developer.dashboard.index'))
-            ->assertStatus(201);
+        $this->get(route('developer.dashboard.index'))
+            ->assertStatus(200);
     }
 
 

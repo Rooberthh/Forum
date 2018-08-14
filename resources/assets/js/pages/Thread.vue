@@ -27,22 +27,13 @@
             {
                 if(this.locked)
                 {
-                    this.destroy();
+                    axios.delete(this.lockedEndpoint);
+                    this.locked = false;
                 } else {
-                    this.create();
+                    axios.post(this.lockedEndpoint);
+                    this.locked = true;
                 }
             },
-            destroy()
-            {
-                axios.delete(this.lockedEndpoint);
-                this.locked = false;
-            },
-            create()
-            {
-                axios.post(this.lockedEndpoint);
-                this.locked = true;
-            },
-
             update()
             {
                 axios.patch(this.editEndpoint, this.form).then(() =>{

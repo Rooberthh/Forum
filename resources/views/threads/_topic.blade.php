@@ -14,14 +14,15 @@
             <button class="btn btn-sm btn-info" @click="editing = true" v-show="!editing">Edit</button>
             <button class="btn btn-sm btn-primary" @click="update" v-show="editing">Update</button>
             <button class="btn btn-sm btn-danger ml-2" @click="resetForm">Cancel</button>
+            @if(auth()->user())
+                @if(auth()->user()->can('update', $thread) || auth()->user()->hasPermissionTo('moderate'))
+                    <form action="{{ $thread->path() }}" method="POST" class="ml-auto">
+                        {{ csrf_field() }}
+                        {{ method_field('DELETE') }}
 
-            @if(auth()->user()->can('update', $thread) || auth()->user()->hasPermissionTo('moderate'))
-                <form action="{{ $thread->path() }}" method="POST" class="ml-auto">
-                    {{ csrf_field() }}
-                    {{ method_field('DELETE') }}
-
-                    <button type="submit" class="btn btn-link">Delete Thread</button>
-                </form>
+                        <button type="submit" class="btn btn-link">Delete Thread</button>
+                    </form>
+                @endif
             @endif
         </div>
     </div>

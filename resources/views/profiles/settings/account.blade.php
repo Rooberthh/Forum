@@ -12,7 +12,7 @@
         <div class="col-md-9">
             <div class="container">
                 <h2>Update Your Account</h2>
-                <update-profile inline-template :user="{{ $user }}">
+                <update-settings inline-template :user="{{ $user }}">
                     <form  method="POST" @submit.prevent="updateProfile">
                         <div class="form-group">
                             <label class="form-label" for="name">Username:</label>
@@ -41,7 +41,7 @@
                             <button class="btn btn-outline-info font-weight-bold btn-lg" type="submit">Update</button>
                         </div>
                     </form>
-                </update-profile>
+                </update-settings>
             </div>
         </div>
     </div>

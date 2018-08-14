@@ -91,7 +91,6 @@ class User extends Authenticatable
 
     public function getAvatarPathAttribute($avatar)
     {
-
         if($avatar)
         {
             return '/storage/' . $avatar;

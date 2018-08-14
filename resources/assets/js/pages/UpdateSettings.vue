@@ -21,8 +21,8 @@
                     password: this.form.password,
                     password_confirmation: this.form.password_confirmation
                 }).then(() => {
-                    location.reload();
                     this.$modal.show('updated-user');
+                    location.reload();
                 })
                 .catch(error => {
                     this.errors = error.response.data.errors;
