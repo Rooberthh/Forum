@@ -1,11 +1,21 @@
 @import "../variables";
 
 .sidebar {
-    width: 315px;
+    width: 16rem;
+}
+
+#sidebar-container
+{
+    border-top: 0;
+    border-bottom: 0;
 }
 
 .sidebar-heading {
     font-weight: bold;
+    font-size: 90%;
+    letter-spacing: .5pt;
+    text-transform: uppercase;
+    color: $font-color-grey;
 }
 
 .list-reset {
@@ -13,7 +23,20 @@
 }
 
 .sidebar-link {
-    font-size: 110%;
+    font-size: 100%;
+    letter-spacing: .5pt;
+    color: #111;
+
+    &:hover
+    {
+        text-decoration: none;
+    }
+}
+
+.trending-link
+{
+    color: #3490dc;
+    font-size: 100%;
 }
 
 .has-ellipsis {

@@ -15,6 +15,7 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     @if(auth()->user())
@@ -52,15 +53,13 @@
 <body>
     <div id="app">
         @include('layouts.nav')
-        <div class="container-fluid d-flex">
-            <main class="py-4 flex-grow-1">
+        <div class="container d-flex mx-auto flex-grow-1">
+            <main class="py-4 flex-grow-1 bg-white">
                 @yield('content')
             </main>
-            <div>
-                @section('sidebar')
-                    @include('sidebar')
-                @show
-            </div>
+            @section('sidebar')
+                @include('sidebar')
+            @show
         </div>
 
         <flash-message message="{{ session('flash') }}"></flash-message>
