@@ -10,9 +10,9 @@
 
 // Components
 @import "components/sidebar.scss";
+@import "components/icons.scss";
+@import "components/_list.scss";
 
-// Components
-@import "components/checkmark.scss";
 
 .navbar-laravel {
   background-color: #fff;
@@ -27,42 +27,6 @@
 .menu-label {
     font-weight: bold;
     font-size: $font-size-base;
-}
-
-.settings-list-item {
-    font-size: 100%;
-    font-weight: 600;
-}
-
-.form-label {
-    font-weight: 500;
-}
-
-.lock-active {
-    color: #ffa801;
-}
-
-.post-title {
-    font-size: 120%;
-
-    &-show {
-        font-weight: bold;
-    }
-}
-
-.post-data {
-    margin-left: 10px;
-}
-
-.profile-image {
-    height: 72px;
-    width: 72px;
-    border-radius: 8px;
-}
-
-.profile-area {
-    border-right: 1px solid lightgrey;
-    max-width: 50%;
 }
 
 /******* Tiles *********/

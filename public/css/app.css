@@ -10433,13 +10433,19 @@ a.text-dark:focus {
   overflow: hidden;
 }
 
+/*
+################
+               Checkmark
+################
+*/
+
 #checkmark {
   stroke: #2ecc71;
   fill: none;
   stroke-dasharray: 70px;
   stroke-dashoffset: 70px;
-  -webkit-animation: dash .3s linear forwards, pulse 1s forwards;
-          animation: dash .3s linear forwards, pulse 1s forwards;
+  -webkit-animation: dash .3s linear forwards, pulse 1s forwards;
+          animation: dash .3s linear forwards, pulse 1s forwards;
 }
 
 @-webkit-keyframes dash {
@@ -10488,30 +10494,11 @@ a.text-dark:focus {
   }
 }
 
-.navbar-laravel {
-  background-color: #fff;
-  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-}
-
-.nav-item {
-  text-decoration: none;
-  list-style: none;
-}
-
-.menu-label {
-  font-weight: bold;
-  font-size: 0.9rem;
-}
-
-.settings-list-item {
-  font-size: 100%;
-  font-weight: 600;
-}
-
-.form-label {
-  font-weight: 500;
-}
+/*
+################
+               Lock
+################
+*/
 
 .lock-active {
   color: #ffa801;
@@ -10535,9 +10522,20 @@ a.text-dark:focus {
   border-radius: 8px;
 }
 
-.profile-area {
-  border-right: 1px solid lightgrey;
-  max-width: 50%;
+.navbar-laravel {
+  background-color: #fff;
+  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.nav-item {
+  text-decoration: none;
+  list-style: none;
+}
+
+.menu-label {
+  font-weight: bold;
+  font-size: 0.9rem;
 }
 
 /******* Tiles *********/

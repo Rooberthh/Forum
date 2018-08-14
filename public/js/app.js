@@ -89886,63 +89886,63 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['reply'],
-    components: {
-        Favorite: __WEBPACK_IMPORTED_MODULE_0__Favorite_vue___default.a
+  props: ['reply'],
+  components: {
+    Favorite: __WEBPACK_IMPORTED_MODULE_0__Favorite_vue___default.a
+  },
+  data: function data() {
+    return {
+      editing: false,
+      body: this.reply.body,
+      id: this.reply.id,
+      isBest: this.reply.isBest
+    };
+  },
+
+  computed: {
+    ago: function ago() {
+      return __WEBPACK_IMPORTED_MODULE_1_moment___default()(this.reply.created_at).fromNow() + '...';
     },
-    data: function data() {
-        return {
-            editing: false,
-            body: this.reply.body,
-            id: this.reply.id,
-            isBest: this.reply.isBest
-        };
-    },
-
-    computed: {
-        ago: function ago() {
-            return __WEBPACK_IMPORTED_MODULE_1_moment___default()(this.reply.created_at).fromNow() + '...';
-        },
-        name: function name() {
-            return this.reply.owner.name + ' (' + this.reply.owner.reputation + ' XP)';
-        }
-    },
-
-    created: function created() {
-        var _this = this;
-
-        window.events.$on('best-reply-selected', function (id) {
-            _this.isBest = id === _this.reply.id;
-        });
-    },
-
-    methods: {
-        update: function update() {
-            axios.patch('/replies/' + this.id, {
-                body: this.body
-            }).catch(function (error) {
-                flash(error.response.data, 'danger');
-            });
-
-            this.editing = false;
-
-            flash('Reply have been updated!');
-        },
-        destroy: function destroy() {
-            axios.delete('/replies/' + this.id);
-
-            this.$emit('deleted', this.id);
-
-            flash('Reply have been deleted!');
-        },
-        markBestReply: function markBestReply() {
-            axios.post('/replies/' + this.id + '/best');
-
-            window.events.$emit('best-reply-selected', this.id);
-
-            flash('The reply have been marked as best', 'info');
-        }
+    name: function name() {
+      return this.reply.owner.name + ' (' + this.reply.owner.reputation + ' XP)';
     }
+  },
+
+  created: function created() {
+    var _this = this;
+
+    window.events.$on('best-reply-selected', function (id) {
+      _this.isBest = id === _this.reply.id;
+    });
+  },
+
+  methods: {
+    update: function update() {
+      axios.patch('/replies/' + this.id, {
+        body: this.body
+      }).catch(function (error) {
+        flash(error.response.data, 'danger');
+      });
+
+      this.editing = false;
+
+      flash('Reply have been updated!');
+    },
+    destroy: function destroy() {
+      axios.delete('/replies/' + this.id);
+
+      this.$emit('deleted', this.id);
+
+      flash('Reply have been deleted!');
+    },
+    markBestReply: function markBestReply() {
+      axios.post('/replies/' + this.id + '/best');
+
+      window.events.$emit('best-reply-selected', this.id);
+
+      flash('The reply have been marked as best', 'info');
+    }
+  }
 });
 
 /***/ }),
