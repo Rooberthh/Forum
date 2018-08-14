@@ -12,6 +12,7 @@
 @import "components/sidebar.scss";
 @import "components/icons.scss";
 @import "components/_list.scss";
+@import "utilities/thread.scss";
 
 .main-navbar{
     background-color: $main-color;
@@ -88,7 +89,6 @@
 /******* Links *********/
 
 .action-link {
-    text-decoration: underline;
     font-size: 110%;
     color: #333;
 }
@@ -97,6 +97,7 @@
     text-decoration: underline;
     font-size: 110%;
     color: #111;
+    cursor: pointer;
 }
 
 /******** Search Result *******/

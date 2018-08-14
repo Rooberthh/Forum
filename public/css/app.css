@@ -10412,6 +10412,7 @@ a.text-dark:focus {
 }
 
 .sidebar {
+  min-width: 16rem;
   width: 16rem;
 }
 
@@ -10565,6 +10566,38 @@ Lock
   border-radius: 8px;
 }
 
+.subscribe-active {
+  font-weight: bold;
+  color: #d32f2f !important;
+}
+
+.body-text {
+  font-size: 130%;
+}
+
+.thread-title-show {
+  font-weight: bold;
+}
+
+.thread-body-show {
+  border-bottom: 1px solid lightgrey;
+}
+
+.reply {
+  border-right: none;
+  border-left: none;
+  border-top: none;
+  border-bottom: 1px solid lightgrey;
+}
+
+.reply-marked-success {
+  background-color: #2ecc71;
+  font-weight: bold;
+  padding: .5em .4em;
+  color: white;
+  border-radius: 15px;
+}
+
 .main-navbar {
   background-color: #d32f2f;
   -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
@@ -10639,7 +10672,6 @@ Lock
 /******* Links *********/
 
 .action-link {
-  text-decoration: underline;
   font-size: 110%;
   color: #333;
 }
@@ -10648,6 +10680,7 @@ Lock
   text-decoration: underline;
   font-size: 110%;
   color: #111;
+  cursor: pointer;
 }
 
 /******** Search Result *******/

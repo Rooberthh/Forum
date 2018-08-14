@@ -1,0 +1,34 @@
+@import "../variables";
+
+.subscribe-active {
+    font-weight: bold;
+    color: $main-color !important;
+}
+
+.body-text{
+    font-size: 130%;
+}
+
+.thread-title-show{
+    font-weight: bold;
+}
+
+.thread-body-show {
+    border-bottom: 1px solid lightgrey;
+}
+
+.reply{
+    border-right: none;
+    border-left: none;
+    border-top: none;
+    border-bottom: 1px solid lightgrey;
+}
+
+.reply-marked-success
+{
+    background-color: #2ecc71;
+    font-weight: bold;
+    padding: .5em .4em;
+    color: white;
+    border-radius: 15px;
+}
