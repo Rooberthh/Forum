@@ -1,5 +1,5 @@
 @forelse($threads as $thread)
-    <div class="list-group-item d-flex flex-row">
+    <div class="d-flex flex-row thread-list-item">
         <div>
             <img src="{{ $thread->creator->avatar_path }}" alt="" class="profile-image">
         </div>
@@ -21,6 +21,7 @@
             </div>
 
             <div>
+                <a href="{{ $thread->channel->path() }}" class="category-label">{{ $thread->channel->name }}</a>
                 <span><i class="fas fa-comment-alt"></i> {{ $thread->replies_count }} </span>
                 <span><i class="far fa-eye"></i> {{ $thread->visits }}</span>
             </div>

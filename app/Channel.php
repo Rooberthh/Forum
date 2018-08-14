@@ -41,6 +41,11 @@ class Channel extends Model
         return 'slug';
     }
 
+    public function path()
+    {
+        return "/threads/{$this->slug}";
+    }
+
     /**
      * A channel consists of threads.
      *

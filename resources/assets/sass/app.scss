@@ -13,15 +13,31 @@
 @import "components/icons.scss";
 @import "components/_list.scss";
 
+.main-navbar{
+    background-color: $main-color;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+.nav-link{
+    color: white;
+    font-weight: bold;
+
+    &:hover
+    {
+        color: white;
+    }
 }
 
 .nav-item {
     text-decoration: none;
     list-style: none;
+}
+
+.nav-user{
+    background-color: $main-darker-color;
+    -webkit-border-radius: 50% 50%;
+    -moz-border-radius: 50% 50%;
+    border-radius: 50% 50%;
 }
 
 .menu-label {
@@ -47,6 +63,28 @@
     letter-spacing: 1pt;
 }
 
+.btn-primary{
+    background-color: #2ecc71;
+    font-weight: bold;
+    border: 0;
+
+    &:hover{
+        background-color: #27ae60;
+    }
+}
+
+.btn-search{
+    border-top-right-radius: 1em;
+    border-bottom-right-radius: 1em;
+    border: 1px solid lightgrey;
+    background: transparent;
+    color:white;
+
+    &:hover {
+        background-color: lightgrey;
+        color: #111;
+    }
+}
 /******* Links *********/
 
 .action-link {

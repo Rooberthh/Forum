@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+<nav class="navbar navbar-expand-md main-navbar">
     <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">
+        <a class="navbar-brand nav-link" href="{{ url('/') }}">
             {{ config('app.name', 'Forum') }}
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,10 +14,10 @@
             </ul>
 
             <!-- Right Side Of Navbar -->
-            <form method="GET" action="/threads/search" class="mr-3 flex-grow-1 mx-4">
+            <form method="GET" action="/threads/search" class="flex-grow-1 mx-4">
                 <div class="input-group">
                     <input type="text" placeholder="Search..." name="q" class="form-control">
-                    <button class="btn btn-outline-secondary" type="submit"><i class="fas fa-search"></i></button>
+                    <button class="btn btn-search" type="submit"><i class="fas fa-search"></i></button>
                 </div>
             </form>
 
@@ -47,11 +47,10 @@
 
                     @endif
                     <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }} <span class="caret"></span>
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle nav-user" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-user"></i>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-
                             <a class="dropdown-item" href="/profiles/{{ auth()->user()->name }}">My Profile</a>
                             <a class="dropdown-item" href="/profiles/{{ auth()->user()->name }}/settings/account">Settings</a>
 
