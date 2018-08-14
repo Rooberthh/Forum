@@ -14,4 +14,11 @@ module.exports = {
         return roles.indexOf(role) !== -1;
     },
 
+    can(permission)
+    {
+        return user.can[permission] !== false;
+    }
+
+
+
 };
