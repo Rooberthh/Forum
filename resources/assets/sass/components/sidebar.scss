@@ -3,12 +3,13 @@
 .sidebar {
     min-width: 16rem;
     width: 16rem;
+    background-color: white;
+    border-left: 1px solid lightgrey;
+    border-right: 1px solid lightgrey;
 }
 
-#sidebar-container
-{
-    border-top: 0;
-    border-bottom: 0;
+#sidebar-container{
+    border: none;
 }
 
 .sidebar-heading {

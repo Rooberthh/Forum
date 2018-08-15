@@ -1,4 +1,9 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);/*!
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);html,
+body {
+  height: 100%;
+}
+
+/*!
  * Bootstrap v4.1.1 (https://getbootstrap.com/)
  * Copyright 2011-2018 The Bootstrap Authors
  * Copyright 2011-2018 Twitter, Inc.
@@ -10414,11 +10419,13 @@ a.text-dark:focus {
 .sidebar {
   min-width: 16rem;
   width: 16rem;
+  background-color: white;
+  border-left: 1px solid lightgrey;
+  border-right: 1px solid lightgrey;
 }
 
 #sidebar-container {
-  border-top: 0;
-  border-bottom: 0;
+  border: none;
 }
 
 .sidebar-heading {
@@ -10535,7 +10542,7 @@ Lock
 }
 
 .category-label {
-  background-color: #c4d9e0;
+  background-color: #dee6ec;
   font-size: 11px;
   padding: 5px 8px;
   border-radius: 290486px;
@@ -10628,6 +10635,10 @@ Lock
   font-size: 0.9rem;
 }
 
+.min-h-full {
+  min-height: 100%;
+}
+
 /******* Tiles *********/
 
 .tile-body-text {
@@ -10656,17 +10667,14 @@ Lock
   background-color: #27ae60;
 }
 
-.btn-search {
-  border-top-right-radius: 1em;
-  border-bottom-right-radius: 1em;
-  border: 1px solid lightgrey;
-  background: transparent;
+#btn-search {
+  position: absolute;
+  z-index: 100;
+  top: 4px;
+  right: 2px;
   color: white;
-}
-
-.btn-search:hover {
-  background-color: lightgrey;
-  color: #111;
+  font-weight: bold;
+  background-color: #333;
 }
 
 /******* Links *********/
@@ -10692,15 +10700,6 @@ Lock
 
 .search-title:hover {
   color: #222;
-}
-
-.search-category {
-  font-size: 11px;
-  padding: 5px 8px;
-  border-radius: 290486px;
-  color: white;
-  text-transform: uppercase;
-  font-weight: bold;
 }
 
 .search-result:first-child {

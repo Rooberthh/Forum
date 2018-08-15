@@ -9,7 +9,7 @@
                 @endif
             </div>
 
-            <div class="col-md-9">
+            <div class="col-md-9 order-md-1 order-lg-2">
                 <div class="page-header">
                     <avatar-form :user="{{ $user }}"></avatar-form>
                 </div>

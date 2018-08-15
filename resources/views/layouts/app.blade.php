@@ -41,7 +41,6 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <style type="text/css">
-        body{ padding-bottom: 100px; }
         .level{ display: flex; align-items: center; }
         .flex{ flex: 1; }
         [v-cloak] { display: none; }
@@ -50,8 +49,8 @@
 
     @yield('header')
 </head>
-<body>
-    <div id="app">
+<body class="h-full">
+    <div id="app" class="d-flex flex-column min-h-full">
         @include('layouts.nav')
         <div class="container d-flex mx-auto flex-grow-1">
             <main class="py-4 flex-grow-1 bg-white">

@@ -1,4 +1,6 @@
-
+html, body{
+    height: 100%;
+}
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
 
@@ -46,6 +48,10 @@
     font-size: $font-size-base;
 }
 
+.min-h-full{
+    min-height: 100%;
+}
+
 /******* Tiles *********/
 .tile-body-text
 {
@@ -74,17 +80,14 @@
     }
 }
 
-.btn-search{
-    border-top-right-radius: 1em;
-    border-bottom-right-radius: 1em;
-    border: 1px solid lightgrey;
-    background: transparent;
-    color:white;
-
-    &:hover {
-        background-color: lightgrey;
-        color: #111;
-    }
+#btn-search{
+    position: absolute;
+    z-index: 100;
+    top: 4px;
+    right: 2px;
+    color: white;
+    font-weight: bold;
+    background-color: #333;
 }
 /******* Links *********/
 
@@ -109,17 +112,6 @@
         &:hover {
             color: #222;
         }
-    }
-
-    &-category {
-        font-size: 11px;
-        padding: 5px 8px;
-        -webkit-border-radius: 290486px;
-        -moz-border-radius: 290486px;
-        border-radius: 290486px;
-        color: white;
-        text-transform: uppercase;
-        font-weight: bold;
     }
 
     &-result:first-child {

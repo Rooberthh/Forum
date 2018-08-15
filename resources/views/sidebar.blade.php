@@ -1,4 +1,4 @@
-<aside class="sidebar">
+<aside class="sidebar d-sm-none d-none d-md-block">
     <div class="card pr-4 py-4" id="sidebar-container">
         <div class="card-body">
             @if (auth()->check())
