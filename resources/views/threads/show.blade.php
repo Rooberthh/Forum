@@ -2,7 +2,7 @@
 
 @section('content')
 <thread-view :thread="{{ $thread }}" inline-template>
-        <div class="px-5" v-cloak>
+        <div class="thread_container" v-cloak>
             @include('threads._topic')
             <replies @added="repliesCount++" @removed="repliesCount--"></replies>
         </div>

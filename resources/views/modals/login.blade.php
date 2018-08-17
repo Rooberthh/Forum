@@ -12,7 +12,7 @@
             </div>
 
             <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-block">Login</button>
+                <button type="submit" class="btn btn-primary btn-block main-action-button">Login</button>
             </div>
 
             <div class="mt-6" v-if="feedback">

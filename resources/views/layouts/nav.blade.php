@@ -19,7 +19,7 @@
             <form method="GET" action="/threads/search" class="flex-grow-1 mx-auto">
                 <div class="input-group position-relative">
                     <input type="text" placeholder="Search..." name="q" class="form-control-lg form-control">
-                    <button id="btn-search" class="btn btn-search" type="submit">Search</button>
+                    <button id="btn-search" class="btn" type="submit">Search</button>
                 </div>
             </form>
 

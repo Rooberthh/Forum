@@ -1,9 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);html,
-body {
-  height: 100%;
-}
-
-/*!
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);@import url(https://fonts.googleapis.com/css?family=Montserrat|Roboto);/*!
  * Bootstrap v4.1.1 (https://getbootstrap.com/)
  * Copyright 2011-2018 The Bootstrap Authors
  * Copyright 2011-2018 Twitter, Inc.
@@ -10579,11 +10574,7 @@ Lock
 }
 
 .body-text {
-  font-size: 130%;
-}
-
-.thread-title-show {
-  font-weight: bold;
+  font-size: 105%;
 }
 
 .thread-body-show {
@@ -10603,6 +10594,21 @@ Lock
   padding: .5em .4em;
   color: white;
   border-radius: 15px;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: 'Montserrat', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Roboto', sans-serif;
 }
 
 .main-navbar {
@@ -10655,6 +10661,7 @@ Lock
   text-transform: uppercase;
   font-size: 110%;
   letter-spacing: 1pt;
+  font-weight: bold;
 }
 
 .btn-primary {
@@ -10665,6 +10672,11 @@ Lock
 
 .btn-primary:hover {
   background-color: #27ae60;
+}
+
+.-mx-5 {
+  margin-left: -3rem;
+  margin-right: -3rem;
 }
 
 #btn-search {
@@ -10704,5 +10716,20 @@ Lock
 
 .search-result:first-child {
   margin-top: 0 !important;
+}
+
+.thread_container {
+  padding-right: 3rem;
+  padding-left: 3rem;
+}
+
+@media screen and (max-width: 425px) {
+  .text-body {
+    font-size: 100%;
+  }
+
+  .thread_container {
+    padding: 0;
+  }
 }
 

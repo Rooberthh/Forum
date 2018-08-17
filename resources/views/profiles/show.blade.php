@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-sm-12 col-lg-3 order-2">
                 @if(auth()->id() == $user->id)
-                    @include('profiles.settings._settings');
+                    @include('profiles.settings._settings')
                 @endif
             </div>
 

@@ -1,8 +1,6 @@
-html, body{
-    height: 100%;
-}
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Roboto');
 
 // Variables
 @import "variables";
@@ -15,6 +13,17 @@ html, body{
 @import "components/icons.scss";
 @import "components/_list.scss";
 @import "utilities/thread.scss";
+
+html, body{
+    height: 100%;
+    font-family: 'Montserrat', sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6
+{
+    font-family: 'Roboto', sans-serif;
+}
+
 
 .main-navbar{
     background-color: $main-color;
@@ -68,6 +77,7 @@ html, body{
     text-transform: uppercase;
     font-size: 110%;
     letter-spacing: 1pt;
+    font-weight: bold;
 }
 
 .btn-primary{
@@ -78,6 +88,11 @@ html, body{
     &:hover{
         background-color: #27ae60;
     }
+}
+
+.-mx-5{
+    margin-left: -3rem;
+    margin-right: -3rem;
 }
 
 #btn-search{
@@ -116,5 +131,22 @@ html, body{
 
     &-result:first-child {
         margin-top: 0 !important;
+    }
+}
+
+.thread_container{
+    padding-right: 3rem;
+    padding-left: 3rem;
+}
+
+@media screen and(max-width: 425px)
+{
+    .text-body
+    {
+        font-size: 100%;
+    }
+
+    .thread_container{
+        padding: 0;
     }
 }
