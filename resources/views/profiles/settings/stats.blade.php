@@ -10,7 +10,6 @@
         </div>
 
         <div class="col-sm-12 col-lg-9 order-1 order-lg-2 mb-">
-
         </div>
     </div>
 </div>

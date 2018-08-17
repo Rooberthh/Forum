@@ -36,7 +36,6 @@ Vue.component("dashboard-tile", require("./components/Tile.vue"));
 Vue.component("developer-tile", require("./components/DeveloperTile.vue"));
 
 
-
 const app = new Vue({
     el: '#app'
 });
