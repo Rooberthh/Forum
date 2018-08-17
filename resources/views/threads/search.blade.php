@@ -16,7 +16,7 @@
                 <div class="d-flex py-4 flex-row">
                     <div>
                         <div class="bg-white border p-4">
-                            <h4 class="widget-heading">Search</h4>
+                            <h4>Search</h4>
 
                             <ais-search-box>
                                 <ais-input placeholder="Find a thread..." :autofocus="true" class="form-control"></ais-input>
@@ -24,7 +24,7 @@
                         </div>
 
                         <div class="bg-white border p-4">
-                            <h4 class="widget-heading">
+                            <h4>
                                 Filter By Channel
                             </h4>
 
@@ -42,7 +42,7 @@
                                         <ais-highlight :result="result" attribute-name="title"></ais-highlight>
                                     </a>
                                     <p class="pt-2">
-                                        <span class="search-category" :style="{ backgroundColor: result.channel.color }" v-text="result.channel.name"></span>
+                                        <span class="category-label" v-text="result.channel.name"></span>
                                         <span>|</span>
                                         <a :href="`/profiles/${result.creator.name}`">
                                             <span v-text="result.creator.name"></span>

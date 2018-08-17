@@ -1,11 +1,23 @@
 @import "../variables";
 
 .sidebar {
-    width: 315px;
+    min-width: 16rem;
+    width: 16rem;
+    background-color: white;
+    border-left: 1px solid lightgrey;
+    border-right: 1px solid lightgrey;
+}
+
+#sidebar-container{
+    border: none;
 }
 
 .sidebar-heading {
     font-weight: bold;
+    font-size: 90%;
+    letter-spacing: .5pt;
+    text-transform: uppercase;
+    color: $font-color-grey;
 }
 
 .list-reset {
@@ -13,7 +25,20 @@
 }
 
 .sidebar-link {
-    font-size: 110%;
+    font-size: 100%;
+    letter-spacing: .5pt;
+    color: #111;
+
+    &:hover
+    {
+        text-decoration: none;
+    }
+}
+
+.trending-link
+{
+    color: #3490dc;
+    font-size: 100%;
 }
 
 .has-ellipsis {

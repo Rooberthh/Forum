@@ -23,7 +23,7 @@
             <dashboard-tile url="{{ route('moderator.channels.index') }}" btn-text="Channels">
                 <i class="fas fa-tags icon-xl" slot="icon"></i>
                 <h2 class="my-2" slot="title">Channels</h2>
-                <p class="tile-body-text my-3" slot="body">Edit, Delete and Archive channels</p>
+                <p class="tile-body-text my-3" slot="body">Edit, Delete and Archive</p>
             </dashboard-tile>
         </div>
     </div>

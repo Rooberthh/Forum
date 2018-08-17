@@ -1,0 +1,43 @@
+@import "../variables";
+
+.thread-list-item
+{
+    padding: 0.75rem 1.25rem;
+    border-bottom: 1px solid rgba(0,0,0, .09);
+}
+
+.category-label
+{
+    background-color: #dee6ec;
+    font-size: 11px;
+    padding: 5px 8px;
+    -webkit-border-radius: 290486px;
+    -moz-border-radius: 290486px;
+    border-radius: 290486px;
+    color: #111;
+    text-transform: uppercase;
+    font-weight: bold;
+
+    &:hover
+    {
+        text-decoration: none;
+    }
+}
+
+.post-title {
+    font-size: 120%;
+
+    &-show {
+        font-weight: bold;
+    }
+}
+
+.post-data {
+    margin-left: 10px;
+}
+
+.profile-image {
+    height: 72px;
+    width: 72px;
+    border-radius: 8px;
+}

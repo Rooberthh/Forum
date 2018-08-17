@@ -1,6 +1,6 @@
-
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Roboto');
 
 // Variables
 @import "variables";
@@ -10,13 +10,34 @@
 
 // Components
 @import "components/sidebar.scss";
+@import "components/icons.scss";
+@import "components/_list.scss";
+@import "utilities/thread.scss";
 
-// Components
-@import "components/checkmark.scss";
+html, body{
+    height: 100%;
+    font-family: 'Montserrat', sans-serif;
+}
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+h1,h2,h3,h4,h5,h6
+{
+    font-family: 'Roboto', sans-serif;
+}
+
+
+.main-navbar{
+    background-color: $main-color;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.nav-link{
+    color: white;
+    font-weight: bold;
+
+    &:hover
+    {
+        color: white;
+    }
 }
 
 .nav-item {
@@ -24,45 +45,20 @@
     list-style: none;
 }
 
+.nav-user{
+    background-color: $main-darker-color;
+    -webkit-border-radius: 50% 50%;
+    -moz-border-radius: 50% 50%;
+    border-radius: 50% 50%;
+}
+
 .menu-label {
     font-weight: bold;
     font-size: $font-size-base;
 }
 
-.settings-list-item {
-    font-size: 100%;
-    font-weight: 600;
-}
-
-.form-label {
-    font-weight: 500;
-}
-
-.lock-active {
-    color: #ffa801;
-}
-
-.post-title {
-    font-size: 120%;
-
-    &-show {
-        font-weight: bold;
-    }
-}
-
-.post-data {
-    margin-left: 10px;
-}
-
-.profile-image {
-    height: 72px;
-    width: 72px;
-    border-radius: 8px;
-}
-
-.profile-area {
-    border-right: 1px solid lightgrey;
-    max-width: 50%;
+.min-h-full{
+    min-height: 100%;
 }
 
 /******* Tiles *********/
@@ -81,12 +77,36 @@
     text-transform: uppercase;
     font-size: 110%;
     letter-spacing: 1pt;
+    font-weight: bold;
 }
 
+.btn-primary{
+    background-color: #2ecc71;
+    font-weight: bold;
+    border: 0;
+
+    &:hover{
+        background-color: #27ae60;
+    }
+}
+
+.-mx-5{
+    margin-left: -3rem;
+    margin-right: -3rem;
+}
+
+#btn-search{
+    position: absolute;
+    z-index: 100;
+    top: 4px;
+    right: 2px;
+    color: white;
+    font-weight: bold;
+    background-color: #333;
+}
 /******* Links *********/
 
 .action-link {
-    text-decoration: underline;
     font-size: 110%;
     color: #333;
 }
@@ -95,6 +115,7 @@
     text-decoration: underline;
     font-size: 110%;
     color: #111;
+    cursor: pointer;
 }
 
 /******** Search Result *******/
@@ -108,18 +129,24 @@
         }
     }
 
-    &-category {
-        font-size: 11px;
-        padding: 5px 8px;
-        -webkit-border-radius: 290486px;
-        -moz-border-radius: 290486px;
-        border-radius: 290486px;
-        color: white;
-        text-transform: uppercase;
-        font-weight: bold;
-    }
-
     &-result:first-child {
         margin-top: 0 !important;
+    }
+}
+
+.thread_container{
+    padding-right: 3rem;
+    padding-left: 3rem;
+}
+
+@media screen and(max-width: 425px)
+{
+    .text-body
+    {
+        font-size: 100%;
+    }
+
+    .thread_container{
+        padding: 0;
     }
 }

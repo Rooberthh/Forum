@@ -1,5 +1,5 @@
 <template>
-	<button :class="classes" @click="subscribe" v-text=" this.active ? 'Unsubscribe' : 'Subscribe'"></button>
+	<a href="#" :class="classes" @click="subscribe" v-text=" this.active ? 'Unsubscribe' : 'Subscribe'"></a>
 </template>
 
 <script>
@@ -9,7 +9,7 @@ export default {
 
   computed: {
   	classes(){
-  		return ['btn', this.active ? 'btn-link' : 'btn-link', 'subscribe-button'];
+  		return ['action-link', this.active ? 'subscribe-active' : ''];
   	}
   },
 

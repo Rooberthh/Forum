@@ -1,5 +1,15 @@
 @import "../variables";
 
+.icon-grey
+{
+   color: $icon-grey;
+}
+
+/*
+################
+Checkmark
+################
+*/
 #checkmark {
     stroke: #2ecc71;
     fill: none;
@@ -40,4 +50,14 @@
         -o-transform: scale(1);
         transform: scale(1);
     }
+}
+
+/*
+################
+Lock
+################
+*/
+
+.lock-active {
+    color: #ffa801;
 }

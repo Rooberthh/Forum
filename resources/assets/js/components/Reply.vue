@@ -1,13 +1,24 @@
 <template>
-  <div :id="'reply-'+id" class="card mt-3 mb-4" :class="isBest ? 'border-success' : ''">
-      <div class="card-body">
+  <div :id="'reply-'+id" class="card mb-2 border-0">
+      <div class="card-body reply ml-3">
           <div class="level">
               <small class="flex">
+                  <span v-if="isBest" class="reply-marked-success mr-1">
+                      Best Reply
+                  </span>
+
                   <a :href="'/profiles/'+ reply.owner.name"
                      v-text="name">
                   </a>
 
                   <span v-text="ago"></span>
+                  <a href="#" v-if="authorize('owns', reply) || authorize('can', 'moderate')" class="action-link" @click="editing = true">| Edit </a>
+
+                  <a href="#" class="action-link" @click="markBestReply"
+                          v-show="! isBest && ! editing"  v-if="authorize('owns', reply.thread) || authorize('can', 'moderate')">
+                      | Mark as best reply
+                  </a>
+
               </small>
 
               <div v-if="signedIn">
@@ -16,26 +27,23 @@
           </div>
 
           <div v-if="editing">
-              <form @submit.prevent="update">
+            <form @submit.prevent="update">
               <div class="form-group">
                 <wysiwyg name="body" v-model="body"></wysiwyg>
               </div>
+              <div class="level">
+              <div class="flex">
+              <button class="btn btn-primary btn-sm mx-1">Update</button>
+              <button class="btn btn-danger btn-sm mx-1" @click="editing = false" type="button">Cancel</button>
+              </div>
 
-              <button class="btn btn-primary btn-sm">Update</button>
-              <button class="btn btn-danger btn-sm" @click="editing = false" type="button">Cancel</button>
+
+              <button class="btn btn-link" @click="destroy">Delete Reply</button>
+              </div>
               </form>
           </div>
-          <div v-else v-html="body"></div>
-          <button class="btn btn-link pl-0" @click="markBestReply"
-                  v-show="! isBest && ! editing"  v-if="authorize('owns', reply.thread) || authorize('can', 'moderate')">
-              Best Reply
-          </button>
+          <div class="body-text" v-else v-html="body"></div>
       </div>
-
-        <div class="card-footer level" v-if="authorize('owns', reply) || authorize('can', 'moderate')">
-                <button class="btn btn-info btn-xs mr-2 btn-sm" @click="editing = true">Edit</button>
-                <button class="btn btn-danger btn-sm" @click="destroy">Delete</button>
-        </div>
   </div>
 </template>
 

@@ -1,9 +1,8 @@
 @extends('moderator.layout.app')
 
 @section('moderator-content')
-    <div class="container">
         <div class="row">
-            <div class="col-md-10 offset-2">
+            <div class="col">
                 <table style="border-collapse: collapse">
                     <thead>
                     <tr>

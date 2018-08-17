@@ -1,5 +1,5 @@
 {{-- If editing--}}
-<div class="card mb-4" v-if="editing">
+<div class="card mb-2" v-if="editing">
     <div class="card-header">
         <input class="form-control" type="text" title="title" name="title" id="title" v-model="form.title">
     </div>
@@ -19,7 +19,6 @@
                     <form action="{{ $thread->path() }}" method="POST" class="ml-auto">
                         {{ csrf_field() }}
                         {{ method_field('DELETE') }}
-
                         <button type="submit" class="btn btn-link">Delete Thread</button>
                     </form>
                 @endif
@@ -30,24 +29,19 @@
 
 {{-- If not editing--}}
 
-<div class="card mb-4" v-else>
-    <div class="card-body">
-        <div class="level">
-            <small class="flex">
-                <span>Posted by: </span>
+<div class="card mb-2 border-0 " v-else>
+    <div class="card-body thread-body-show">
+        <h3 class="thread-title-show" v-text="title"></h3>
+            <small>
+                <span>Posted by </span>
                 <a href="{{ route('profile', $thread->creator) }}">{{ $thread->creator->name }} ({{ $thread->creator->reputation }} XP)</a>
-                <span>{{ $thread->created_at->diffForHumans() }}</span>
+                <span>{{ $thread->created_at->diffForHumans() }} |</span>
+                <a class="mx-1 action-link"  href="#" v-if="authorize('can', 'moderate')" @click="toggleLock" v-text="locked ? 'Unlock |' : 'Lock |'"></a>
+
+                <a class="mx-1 action-link" href="#" v-if="authorize('can', 'moderate')" @click="togglePin" v-text="pinned ? 'Unpin |' : 'Pin |'"></a>
+                <a class="mx-1 action-link" href="#" v-if="authorize('can', 'moderate') || authorize('owns', thread)" @click="editing = true">Edit |</a>
+                <subscribe-button :active="{{ json_encode($thread->isSubscribedTo) }}" v-if="signedIn"></subscribe-button>
             </small>
-            <a class="mx-1 action-link"  href="#" v-if="authorize('can', 'moderate')" @click="toggleLock" v-text="locked ? 'Unlock' : 'Lock'"></a>
-            <a class="mx-1 action-link" href="#" v-if="authorize('can', 'moderate')" @click="togglePin" v-text="pinned ? 'Unpin' : 'Pin'"></a>
-        </div>
-
-        <h4 class="post-title-show" v-text="title"></h4>
-        <div v-html="body"></div>
-        <subscribe-button :active="{{ json_encode($thread->isSubscribedTo) }}" v-if="signedIn"></subscribe-button>
-    </div>
-
-    <div class="card-footer" v-if="authorize('owns', thread) || authorize('can', 'moderate')">
-        <button class="btn btn-sm btn-info" @click="editing = true">Edit</button>
+        <div class="mt-2 body-text" v-html="body"></div>
     </div>
 </div>
