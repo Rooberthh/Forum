@@ -11,6 +11,7 @@ class ReplySeeder extends Seeder
      */
     public function run()
     {
-        create('App\Reply', [], 10);
+        create('App\Thread', ['user_id' => 1], 10);
+//        create('App\Reply', [], 10);
     }
 }

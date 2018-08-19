@@ -21,6 +21,8 @@
     },
     "dependencies": {
         "at.js": "^1.5.4",
+        "chart.js": "^2.7.2",
+        "graph.js": "^1.21.1",
         "i": "^0.3.6",
         "install": "^0.12.1",
         "jquery.caret": "^0.3.1",
