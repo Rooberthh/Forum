@@ -10,8 +10,23 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\Thread;
+use App\User;
+use Carbon\Carbon;
 
-Route::get('/','ThreadsController@index');
+Route::get('/', 'ThreadsController@index');
+//Route::get('/', function(){
+//    $user = auth()->user();
+//
+//    $threads = Thread::where([
+//        ['created_at', '>=', Carbon::now()->firstOfYear(),],
+//        ['user_id', '=', $user->id,],
+//    ])->selectRaw('MONTH(created_at) as month, count(id) as threads')
+//        ->groupBy('month')
+//        ->pluck('threads', 'month');
+//
+//    dd($threads);
+//});
 
 Auth::routes();
 
@@ -65,6 +80,7 @@ Route::get('/api/users', 'Api\UsersController@index')->name('api.users.index');
 Route::get('/api/users/search', 'Api\SearchUsersController@index');
 Route::post('/api/users/{id}/avatar', 'Api\UserAvatarController@store');
 Route::get('/api/channels', 'Api\ChannelsController@index')->name('api.channels.index');
+Route::get('/api/user/graph', 'Api\UserGraphsController@index');
 
 
 Route::group([

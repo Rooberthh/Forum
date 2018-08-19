@@ -31,6 +31,8 @@ Vue.component("channel-dropdown", require("./components/ChannelDropdown.vue"));
 
 Vue.component("update-settings", require("./pages/UpdateSettings.vue"));
 
+Vue.component("thread-graph", require("./components/ThreadGraph.vue"));
+
 //Dashboards
 Vue.component("dashboard-tile", require("./components/Tile.vue"));
 Vue.component("developer-tile", require("./components/DeveloperTile.vue"));
