@@ -14,9 +14,8 @@ class UserGraphsController extends Controller
     {
         $user = auth()->user();
 
-        $threads = Thread::where([
-            ['created_at', '>=', Carbon::now()->firstOfYear(),],
-            ['user_id', '=', $user->id,],
+        $threads = Thread::ThisYear()->where([
+            ['user_id', '=', $user->id,]
         ])->selectRaw('MONTH(created_at) as month, count(id) as threads')
             ->groupBy('month')
             ->pluck('threads', 'month');

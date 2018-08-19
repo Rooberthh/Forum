@@ -4,6 +4,7 @@ namespace App;
 
 use App\Events\ThreadReceivedNewReply;
 use App\Filters\ThreadFilters;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Searchable;
@@ -209,6 +210,10 @@ class Thread extends Model
     {
         Reputation::deduct($reply->owner, Reputation::REPLY_WAS_MARKED_AS_BEST);
         $this->update(['best_reply_id' => null]);
+    }
+
+    public function scopeThisYear($query){
+        return $query->where('created_at', '>=', Carbon::now()->firstOfYear());
     }
 
 
