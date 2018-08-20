@@ -13,7 +13,7 @@
         mounted() {
             axios.get(this.url).then(response => {
                 const data = response.data;
-                let months = [
+                const months = [
                     'January', 'February', 'March', 'April', 'May',
                     'June', 'July', 'August', 'September',
                     'October', 'November', 'December'
@@ -24,7 +24,7 @@
                     datasets: [
                         {
                             label: "Threads",
-                            fillColor: this.color,
+                            fillColor: "rgba(220,220,220,1)",
                             strokeColor: "rgba(220,220,220,1)",
                             pointColor: "rgba(220,220,220,1)",
                             pointStrokeColor: "#fff",

@@ -53,7 +53,7 @@
 
 <style scoped>
     .input-wrapper {
-        padding: 0.3rem 0.8rem;
+        padding: 0.3rem 0.3rem;
     }
 
     .channel-list {

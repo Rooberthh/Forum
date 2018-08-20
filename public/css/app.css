@@ -10460,6 +10460,10 @@ a.text-dark:focus {
   color: #a6b3b4;
 }
 
+.icon-dark-grey {
+  color: #6b7879;
+}
+
 /*
 ################
 Checkmark
@@ -10471,8 +10475,8 @@ Checkmark
   fill: none;
   stroke-dasharray: 70px;
   stroke-dashoffset: 70px;
-  -webkit-animation: dash .3s linear forwards, pulse 1s forwards;
-          animation: dash .3s linear forwards, pulse 1s forwards;
+  -webkit-animation: dash .3s linear forwards, pulse 1s forwards;
+          animation: dash .3s linear forwards, pulse 1s forwards;
 }
 
 @-webkit-keyframes dash {
