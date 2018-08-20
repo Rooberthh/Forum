@@ -10541,17 +10541,18 @@ Lock
 }
 
 .category-label {
-  background-color: #dee6ec;
   font-size: 11px;
   padding: 5px 8px;
   border-radius: 290486px;
-  color: #111;
+  color: #fff;
   text-transform: uppercase;
   font-weight: bold;
+  letter-spacing: 0.8pt;
 }
 
 .category-label:hover {
   text-decoration: none;
+  color: #fff;
 }
 
 .post-title {

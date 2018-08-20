@@ -21,7 +21,7 @@
             </div>
 
             <div>
-                <a href="{{ $thread->channel->path() }}" class="category-label">{{ $thread->channel->name }}</a>
+                <a href="{{ $thread->channel->path() }}" class="category-label" style="background-color: {{ $thread->channel->color }}">{{ $thread->channel->name }}</a>
                 <small>
                     <span><i class="fas fa-comment-alt icon-dark-grey"></i> {{ $thread->replies_count }} </span>
                     <span><i class="far fa-eye icon-dark-grey"></i> {{ $thread->visits }}</span>
