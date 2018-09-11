@@ -13,6 +13,7 @@
         mounted() {
             axios.get(this.url).then(response => {
                 const data = response.data;
+                console.log(data);
                 let months = [
                     'January', 'February', 'March', 'April', 'May',
                     'June', 'July', 'August', 'September',
