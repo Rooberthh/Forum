@@ -10728,6 +10728,15 @@ h6 {
   background-color: #27ae60;
 }
 
+.is-green {
+  background-color: #2ecc71;
+  color: white;
+}
+
+.is-green:hover {
+  background-color: #27ae60;
+}
+
 .-mx-5 {
   margin-left: -3rem;
   margin-right: -3rem;
