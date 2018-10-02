@@ -10,9 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-use App\Thread;
-use App\User;
-use Carbon\Carbon;
 
 Route::get('/', 'ThreadsController@index');
 

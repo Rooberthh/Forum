@@ -32,8 +32,6 @@
 
                 <!-- Authentication Links -->
                 @if(auth()->user())
-                    <user-notifications></user-notifications>
-
                     @if(Auth()->check() && Auth()->user()->hasRole('admin') || auth()->user()->hasRole('moderator') || auth()->user()->hasRole('Developer'))
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -53,6 +51,7 @@
                             </div>
                         </li>
                     @endif
+                    <user-notifications></user-notifications>
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle nav-user" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-user"></i>
@@ -104,13 +103,11 @@
 
                 @if(! auth()->check())
                     <a href="#" class="nav-link" @click="$modal.show('register')">Sign Up</a>
-                    <a href="#}" class="nav-link" @click="$modal.show('login')">Sign In</a>
+                    <a href="#" class="nav-link" @click="$modal.show('login')">Sign In</a>
                 @endif
 
             <!-- Authentication Links -->
                 @if(auth()->user())
-                    <user-notifications></user-notifications>
-
                     <a href="{{ route('profile', auth()->user()) }}" class="nav-link">Profile</a>
                     <a href="{{ route('settings.account', auth()->user()) }}" class="nav-link">Settings</a>
                         <a class="nav-link" href="{{ route('logout') }}"
