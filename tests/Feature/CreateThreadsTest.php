@@ -40,13 +40,11 @@ class CreateThreadsTest extends TestCase
     {
         $this->signIn();
 
-        $thread = make('App\Thread');
-
-        $response = $this->post(route('threads'), $thread->toArray());
+        $response = $this->publishThread(['title' => 'Some Title', 'body' => 'Some body.']);
 
         $this->get($response->headers->get('Location'))
-            ->assertSee($thread->title)
-            ->assertSee($thread->body);
+            ->assertSee('Some Title')
+            ->assertSee('Some body.');
     }
 
     /** @test */
