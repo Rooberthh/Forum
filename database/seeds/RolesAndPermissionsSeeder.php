@@ -17,18 +17,6 @@ class RolesAndPermissionsSeeder extends Seeder
         app()['cache']->forget('spatie.permission.cache');
 
         $permissions = [
-            'edit-thread',
-            'delete-thread',
-            'lock-thread',
-            'unlock-thread',
-            'pin-thread',
-            'unpin-thread',
-            'edit-reply',
-            'delete-reply',
-            'edit-user',
-            'delete-user',
-            'edit-role',
-            'mark-best-reply',
             'admin',
             'moderate'
         ];
@@ -43,8 +31,7 @@ class RolesAndPermissionsSeeder extends Seeder
         Role::create(['name' => 'admin']);
 
         $role = Role::create(['name' => 'moderator']);
-        $role->givePermissionTo(['edit-thread', 'delete-thread', 'edit-reply', 'delete-reply',
-                                'mark-best-reply', 'lock-thread', 'unlock-thread', 'admin', 'moderate']);
+        $role->givePermissionTo(['admin', 'moderate']);
 
         $role = Role::create(['name' => 'Developer']);
         $role->givePermissionTo(Permission::all());

@@ -10475,8 +10475,8 @@ Checkmark
   fill: none;
   stroke-dasharray: 70px;
   stroke-dashoffset: 70px;
-  -webkit-animation: dash .3s linear forwards, pulse 1s forwards;
-          animation: dash .3s linear forwards, pulse 1s forwards;
+  -webkit-animation: dash .3s linear forwards, pulse 1s forwards;
+          animation: dash .3s linear forwards, pulse 1s forwards;
 }
 
 @-webkit-keyframes dash {
@@ -10535,6 +10535,60 @@ Lock
   color: #ffa801;
 }
 
+/*
+################
+Loader
+################
+*/
+
+.loader {
+  color: transparent !important;
+  pointer-events: none;
+  position: relative;
+}
+
+.loader:after {
+  -webkit-animation: spinAround 500ms infinite linear;
+          animation: spinAround 500ms infinite linear;
+  border: 2px solid #dbdbdb;
+  border-radius: 290486px;
+  border-right-color: transparent;
+  border-top-color: transparent;
+  content: "";
+  display: block;
+  width: 1em;
+  height: 1em;
+  position: relative;
+  position: absolute;
+  left: calc(50% - (1em / 2));
+  top: calc(50% - (1em / 2));
+  position: absolute !important;
+}
+
+@-webkit-keyframes spinAround {
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  to {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+
+@keyframes spinAround {
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  to {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+
 .thread-list-item {
   padding: 0.75rem 1.25rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.09);
@@ -10544,10 +10598,10 @@ Lock
   font-size: 11px;
   padding: 5px 8px;
   border-radius: 290486px;
-  color: #fff;
-  text-transform: uppercase;
+  color: #FEE;
   font-weight: bold;
-  letter-spacing: 0.8pt;
+  text-transform: uppercase;
+  letter-spacing: .5pt;
 }
 
 .category-label:hover {
@@ -10676,6 +10730,15 @@ h6 {
 }
 
 .btn-primary:hover {
+  background-color: #27ae60;
+}
+
+.is-green {
+  background-color: #2ecc71;
+  color: white;
+}
+
+.is-green:hover {
   background-color: #27ae60;
 }
 

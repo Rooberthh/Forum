@@ -47,7 +47,6 @@ $factory->define(App\Thread::class, function ($faker) {
         'locked' => false
     ];
 });
-
 $factory->state(App\Thread::class, 'from_existing_channels_and_users', function ($faker) {
     $title = $faker->sentence;
 
@@ -62,12 +61,12 @@ $factory->state(App\Thread::class, 'from_existing_channels_and_users', function 
         'body'  => $faker->paragraph,
         'visits' => $faker->numberBetween(0, 35),
         'slug' => str_slug($title),
-        'locked' => $faker->boolean(15)
+        'locked' => $faker->boolean(false)
     ];
 });
 
 $factory->define(App\Channel::class, function ($faker) {
-    $name = $faker->word;
+    $name = $faker->unique()->word;
 
     return [
         'name' => $name,

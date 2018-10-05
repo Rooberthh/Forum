@@ -111,7 +111,7 @@ class ThreadsController extends Controller
 
     public function update($channel, Thread $thread)
     {
-        if(auth()->user()->can('edit-thread') || $this->authorize('update', $thread))
+        if(auth()->user()->can('moderate') || $this->authorize('update', $thread))
         {
             request()->validate([
                 'title' => ['required', new SpamFree],

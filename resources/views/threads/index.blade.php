@@ -8,8 +8,9 @@
             @endif
 
             @include('threads._list')
-
-            {{ $threads->render() }}
+            <div class="mt-4">
+                {{ $threads->render() }}
+            </div>
         </div>
     </div>
 @endsection

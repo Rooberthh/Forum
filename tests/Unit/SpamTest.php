@@ -23,9 +23,6 @@ class SpamTest extends TestCase
     /** @test */
     public function it_checks_for_key_held_down()
     {
-        // invalid keywords
-        // key held down
-
         $spam = new Spam();
 
         $this->expectException('Exception');

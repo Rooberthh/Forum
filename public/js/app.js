@@ -91096,7 +91096,7 @@ exports = module.exports = __webpack_require__(6)(false);
 
 
 // module
-exports.push([module.i, "\n.red-big[data-v-20090df6]{\n\tcolor: red;\n\tfont-size: 1.2em;\n}\n", ""]);
+exports.push([module.i, "\n.white-big[data-v-20090df6]{\n\t\tcolor: white;\n\t\tfont-size: 1.2em;\n}\nli[data-v-20090df6]{\n        position: relative;\n}\n\n", ""]);
 
 // exports
 
@@ -91124,29 +91124,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      notifications: false
-    };
-  },
-  created: function created() {
-    var _this = this;
+    data: function data() {
+        return {
+            notifications: false
+        };
+    },
+    created: function created() {
+        var _this = this;
 
-    axios.get("/profiles/" + window.App.user.name + "/notifications").then(function (response) {
-      return _this.notifications = response.data;
-    });
-  },
+        axios.get("/profiles/" + window.App.user.name + "/notifications").then(function (response) {
+            _this.notifications = response.data;
+        });
+    },
 
+    computed: {
+        notificationCount: function notificationCount() {
+            return this.notifications.length;
+        }
+    },
 
-  methods: {
-    markAsRead: function markAsRead(notification) {
-      axios.delete("/profiles/" + window.App.user.name + "/notifications/" + notification.id);
+    methods: {
+        markAsRead: function markAsRead(notification) {
+            axios.delete("/profiles/" + window.App.user.name + "/notifications/" + notification.id);
+        }
     }
-  }
 });
 
 /***/ }),
@@ -91157,35 +91160,33 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _vm.notifications.length
-      ? _c("li", { staticClass: "nav-item dropdown" }, [
-          _vm._m(0),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "dropdown-menu",
-              attrs: { "aria-labelledby": "navbarDropdown" }
-            },
-            _vm._l(_vm.notifications, function(notification) {
-              return _c("div", [
-                _c("a", {
-                  staticClass: "dropdown-item",
-                  attrs: { href: notification.data.link },
-                  domProps: { textContent: _vm._s(notification.data.message) },
-                  on: {
-                    click: function($event) {
-                      _vm.markAsRead(notification)
-                    }
+  return _vm.notifications.length
+    ? _c("li", { staticClass: "nav-item dropdown" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "dropdown-menu",
+            attrs: { "aria-labelledby": "navbarDropdown" }
+          },
+          _vm._l(_vm.notifications, function(notification) {
+            return _c("div", [
+              _c("a", {
+                staticClass: "dropdown-item",
+                attrs: { href: notification.data.link },
+                domProps: { textContent: _vm._s(notification.data.message) },
+                on: {
+                  click: function($event) {
+                    _vm.markAsRead(notification)
                   }
-                })
-              ])
-            })
-          )
-        ])
-      : _vm._e()
-  ])
+                }
+              })
+            ])
+          })
+        )
+      ])
+    : _vm._e()
 }
 var staticRenderFns = [
   function() {
@@ -91205,7 +91206,7 @@ var staticRenderFns = [
           "aria-expanded": "false"
         }
       },
-      [_c("i", { staticClass: "fas fa-exclamation-circle red-big" })]
+      [_c("i", { staticClass: "fas fa-exclamation-circle white-big" })]
     )
   }
 ]
@@ -91296,7 +91297,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "AvatarForm",
-    props: ['user', 'modal'],
+    props: ['user'],
     components: {
         ImageUpload: __WEBPACK_IMPORTED_MODULE_0__ImageUpload_vue___default.a
     },
@@ -95589,6 +95590,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(this.url).then(function (response) {
             var data = response.data;
+            console.log(data);
             var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
             _this.render({
@@ -95597,7 +95599,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }),
                 datasets: [{
                     label: "Threads",
-                    fillColor: "rgba(220,220,220,1)",
+                    fillColor: _this.color,
                     strokeColor: "rgba(220,220,220,1)",
                     pointColor: "rgba(220,220,220,1)",
                     pointStrokeColor: "#fff",

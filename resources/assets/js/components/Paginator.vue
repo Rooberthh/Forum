@@ -12,7 +12,7 @@
 	        <span class="sr-only">Next</span>
 	      </a>
 	    </li>
-  </ul>
+    </ul>
 </template>
 
 <script>

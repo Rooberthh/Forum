@@ -2,6 +2,10 @@
 
 @section('administration-content')
     <div class="container">
-        <h2>Admin Dashboard!</h2>
+        <div class="text-center">
+            <h1>Dashboard</h1>
+        </div>
+
+        <h2>Administrator threads</h2>
     </div>
 @endsection
