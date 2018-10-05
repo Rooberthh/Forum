@@ -10591,17 +10591,18 @@ Loader
 }
 
 .category-label {
-  background-color: #dee6ec;
   font-size: 11px;
   padding: 5px 8px;
   border-radius: 290486px;
-  color: #111;
-  text-transform: uppercase;
+  color: #FEE;
   font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: .5pt;
 }
 
 .category-label:hover {
   text-decoration: none;
+  color: #FFF;
 }
 
 .post-title {

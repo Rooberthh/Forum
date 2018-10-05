@@ -23,7 +23,6 @@
         name: "AvatarForm",
         props: [
             'user',
-            'modal'
         ],
         components: {
             ImageUpload
