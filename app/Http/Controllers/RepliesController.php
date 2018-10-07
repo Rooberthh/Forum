@@ -46,7 +46,7 @@ class RepliesController extends Controller
 
     public function destroy(Reply $reply)
     {
-        if(auth()->user()->can('delete-reply') || $this->authorize('update', $reply))
+        if(auth()->user()->can('moderate') || $this->authorize('update', $reply))
         {
             $reply->delete();
 
@@ -61,7 +61,7 @@ class RepliesController extends Controller
 
     public function update(Reply $reply)
     {
-        if(auth()->user()->can('edit-reply') ||$this->authorize('update', $reply))
+        if(auth()->user()->can('moderate') || $this->authorize('update', $reply))
         {
             request()->validate([
                 'body' => ['required', new SpamFree]

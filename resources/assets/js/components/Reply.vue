@@ -28,18 +28,16 @@
 
           <div v-if="editing">
             <form @submit.prevent="update">
-              <div class="form-group">
-                <wysiwyg name="body" v-model="body"></wysiwyg>
-              </div>
-              <div class="level">
-              <div class="flex">
-              <button class="btn btn-primary btn-sm mx-1">Update</button>
-              <button class="btn btn-danger btn-sm mx-1" @click="editing = false" type="button">Cancel</button>
-              </div>
-
-
-              <button class="btn btn-link" @click="destroy">Delete Reply</button>
-              </div>
+                <div class="form-group">
+                    <wysiwyg name="body" v-model="body"></wysiwyg>
+                </div>
+                <div class="level">
+                    <div class="flex">
+                        <button type="submit" class="btn btn-primary btn-sm mx-1">Update</button>
+                        <button class="btn btn-danger btn-sm mx-1" @click="editing = false" type="button">Cancel</button>
+                    </div>
+                <button class="btn btn-link" @click="destroy" type="button">Delete Reply</button>
+                </div>
               </form>
           </div>
           <div class="body-text" v-else v-html="body"></div>
@@ -95,11 +93,12 @@ export default {
   		},
   		destroy()
   		{
+
   			axios.delete('/replies/' + this.id);
 
             this.$emit('deleted', this.id);
 
-            flash('Reply have been deleted!');
+            flash('Reply have been Deleted', 'success');
   		},
   		markBestReply()
         {

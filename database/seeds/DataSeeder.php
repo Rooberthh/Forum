@@ -48,6 +48,8 @@ class DataSeeder extends Seeder
 
         create('App\User', [], 10);
 
-        factory('App\Thread', 1000)->states('from_existing_channels_and_users')->create();
+        factory('App\Thread', 100)->states('from_existing_channels_and_users')->create();
+
+        factory('App\Reply', 200)->states('from_existing_threads_and_users')->create();
     }
 }

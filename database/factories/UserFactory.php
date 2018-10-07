@@ -84,17 +84,29 @@ $factory->define(App\Channel::class, function ($faker) {
     ];
 });
 
-$factory->define(App\Reply::class, function ($faker) {
+$factory->state(App\Reply::class, 'from_existing_threads_and_users', function ($faker) {
     return [
         'thread_id' => function () {
-            return factory('App\Thread')->create()->id;
+            return \App\Thread::all()->random()->id;
         },
         'user_id' => function () {
-            return factory('App\User')->create()->id;
+            return \App\User::all()->random()->id;
         },
         'body'  => $faker->paragraph
     ];
 });
+
+    $factory->define(App\Reply::class, function ($faker) {
+        return [
+            'thread_id' => function () {
+                return factory('App\Thread')->create()->id;
+            },
+            'user_id' => function () {
+                return factory('App\User')->create()->id;
+            },
+            'body'  => $faker->paragraph
+        ];
+    });
 
 $factory->define(\Illuminate\Notifications\DatabaseNotification::class, function ($faker) {
     return [

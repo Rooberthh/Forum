@@ -216,5 +216,4 @@ class Thread extends Model
         return $query->where('created_at', '>=', Carbon::now()->firstOfYear());
     }
 
-
 }
