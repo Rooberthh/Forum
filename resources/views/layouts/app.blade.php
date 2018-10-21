@@ -51,7 +51,7 @@
 <body class="h-full">
     <div id="app" class="d-flex flex-column min-h-full">
         @include('layouts.nav')
-        <div class="container d-flex mx-auto flex-grow-1">
+        <div class="container d-flex flex-grow-1">
             <main class="py-4 flex-grow-1 bg-white">
                 @yield('content')
             </main>

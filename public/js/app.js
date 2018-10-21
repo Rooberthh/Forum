@@ -91630,7 +91630,7 @@ exports = module.exports = __webpack_require__(6)(false);
 
 
 // module
-exports.push([module.i, "\n.editor[data-v-66c9fe66]{\n    width: 400px;\n    max-width: 100%;\n    height: 80px;\n    overflow: auto;\n    white-space: pre-wrap;\n    border: 1px solid grey;\n    padding: .4em;\n}\n", ""]);
+exports.push([module.i, "\n.editor[data-v-66c9fe66]{\n    max-width: 100%;\n    max-height: 50vh;\n    overflow: auto;\n    white-space: pre-wrap;\n    padding: .4em;\n}\n", ""]);
 
 // exports
 
@@ -91645,8 +91645,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_trix___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_trix__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_at__ = __webpack_require__(538);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_at___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue_at__);
-//
-//
 //
 //
 //
@@ -91750,7 +91748,7 @@ var render = function() {
       _vm._v(" "),
       _c("trix-editor", {
         ref: "trix",
-        staticStyle: { "background-color": "#fff" },
+        staticClass: "editor",
         attrs: { input: "trix", placeholder: _vm.placeholder }
       })
     ],
@@ -94699,7 +94697,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "mt-5" }, [
     _vm.signedIn
       ? _c("div", [
           _c(
