@@ -43,7 +43,8 @@ class DataSeeder extends Seeder
             factory(Channel::class)->create([
                 'name' => $channel['name'],
                 'description' => $channel['description'],
-                'color' => $channel['color']
+                'color' => $channel['color'],
+                'slug' => $channel['name']
             ]);
         });
 

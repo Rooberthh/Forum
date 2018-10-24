@@ -50,7 +50,7 @@
                                 @endif
                             </div>
                         </li>
-                    @endifa<
+                    @endif
                     <user-notifications></user-notifications>
                     <li class="nav-item dropdown ml-3">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle nav-user" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -3,7 +3,7 @@
         <div class="card-body">
             @if (auth()->check())
                 @if(auth()->user()->confirmed)
-                    <button class="btn btn-primary btn-block" @click="$modal.show('new-thread')">Add New Thread</button>
+                    <button class="btn btn-block is-green font-weight-bold" @click="$modal.show('new-thread')">Add New Thread</button>
                 @else
                     <p class="p-3 border border-info">Please confirm your email address to participate.</p>
                 @endif
