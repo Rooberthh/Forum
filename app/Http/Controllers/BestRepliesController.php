@@ -8,9 +8,8 @@ class BestRepliesController extends Controller
 {
     public function store(Reply $reply)
     {
-        if($this->authorize( 'update', $reply->thread) || auth()->user()->hasPermissionTo('moderate')) {
+        if(auth()->user()->hasPermissionTo('moderate') || $this->authorize('update', $reply->thread)) {
             $reply->thread->markBestReply($reply);
         }
-
     }
 }

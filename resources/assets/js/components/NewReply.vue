@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="mt-5">
 		<div v-if="signedIn">
             <div class="form-group">
                 <wysiwyg name="body" v-model="body" placeholder="Have something to say?" :shouldClear="completed"></wysiwyg>

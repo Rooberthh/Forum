@@ -10460,6 +10460,10 @@ a.text-dark:focus {
   color: #a6b3b4;
 }
 
+.icon-dark-grey {
+  color: #6b7879;
+}
+
 /*
 ################
 Checkmark
@@ -10602,7 +10606,7 @@ Loader
 
 .category-label:hover {
   text-decoration: none;
-  color: #FFF;
+  color: #fff;
 }
 
 .post-title {

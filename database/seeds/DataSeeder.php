@@ -1,6 +1,7 @@
 <?php
 
     use App\Channel;
+    use App\User;
     use Illuminate\Database\Seeder;
 
 class DataSeeder extends Seeder
@@ -42,14 +43,43 @@ class DataSeeder extends Seeder
             factory(Channel::class)->create([
                 'name' => $channel['name'],
                 'description' => $channel['description'],
-                'color' => $channel['color']
+                'color' => $channel['color'],
+                'slug' => $channel['name']
             ]);
         });
 
-        create('App\User', [], 10);
+        collect([
+            [
+                'name' => 'johndoe',
+                'email' => 'john@example.com',
+                'password' => bcrypt('password')
+            ],
+            [
+                'name' => 'rotla1981',
+                'email' => 'indy@example.com',
+                'password' => bcrypt('password')
+            ],
+            [
+                'name' => 'KyloRen',
+                'email' => 'kylo@example.com',
+                'password' => bcrypt('password')
+            ],
+            [
+                'name' => '121gigawatts',
+                'email' => 'calvin@example.com',
+                'password' => bcrypt('password')
+            ],
+        ])->each(function ($user) {
+            factory(User::class)->create(
+                [
+                    'name' => $user['name'],
+                    'email' => $user['email'],
+                    'password' => bcrypt('password')
+                ]
+            );
+        });
 
-        factory('App\Thread', 100)->states('from_existing_channels_and_users')->create();
+        factory('App\Thread', 150)->states('from_existing_channels_and_users')->create();
 
-        factory('App\Reply', 200)->states('from_existing_threads_and_users')->create();
     }
 }

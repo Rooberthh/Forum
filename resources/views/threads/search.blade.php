@@ -42,7 +42,7 @@
                                         <ais-highlight :result="result" attribute-name="title"></ais-highlight>
                                     </a>
                                     <p class="pt-2">
-                                        <span class="category-label" v-text="result.channel.name"></span>
+                                        <span class="category-label" v-text="result.channel.name" :style="{backgroundColor: result.channel.color}"></span>
                                         <span>|</span>
                                         <a :href="`/profiles/${result.creator.name}`">
                                             <span v-text="result.creator.name"></span>

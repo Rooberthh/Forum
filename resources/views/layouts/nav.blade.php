@@ -52,7 +52,7 @@
                         </li>
                     @endif
                     <user-notifications></user-notifications>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown ml-3">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle nav-user" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-user"></i>
                         </a>
@@ -108,6 +108,7 @@
 
             <!-- Authentication Links -->
                 @if(auth()->user())
+                    <a href="{{ route('profile', auth()->user()) }}" class="nav-link">New Thread</a>
                     <a href="{{ route('profile', auth()->user()) }}" class="nav-link">Profile</a>
                     <a href="{{ route('settings.account', auth()->user()) }}" class="nav-link">Settings</a>
                         <a class="nav-link" href="{{ route('logout') }}"

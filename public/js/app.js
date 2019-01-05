@@ -91630,7 +91630,7 @@ exports = module.exports = __webpack_require__(6)(false);
 
 
 // module
-exports.push([module.i, "\n.editor[data-v-66c9fe66]{\n    width: 400px;\n    max-width: 100%;\n    height: 80px;\n    overflow: auto;\n    white-space: pre-wrap;\n    border: 1px solid grey;\n    padding: .4em;\n}\n", ""]);
+exports.push([module.i, "\n.editor[data-v-66c9fe66]{\n    max-width: 100%;\n    max-height: 50vh;\n    overflow: auto;\n    white-space: pre-wrap;\n    padding: .4em;\n}\n", ""]);
 
 // exports
 
@@ -91645,8 +91645,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_trix___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_trix__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_at__ = __webpack_require__(538);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_at___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue_at__);
-//
-//
 //
 //
 //
@@ -91750,7 +91748,7 @@ var render = function() {
       _vm._v(" "),
       _c("trix-editor", {
         ref: "trix",
-        staticStyle: { "background-color": "#fff" },
+        staticClass: "editor",
         attrs: { input: "trix", placeholder: _vm.placeholder }
       })
     ],
@@ -92210,64 +92208,64 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['reply'],
-    components: {
-        Favorite: __WEBPACK_IMPORTED_MODULE_0__Favorite_vue___default.a
+  props: ['reply'],
+  components: {
+    Favorite: __WEBPACK_IMPORTED_MODULE_0__Favorite_vue___default.a
+  },
+  data: function data() {
+    return {
+      editing: false,
+      body: this.reply.body,
+      id: this.reply.id,
+      isBest: this.reply.isBest
+    };
+  },
+
+  computed: {
+    ago: function ago() {
+      return __WEBPACK_IMPORTED_MODULE_1_moment___default()(this.reply.created_at).fromNow() + '...';
     },
-    data: function data() {
-        return {
-            editing: false,
-            body: this.reply.body,
-            id: this.reply.id,
-            isBest: this.reply.isBest
-        };
-    },
-
-    computed: {
-        ago: function ago() {
-            return __WEBPACK_IMPORTED_MODULE_1_moment___default()(this.reply.created_at).fromNow() + '...';
-        },
-        name: function name() {
-            return this.reply.owner.name + ' (' + this.reply.owner.reputation + ' XP)';
-        }
-    },
-
-    created: function created() {
-        var _this = this;
-
-        window.events.$on('best-reply-selected', function (id) {
-            _this.isBest = id === _this.reply.id;
-        });
-    },
-
-    methods: {
-        update: function update() {
-            axios.patch('/replies/' + this.id, {
-                body: this.body
-            }).catch(function (error) {
-                flash(error.response.data, 'danger');
-            });
-
-            this.editing = false;
-
-            flash('Reply have been updated!');
-        },
-        destroy: function destroy() {
-
-            axios.delete('/replies/' + this.id);
-
-            this.$emit('deleted', this.id);
-
-            flash('Reply have been Deleted', 'success');
-        },
-        markBestReply: function markBestReply() {
-            axios.post('/replies/' + this.id + '/best');
-
-            window.events.$emit('best-reply-selected', this.id);
-
-            flash('The reply have been marked as best', 'info');
-        }
+    name: function name() {
+      return this.reply.owner.name + ' (' + this.reply.owner.reputation + ' XP)';
     }
+  },
+
+  created: function created() {
+    var _this = this;
+
+    window.events.$on('best-reply-selected', function (id) {
+      _this.isBest = id === _this.reply.id;
+    });
+  },
+
+  methods: {
+    update: function update() {
+      axios.patch('/replies/' + this.id, {
+        body: this.body
+      }).catch(function (error) {
+        flash(error.response.data, 'danger');
+      });
+
+      this.editing = false;
+
+      flash('Reply have been updated!');
+    },
+    destroy: function destroy() {
+
+      axios.delete('/replies/' + this.id);
+
+      this.$emit('deleted', this.id);
+
+      flash('Reply have been Deleted', 'success');
+    },
+    markBestReply: function markBestReply() {
+      axios.post('/replies/' + this.id + '/best');
+
+      window.events.$emit('best-reply-selected', this.id);
+
+      flash('The reply have been marked as best', 'info');
+    }
+  }
 });
 
 /***/ }),
@@ -94702,7 +94700,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "mt-5" }, [
     _vm.signedIn
       ? _c("div", [
           _c(
@@ -95237,7 +95235,7 @@ exports = module.exports = __webpack_require__(6)(false);
 
 
 // module
-exports.push([module.i, "\n.input-wrapper[data-v-4e852e0d] {\n    padding: 0.3rem 0.8rem;\n}\n.channel-list[data-v-4e852e0d] {\n    max-height: 400px;\n    overflow: auto;\n    margin-bottom: 0;\n}\n.list-group-item[data-v-4e852e0d] {\n    border-radius: 0;\n    border-left: 0;\n    border-right: 0;\n}\n.dropdown-menu[data-v-4e852e0d] {\n    padding: 0;\n}\n", ""]);
+exports.push([module.i, "\n.input-wrapper[data-v-4e852e0d] {\n    padding: 0.3rem 0.3rem;\n}\n.channel-list[data-v-4e852e0d] {\n    max-height: 400px;\n    overflow: auto;\n    margin-bottom: 0;\n}\n.list-group-item[data-v-4e852e0d] {\n    border-radius: 0;\n    border-left: 0;\n    border-right: 0;\n}\n.dropdown-menu[data-v-4e852e0d] {\n    padding: 0;\n}\n", ""]);
 
 // exports
 
