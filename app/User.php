@@ -91,12 +91,7 @@ class User extends Authenticatable
 
     public function getAvatarPathAttribute($avatar)
     {
-        if($avatar)
-        {
-            return '/storage/' . $avatar;
-        } else {
-            return '/storage/' . 'avatars/default.png' ;
-        }
+        return asset($avatar ?: 'images/avatars/default.png');
     }
 
     public function confirm()

@@ -23,13 +23,7 @@ class UserAvatarController extends Controller
             'avatar' => ['required', 'image']
         ]);
 
-        if($user->avatar_path != '/storage/' . 'avatars/default.png')
-        {
-            $oldAvatar = auth()->user()->avatar_path;
-            $oldAvatar = substr($oldAvatar, 9);
-
-            Storage::disk('public')->delete($oldAvatar);
-        }
+        Storage::disk('public')->delete(auth()->user()->getOriginal('avatar_path'));
 
         $user->update([
             'avatar_path' => request()->file('avatar')->store('avatars', 'public')
