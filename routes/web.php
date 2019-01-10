@@ -100,7 +100,7 @@ Route::group([
 Route::group([
     'prefix' => 'moderator',
     'middleware' => 'role:moderator|Developer',
-    'namespace' => 'moderator'
+    'namespace' => 'Moderator'
 ], function () {
     Route::get('', 'DashboardController@index')->name('moderator.dashboard.index');
     Route::get('users', 'UsersController@index')->name('moderator.users.index');
