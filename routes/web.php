@@ -120,7 +120,7 @@ Route::group([
 Route::group([
     'middleware' => 'role:Developer',
     'prefix' => 'api/developer',
-    'namespace' => 'api\developer'
+    'namespace' => 'Api\Developer'
 ], function(){
     Route::get('threads' ,'DashboardController@threads')->name('developer.dashboard.threads');
     Route::get('replies' ,'DashboardController@replies')->name('developer.dashboard.replies');
