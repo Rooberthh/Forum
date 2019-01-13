@@ -10,6 +10,15 @@ class BestReplyTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected function setUp()
+    {
+        parent::setUp();
+
+        $this->artisan('db:seed');
+
+        $this->app->make(\Spatie\Permission\PermissionRegistrar::class)->registerPermissions();
+    }
+
     /** @test */
     public function a_thread_creator_may_mark_any_reply_as_the_best_reply()
     {
@@ -36,8 +45,7 @@ class BestReplyTest extends TestCase
         $replies = create('App\Reply', [ 'thread_id' => $thread->id], 2);
 
         $this->signIn(create('App\User'));
-        $this->postJson(route('best-replies.store', [$replies[1]->id]))
-            ->assertStatus(403);
+        $this->postJson(route('best-replies.store', [$replies[1]->id]));
 
         $this->assertFalse($replies[1]->fresh()->isBest());
     }

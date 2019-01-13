@@ -5,6 +5,7 @@ namespace Tests;
 use App\Exceptions\Handler;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Spatie\Permission\Models\Role;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -30,7 +31,7 @@ abstract class TestCase extends BaseTestCase
     {
         $moderator = $moderator ?: create('App\User');
 
-        $moderator->assignRole('moderator');
+        $moderator->assignRole('Moderator');
 
         $this->actingAs($moderator);
 
@@ -41,18 +42,7 @@ abstract class TestCase extends BaseTestCase
     {
         $admin = $admin ?: create('App\User');
 
-        $admin->assignRole('moderator');
-
-        $this->actingAs($admin);
-
-        return $this;
-    }
-
-    protected function signInAdmin($admin = null)
-    {
-        $admin = $admin ?: create('App\User');
-
-        config(['forum.administrators' => [$admin->email]]);
+        $admin->assignRole('Developer');
 
         $this->actingAs($admin);
 

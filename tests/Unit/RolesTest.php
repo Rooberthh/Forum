@@ -14,6 +14,8 @@ class RolesTest extends TestCase
     {
         parent::setUp();
         $this->artisan('db:seed');
+
+        $this->app->make(\Spatie\Permission\PermissionRegistrar::class)->registerPermissions();
     }
 
     /** @test */
@@ -21,9 +23,9 @@ class RolesTest extends TestCase
     {
         $user = create('App\User');
 
-        $user->assignRole('moderator');
+        $user->assignRole('Moderator');
 
-        $this->assertTrue($user->hasRole('moderator'));
+        $this->assertTrue($user->hasRole('Moderator'));
     }
 
     /** @test */
@@ -31,9 +33,9 @@ class RolesTest extends TestCase
     {
         $user = create('App\User');
 
-        $user->assignRole('admin');
+        $user->assignRole('Admin');
 
-        $this->assertTrue($user->hasRole('admin'));
+        $this->assertTrue($user->hasRole('Admin'));
     }
 
     /** @test */
@@ -41,8 +43,8 @@ class RolesTest extends TestCase
     {
         $user = create('App\User');
 
-        $user->assignRole('developer');
+        $user->assignRole('Developer');
 
-        $this->assertTrue($user->hasRole('developer'));
+        $this->assertTrue($user->hasRole('Developer'));
     }
 }

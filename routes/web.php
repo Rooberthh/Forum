@@ -32,7 +32,7 @@ Route::post('/threads', 'ThreadsController@store')->middleware('must-be-confirme
 Route::get('threads/{channel}', 'ThreadsController@index');
 
 
-Route::group(['middleware' => ['role:moderator|Developer']], function () {
+Route::group(['middleware' => ['role:Moderator|Developer']], function () {
     Route::post('locked-threads/{thread}', 'LockedThreadsController@store')->name('locked-threads.store');
     Route::delete('locked-threads/{thread}', 'LockedThreadsController@delete')->name('locked-threads.destroy');
 
@@ -73,7 +73,7 @@ Route::get('/api/user/graph', 'Api\UserGraphsController@index');
 
 Route::group([
     'prefix' => 'moderator',
-    'middleware' => ['role:moderator|Developer'],
+    'middleware' => ['role:Moderator|Developer'],
     'namespace' => 'Moderator'
 ], function () {
     Route::get('channels', 'ChannelsController@index')->name('moderator.channels.index');
@@ -89,7 +89,7 @@ Route::group([
 
 Route::group([
     'prefix' => 'admin',
-    'middleware' => 'role:admin|moderator|Developer',
+    'middleware' => 'role:Admin|Moderator|Developer',
     'namespace' => 'Admin'
 ], function () {
     Route::get('', 'DashboardController@index')->name('admin.dashboard.index');
@@ -99,7 +99,7 @@ Route::group([
 
 Route::group([
     'prefix' => 'moderator',
-    'middleware' => 'role:moderator|Developer',
+    'middleware' => 'role:Moderator|Developer',
     'namespace' => 'Moderator'
 ], function () {
     Route::get('', 'DashboardController@index')->name('moderator.dashboard.index');

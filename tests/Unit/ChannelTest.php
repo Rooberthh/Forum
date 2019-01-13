@@ -10,6 +10,15 @@ class ChannelTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected function setUp()
+    {
+        parent::setUp();
+
+        $this->artisan('db:seed');
+
+        $this->app->make(\Spatie\Permission\PermissionRegistrar::class)->registerPermissions();
+    }
+
     /** @test */
     public function a_channel_consists_of_threads()
     {
@@ -38,13 +47,14 @@ class ChannelTest extends TestCase
 
         create('App\Channel', ['archived' => true]);
 
-        $this->assertEquals(1, Channel::count());
+        // Db seeds with 5 + the additional created
+        $this->assertEquals(6, Channel::count());
     }
 
     /** @test */
     function archived_channels_does_not_affect_the_thread_path()
     {
-        $this->signInAdmin();
+        $this->signInModerator();
 
         $channel = create('App\Channel');
         $thread = create('App\Thread', ['channel_id' => $channel->id]);
