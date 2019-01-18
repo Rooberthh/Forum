@@ -10,16 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-use App\Thread;
-use App\User;
-use Carbon\Carbon;
 
 Route::get('/', 'ThreadsController@index');
 
 Auth::routes();
 
 Route::view('scan', 'scan');
-
 Route::get('/home', 'HomeController@index');
 
 Route::get('/threads', 'ThreadsController@index')->name('threads');
@@ -85,16 +81,6 @@ Route::group([
     Route::get('threads/{thread}/edit', 'ModeratorThreadsController@edit')->name('moderator.threads.edit');
     Route::patch('threads/{channel}/{thread}', 'ModeratorThreadsController@update')->name('moderator.threads.update');
     Route::delete('threads/{channel}/{thread}', 'ModeratorThreadsController@destroy')->name('moderator.threads.destroy');
-});
-
-Route::group([
-    'prefix' => 'admin',
-    'middleware' => 'role:Admin|Moderator|Developer',
-    'namespace' => 'Admin'
-], function () {
-    Route::get('', 'DashboardController@index')->name('admin.dashboard.index');
-    Route::get('channels', 'ChannelsController@index')->name('admin.channels.index');
-    Route::get('users', 'UsersController@index')->name('admin.users.index');
 });
 
 Route::group([

@@ -7,7 +7,6 @@
                 loading: false
             };
         },
-
         methods: {
             login() {
                 this.loading = true;
