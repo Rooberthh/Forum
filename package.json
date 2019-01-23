@@ -30,6 +30,7 @@
         "moment": "^2.23.0",
         "node-sass": "^4.11.0",
         "npm": "^6.5.0",
+        "sass": "^1.16.1",
         "trix": "^1.0.0",
         "vue-at": "^2.5.0-beta",
         "vue-instantsearch": "^1.7.0",
