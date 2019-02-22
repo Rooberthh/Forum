@@ -27,5 +27,3 @@ php artisan db:seed
 ### Step 5
 Next, boot up a server and visit your forum.
 
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
