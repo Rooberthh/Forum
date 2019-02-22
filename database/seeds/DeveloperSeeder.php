@@ -12,12 +12,26 @@ class DeveloperSeeder extends Seeder
     public function run()
     {
         $user = create('App\User', [
-            'name' => 'Roberth',
-            'email' => 'roberth.evaldsson@hotmail.com',
-            'password' => bcrypt('9q7q5q3q1q'),
+            'name' => 'Developer',
+            'email' => 'developer@developer.com',
+            'password' => bcrypt('password'),
             'confirmed' => true
         ]);
-
         $user->assignRole('Developer');
+
+        $user = create('App\User', [
+            'name' => 'Moderator',
+            'email' => 'moderator@moderator.com',
+            'password' => bcrypt('password'),
+            'confirmed' => true
+        ]);
+        $user->assignRole('Moderator');
+
+        create('App\User', [
+            'name' => 'User',
+            'email' => 'User@user.com',
+            'password' => bcrypt('password'),
+            'confirmed' => true
+        ]);
     }
 }

@@ -32,7 +32,7 @@
 
                 <!-- Authentication Links -->
                 @if(auth()->user())
-                    @if(auth()->user()->hasRole('moderator') || auth()->user()->hasRole('Developer'))
+                    @if(auth()->user()->hasRole('Moderator') || auth()->user()->hasRole('Developer'))
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 Dashboard <span class="caret"></span>
@@ -41,7 +41,7 @@
                                 @if(auth()->user()->hasRole('Developer'))
                                     <a href="{{ route('moderator.dashboard.index') }}" class="dropdown-item">Moderator</a>
                                     <a href="{{ route('developer.dashboard.index') }}" class="dropdown-item">Developer</a>
-                                @elseif(auth()->user()->hasRole('moderator'))
+                                @elseif(auth()->user()->hasRole('Moderator'))
                                     <a href="{{ route('moderator.dashboard.index') }}" class="dropdown-item">Moderator</a>
                                 @endif
                             </div>
