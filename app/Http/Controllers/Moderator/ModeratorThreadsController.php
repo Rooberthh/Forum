@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Moderator;
 
-use App\Channel;
 use App\Http\Controllers\Controller;
 use App\Thread;
 use App\Trending;
-use Illuminate\Http\Request;
+
 
 class ModeratorThreadsController extends Controller
 {
@@ -35,7 +34,6 @@ class ModeratorThreadsController extends Controller
 
     public function update($channel, Thread $thread)
     {
-
         $thread->update([
             'title' => request('title'),
             'body' => request('body'),

@@ -78,9 +78,6 @@ Route::group([
     Route::delete('channels/{channel}', 'ChannelsController@destroy')->name('moderator.channels.destroy');
     Route::patch('channels/{channel}', 'ChannelsController@update')->name('moderator.channels.update');
     Route::get('channels/{channel}/edit', 'ChannelsController@edit')->name('moderator.channels.edit');
-    Route::get('threads/{thread}/edit', 'ModeratorThreadsController@edit')->name('moderator.threads.edit');
-    Route::patch('threads/{channel}/{thread}', 'ModeratorThreadsController@update')->name('moderator.threads.update');
-    Route::delete('threads/{channel}/{thread}', 'ModeratorThreadsController@destroy')->name('moderator.threads.destroy');
 });
 
 Route::group([
@@ -91,6 +88,9 @@ Route::group([
     Route::get('', 'DashboardController@index')->name('moderator.dashboard.index');
     Route::get('users', 'UsersController@index')->name('moderator.users.index');
     Route::get('threads', 'ModeratorThreadsController@index')->name('moderator.threads.index');
+    Route::get('threads/{thread}/edit', 'ModeratorThreadsController@edit')->name('moderator.threads.edit');
+    Route::patch('/threads/{channel}/{thread}', 'ModeratorThreadsController@update')->name('moderator.threads.update');
+    Route::delete('threads/{channel}/{thread}', 'ModeratorThreadsController@destroy')->name('moderator.threads.destroy');
     Route::post('/locked-threads/{thread}', 'ModeratorLockedThreadsController@store')->name('moderator.locked-threads.store');
     Route::delete('/locked-threads/{thread}', 'ModeratorLockedThreadsController@destroy')->name('moderator.locked-threads.destroy');
 });

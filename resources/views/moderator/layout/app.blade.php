@@ -25,9 +25,5 @@
 @endsection
 
 @section('content')
-    <div class="py-6">
-        <div class="container">
-            @yield('moderator-content')
-        </div>
-    </div>
+    @yield('moderator-content')
 @endsection

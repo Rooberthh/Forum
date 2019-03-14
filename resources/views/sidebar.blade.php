@@ -8,8 +8,8 @@
                     <p class="p-3 border border-info">Please confirm your email address to participate.</p>
                 @endif
             @else
-                <button class="btn btn-primary btn-block" @click="$modal.show('login')">Log In To Post</button>
-                <button class="btn btn-danger btn-block" @click="$modal.show('register')">Register</button>
+                <button class="btn is-green btn-block" @click="$modal.show('login')">Log In To Post</button>
+                <button class="btn btn-danger btn-block font-weight-bold" @click="$modal.show('register')">Register</button>
             @endif
 
             <div class="mt-4">
