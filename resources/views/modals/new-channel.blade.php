@@ -1,5 +1,5 @@
 @if(auth()->check())
-<modal name="new-channel" height="auto" maxWidth="800px" adaptive>
+<modal name="new-channel" height="auto" adaptive>
     <button type="button" class="close float-right p-2" aria-label="Close" @click="$modal.hide('new-channel')">
         <span aria-hidden="true">&times;</span>
     </button>

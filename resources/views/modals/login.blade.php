@@ -1,5 +1,5 @@
 <login inline-template>
-    <modal name="login" height="auto" maxWidth="800px" adaptive>
+    <modal name="login" height="auto" adaptive>
         <button type="button" class="close float-right p-2" aria-label="Close" @click="$modal.hide('login')">
             <span aria-hidden="true">&times;</span>
         </button>

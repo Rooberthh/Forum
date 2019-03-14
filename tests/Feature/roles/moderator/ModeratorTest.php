@@ -201,4 +201,16 @@ class ModeratorTest extends TestCase
         $this->assertDatabaseMissing('channels', ['id' => $channel->id]);
     }
 
+    /** @test */
+    public function users_can_be_locked()
+    {
+        $this->signInModerator();
+
+        $user = create('App\User');
+
+        $this->post(route('locked-users.store', $user), ['user_id' => $user->id]);
+
+        $this->assertTrue($user->fresh()->locked);
+    }
+
 }

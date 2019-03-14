@@ -12,7 +12,6 @@ class LockedUsersController extends Controller
         $user->update(['locked' => true]);
 
         return back()->with('flash', 'User have been locked');
-
     }
 
     public function destroy(User $user)

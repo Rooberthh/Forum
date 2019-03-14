@@ -35,7 +35,7 @@ Route::group(['middleware' => ['role:Moderator|Developer']], function () {
     Route::post('/pinned-threads/{thread}', 'PinnedThreadsController@store')->name('pinned-threads.store');
     Route::delete('/pinned-threads/{thread}', 'PinnedThreadsController@destroy')->name('pinned-threads.destroy');
 
-    Route::post('/locked-users/{id}', 'LockedUsersController@store')->name('locked-users.store');
+    Route::post('/locked-users/{user}', 'LockedUsersController@store')->name('locked-users.store');
     Route::delete('/locked-users/{user}', 'LockedUsersController@destroy')->name('locked-users.destroy');
 });
 

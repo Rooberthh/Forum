@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <canvas width="600" height="400" ref="canvas"></canvas>
+    <div class="chart-container">
+        <canvas height="auto" ref="canvas"></canvas>
     </div>
 </template>
 
@@ -49,4 +49,10 @@
         }
     };
 </script>
+
+<style scoped>
+    .chart-container{
+        max-width: 80vw;
+    }
+</style>
 

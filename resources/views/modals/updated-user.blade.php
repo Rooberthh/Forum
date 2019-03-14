@@ -1,5 +1,5 @@
 @if(auth()->check())
-<modal height="auto" name="updated-user" width="400">
+<modal height="auto" name="updated-user" adaptive>
     <button type="button" class="close float-right p-2" aria-label="Close" @click="$modal.hide('updated-user')">
         <span aria-hidden="true">&times;</span>
     </button>

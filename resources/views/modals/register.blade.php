@@ -1,5 +1,5 @@
 <register inline-template>
-    <modal name="register" height="auto" maxWidth="800px" adaptive>
+    <modal name="register" height="auto" adaptive>
         <button type="button" class="close float-right p-2" aria-label="Close" @click="$modal.hide('register')">
             <span aria-hidden="true">&times;</span>
         </button>
