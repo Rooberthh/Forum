@@ -1,5 +1,8 @@
 <login inline-template>
-    <modal name="login" height="auto">
+    <modal name="login" height="auto" maxWidth="800px" adaptive>
+        <button type="button" class="close float-right p-2" aria-label="Close" @click="$modal.hide('login')">
+            <span aria-hidden="true">&times;</span>
+        </button>
         <form class="p-5" @submit.prevent="login">
             <div class="form-group">
                 <label for="email" class="form-label">Email</label>

@@ -104,7 +104,7 @@
 
             <!-- Authentication Links -->
                 @if(auth()->user())
-                    <a href="{{ route('profile', auth()->user()) }}" class="nav-link">New Thread</a>
+                    <a href="#" @click="$modal.show('new-thread')" class="nav-link">New Thread</a>
                     <a href="{{ route('profile', auth()->user()) }}" class="nav-link">Profile</a>
                     <a href="{{ route('settings.account', auth()->user()) }}" class="nav-link">Settings</a>
                         <a class="nav-link" href="{{ route('logout') }}"

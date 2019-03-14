@@ -1,5 +1,8 @@
 @if(auth()->check())
 <modal height="auto" name="updated-user" width="400">
+    <button type="button" class="close float-right p-2" aria-label="Close" @click="$modal.hide('updated-user')">
+        <span aria-hidden="true">&times;</span>
+    </button>
     <div class="container">
         <div class="text-center mt-5">
             <svg xmlns="http://www.w3.org/2000/svg" width="80" height="100" viewBox="0 0 32 32">

@@ -2,4 +2,4 @@
 @include('modals.login')
 @include('modals.register')
 @includeWhen(isset($channel),'modals.new-channel')
-@include('modals.updated-user')
+@includeWhen(auth()->check() && auth()->user()->confirmed, 'modals.updated-user')

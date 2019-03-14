@@ -1,6 +1,9 @@
 @if(auth()->check())
 <new-thread inline-template>
-    <modal name="new-thread" height="auto">
+    <modal name="new-thread" height="auto" maxWidth="800px" adaptive>
+        <button type="button" class="close float-right p-2" aria-label="Close" @click="$modal.hide('new-thread')">
+            <span aria-hidden="true">&times;</span>
+        </button>
         <section class="p-4">
             <div class="flex mb-4">
                 <div class="form-group">

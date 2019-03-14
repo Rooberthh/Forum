@@ -1,5 +1,8 @@
 <register inline-template>
-    <modal name="register" height="auto">
+    <modal name="register" height="auto" maxWidth="800px" adaptive>
+        <button type="button" class="close float-right p-2" aria-label="Close" @click="$modal.hide('register')">
+            <span aria-hidden="true">&times;</span>
+        </button>
         <form class="p-5" @submit.prevent="register">
             <div class="form-group">
                 <label for="name" class="form-label">Name</label>

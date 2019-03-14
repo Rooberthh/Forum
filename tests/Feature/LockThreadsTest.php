@@ -13,11 +13,13 @@ class LockThreadsTest extends TestCase
 
     protected function setUp()
     {
+
         parent::setUp();
 
         $this->artisan('db:seed');
 
         $this->app->make(\Spatie\Permission\PermissionRegistrar::class)->registerPermissions();
+
     }
 
 
