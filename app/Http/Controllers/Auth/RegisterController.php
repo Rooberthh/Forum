@@ -69,6 +69,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'confirmed' => true,
             'confirmation_token' => str_limit(md5($data['email'] . str_random()), 25, '')
         ]);
     }
@@ -82,6 +83,6 @@ class RegisterController extends Controller
      */
     protected function registered(Request $request, $user)
     {
-        Mail::to($user)->send(new PleaseConfirmYourEmail($user));
+        //return Mail::to($user)->send(new PleaseConfirmYourEmail($user));
     }
 }

@@ -2,7 +2,7 @@
     export default {
         data() {
             return {
-                form: { email: "", password: "" },
+                form: { email: "moderator@moderator.com", password: "password" },
                 feedback: "",
                 loading: false
             };

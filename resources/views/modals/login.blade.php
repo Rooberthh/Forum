@@ -6,7 +6,7 @@
         <form class="p-5" @submit.prevent="login">
             <div class="form-group">
                 <label for="email" class="form-label">Email</label>
-                <input type="text" class="form-control" id="email" name="email" autocomplete="email" placeholder="example@example.com" value="{{ old('email') }}" required v-model="form.email">
+                <input type="text" class="form-control" id="email" name="email" autocomplete="email" placeholder="example@example.com" required v-model="form.email">
             </div>
 
             <div class="form-group">

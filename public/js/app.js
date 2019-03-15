@@ -11703,8 +11703,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       form: {
-        email: "",
-        password: ""
+        email: "moderator@moderator.com",
+        password: "password"
       },
       feedback: "",
       loading: false
